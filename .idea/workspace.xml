@@ -23,18 +23,43 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view />
+      </state>
+    </system>
+  </component>
   <component name="FavoritesManager">
     <favorites_list name="minesweeper4java" />
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="CellTest.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/java/minesweeper4java/CellTest.java">
+      <file leaf-file-name="CellBuilderTest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/minesweeper4java/CellBuilderTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="146">
-              <caret line="27" column="34" selection-start-line="27" selection-start-column="34" selection-end-line="27" selection-end-column="34" />
+            <state relative-caret-position="210">
+              <caret line="35" column="41" selection-start-line="35" selection-start-column="41" selection-end-line="35" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CellBuilder.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/minesweeper4java/CellBuilder.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="198">
+              <caret line="18" column="34" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
+              <folding>
+                <element signature="e#1414#1415#0" expanded="true" />
+                <element signature="e#1451#1452#0" expanded="true" />
+                <element signature="e#1487#1488#0" expanded="true" />
+                <element signature="e#1527#1528#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -43,13 +68,13 @@
       <file leaf-file-name="Cell.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/minesweeper4java/Cell.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
+            <state relative-caret-position="420">
               <caret line="32" column="25" selection-start-line="32" selection-start-column="25" selection-end-line="32" selection-end-column="25" />
               <folding>
-                <element signature="e#277#278#0" expanded="true" />
-                <element signature="e#309#310#0" expanded="true" />
-                <element signature="e#340#341#0" expanded="true" />
-                <element signature="e#369#370#0" expanded="true" />
+                <element signature="e#277#278#0" expanded="false" />
+                <element signature="e#309#310#0" expanded="false" />
+                <element signature="e#340#341#0" expanded="false" />
+                <element signature="e#369#370#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -339,8 +364,12 @@
         <option value="$PROJECT_DIR$/src/test/java/CellTest.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/test/java/CellTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/minesweeper4java/CellTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/minesweeper4java/Cell.java" />
+        <option value="$PROJECT_DIR$/src/main/java/minesweeper4java/BoardBuilder.java" />
+        <option value="$PROJECT_DIR$/src/test/java/minesweeper4java/BoardBuilderTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/minesweeper4java/CellTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/minesweeper4java/CellBuilderTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/minesweeper4java/CellBuilder.java" />
       </list>
     </option>
   </component>
@@ -487,13 +516,23 @@
       <pane id="PackagesPane" />
     </panes>
   </component>
-  <component name="RunManager" selected="Gradle.CellTest (1)">
-    <configuration default="false" name="CellTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="PropertiesComponent">
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="minesweeper4java" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Gradle.CellBuilderTest.createCellBuilderWithTwoMines">
+    <configuration default="false" name="CellBuilderTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests CellTest" />
+        <option name="scriptParameters" value="--tests minesweeper4java.CellBuilderTest" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -507,12 +546,12 @@
       </ExternalSystemSettings>
       <method />
     </configuration>
-    <configuration default="false" name="CellTest (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration default="false" name="CellBuilderTest.buildBoardWithDimensionFiveAnd2Mines" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests minesweeper4java.CellTest" />
+        <option name="scriptParameters" value="--tests &quot;minesweeper4java.CellBuilderTest.buildBoardWithDimensionFiveAnd2Mines&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -526,12 +565,12 @@
       </ExternalSystemSettings>
       <method />
     </configuration>
-    <configuration default="false" name="CellTest.visitCellTwice" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration default="false" name="CellBuilderTest.createCellBuilderWithMoreMinesThanCells" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;minesweeper4java.CellTest.visitCellTwice&quot;" />
+        <option name="scriptParameters" value="--tests &quot;minesweeper4java.CellBuilderTest.createCellBuilderWithMoreMinesThanCells&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -545,12 +584,31 @@
       </ExternalSystemSettings>
       <method />
     </configuration>
-    <configuration default="false" name="CellTest.setMineIntoCell" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration default="false" name="CellTest.setMineIntoCellTwice" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;minesweeper4java.CellTest.setMineIntoCell&quot;" />
+        <option name="scriptParameters" value="--tests &quot;minesweeper4java.CellTest.setMineIntoCellTwice&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":cleanTest" />
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <method />
+    </configuration>
+    <configuration default="false" name="CellBuilderTest.createCellBuilderWithTwoMines" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;minesweeper4java.CellBuilderTest.createCellBuilderWithTwoMines&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -808,18 +866,20 @@
       <listeners />
       <method />
     </configuration>
-    <list size="4">
-      <item index="0" class="java.lang.String" itemvalue="Gradle.CellTest" />
-      <item index="1" class="java.lang.String" itemvalue="Gradle.CellTest (1)" />
-      <item index="2" class="java.lang.String" itemvalue="Gradle.CellTest.visitCellTwice" />
-      <item index="3" class="java.lang.String" itemvalue="Gradle.CellTest.setMineIntoCell" />
+    <list size="5">
+      <item index="0" class="java.lang.String" itemvalue="Gradle.CellBuilderTest" />
+      <item index="1" class="java.lang.String" itemvalue="Gradle.CellBuilderTest.buildBoardWithDimensionFiveAnd2Mines" />
+      <item index="2" class="java.lang.String" itemvalue="Gradle.CellBuilderTest.createCellBuilderWithMoreMinesThanCells" />
+      <item index="3" class="java.lang.String" itemvalue="Gradle.CellTest.setMineIntoCellTwice" />
+      <item index="4" class="java.lang.String" itemvalue="Gradle.CellBuilderTest.createCellBuilderWithTwoMines" />
     </list>
     <recent_temporary>
-      <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Gradle.CellTest (1)" />
-        <item index="1" class="java.lang.String" itemvalue="Gradle.CellTest.setMineIntoCell" />
-        <item index="2" class="java.lang.String" itemvalue="Gradle.CellTest.visitCellTwice" />
-        <item index="3" class="java.lang.String" itemvalue="Gradle.CellTest" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Gradle.CellBuilderTest.createCellBuilderWithTwoMines" />
+        <item index="1" class="java.lang.String" itemvalue="Gradle.CellBuilderTest" />
+        <item index="2" class="java.lang.String" itemvalue="Gradle.CellBuilderTest.buildBoardWithDimensionFiveAnd2Mines" />
+        <item index="3" class="java.lang.String" itemvalue="Gradle.CellTest.setMineIntoCellTwice" />
+        <item index="4" class="java.lang.String" itemvalue="Gradle.CellBuilderTest.createCellBuilderWithMoreMinesThanCells" />
       </list>
     </recent_temporary>
   </component>
@@ -837,35 +897,35 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="CellTest_(1) - 2017.08.27 at 18h 04m 55s.xml">
-      <configuration name="CellTest (1)" configurationId="GradleRunConfiguration" />
+    <history-entry file="CellBuilderTest - 2017.08.27 at 18h 51m 35s.xml">
+      <configuration name="CellBuilderTest" configurationId="GradleRunConfiguration" />
     </history-entry>
-    <history-entry file="CellTest_(1) - 2017.08.27 at 18h 11m 19s.xml">
-      <configuration name="CellTest (1)" configurationId="GradleRunConfiguration" />
+    <history-entry file="CellBuilderTest - 2017.08.27 at 18h 51m 39s.xml">
+      <configuration name="CellBuilderTest" configurationId="GradleRunConfiguration" />
     </history-entry>
-    <history-entry file="CellTest_(1) - 2017.08.27 at 18h 11m 41s.xml">
-      <configuration name="CellTest (1)" configurationId="GradleRunConfiguration" />
+    <history-entry file="CellBuilderTest - 2017.08.27 at 18h 51m 51s.xml">
+      <configuration name="CellBuilderTest" configurationId="GradleRunConfiguration" />
     </history-entry>
-    <history-entry file="CellTest_setMineIntoCell - 2017.08.27 at 18h 08m 48s.xml">
-      <configuration name="CellTest.setMineIntoCell" configurationId="GradleRunConfiguration" />
+    <history-entry file="CellBuilderTest - 2017.08.27 at 19h 05m 52s.xml">
+      <configuration name="CellBuilderTest" configurationId="GradleRunConfiguration" />
     </history-entry>
-    <history-entry file="CellTest_setMineIntoCell - 2017.08.27 at 18h 09m 46s.xml">
-      <configuration name="CellTest.setMineIntoCell" configurationId="GradleRunConfiguration" />
+    <history-entry file="CellBuilderTest - 2017.08.27 at 19h 08m 09s.xml">
+      <configuration name="CellBuilderTest" configurationId="GradleRunConfiguration" />
     </history-entry>
-    <history-entry file="CellTest_setMineIntoCell - 2017.08.27 at 18h 10m 04s.xml">
-      <configuration name="CellTest.setMineIntoCell" configurationId="GradleRunConfiguration" />
+    <history-entry file="CellBuilderTest_buildBoardWithDimensionFiveAnd2Mines - 2017.08.27 at 18h 57m 19s.xml">
+      <configuration name="CellBuilderTest.buildBoardWithDimensionFiveAnd2Mines" configurationId="GradleRunConfiguration" />
     </history-entry>
-    <history-entry file="CellTest_setMineIntoCell - 2017.08.27 at 18h 10m 19s.xml">
-      <configuration name="CellTest.setMineIntoCell" configurationId="GradleRunConfiguration" />
+    <history-entry file="CellBuilderTest_buildBoardWithDimensionFiveAnd2Mines - 2017.08.27 at 19h 05m 00s.xml">
+      <configuration name="CellBuilderTest.buildBoardWithDimensionFiveAnd2Mines" configurationId="GradleRunConfiguration" />
     </history-entry>
-    <history-entry file="CellTest_visitCellTwice - 2017.08.27 at 18h 06m 23s.xml">
-      <configuration name="CellTest.visitCellTwice" configurationId="GradleRunConfiguration" />
+    <history-entry file="CellBuilderTest_createCellBuilderWithMoreMinesThanCells - 2017.08.27 at 18h 58m 30s.xml">
+      <configuration name="CellBuilderTest.createCellBuilderWithMoreMinesThanCells" configurationId="GradleRunConfiguration" />
     </history-entry>
-    <history-entry file="CellTest_visitCellTwice - 2017.08.27 at 18h 06m 35s.xml">
-      <configuration name="CellTest.visitCellTwice" configurationId="GradleRunConfiguration" />
+    <history-entry file="CellBuilderTest_createCellBuilderWithTwoMines - 2017.08.27 at 19h 08m 27s.xml">
+      <configuration name="CellBuilderTest.createCellBuilderWithTwoMines" configurationId="GradleRunConfiguration" />
     </history-entry>
-    <history-entry file="CellTest_visitCellTwice - 2017.08.27 at 18h 06m 56s.xml">
-      <configuration name="CellTest.visitCellTwice" configurationId="GradleRunConfiguration" />
+    <history-entry file="CellTest_setMineIntoCellTwice - 2017.08.27 at 19h 02m 57s.xml">
+      <configuration name="CellTest.setMineIntoCellTwice" configurationId="GradleRunConfiguration" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
@@ -878,7 +938,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -910,8 +970,15 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
-    <watches-manager />
+    <breakpoint-manager>
+      <option name="time" value="5" />
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="GradleRunConfiguration">
+        <watch expression="board[i][j]" language="JAVA" />
+        <watch expression="countOfMines" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/settings.gradle">
@@ -938,28 +1005,173 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/4.11/28e0ad201304e4a4abf999ca0570b7cffc352c3c/junit-4.11-sources.jar!/org/junit/Assert.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="742" column="0" selection-start-line="742" selection-start-column="0" selection-end-line="742" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/minesweeper4java/Cell.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
+        <state relative-caret-position="420">
           <caret line="32" column="25" selection-start-line="32" selection-start-column="25" selection-end-line="32" selection-end-column="25" />
           <folding>
-            <element signature="e#277#278#0" expanded="true" />
-            <element signature="e#309#310#0" expanded="true" />
-            <element signature="e#340#341#0" expanded="true" />
-            <element signature="e#369#370#0" expanded="true" />
+            <element signature="e#277#278#0" expanded="false" />
+            <element signature="e#309#310#0" expanded="false" />
+            <element signature="e#340#341#0" expanded="false" />
+            <element signature="e#369#370#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/4.11/28e0ad201304e4a4abf999ca0570b7cffc352c3c/junit-4.11-sources.jar!/org/junit/internal/runners/model/ReflectiveCallable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/4.11/28e0ad201304e4a4abf999ca0570b7cffc352c3c/junit-4.11-sources.jar!/org/junit/runners/BlockJUnit4ClassRunner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/4.11/28e0ad201304e4a4abf999ca0570b7cffc352c3c/junit-4.11-sources.jar!/org/junit/runners/ParentRunner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="63" column="0" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+          <folding>
+            <element signature="e#2542#2543#0" expanded="false" />
+            <element signature="e#9300#9448#0" expanded="false" />
+            <element signature="e#9447#9448#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/minesweeper4java/CellTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="27" column="34" selection-start-line="27" selection-start-column="34" selection-end-line="27" selection-end-column="34" />
+        <state relative-caret-position="675">
+          <caret line="47" column="40" selection-start-line="47" selection-start-column="40" selection-end-line="47" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/minesweeper4java/CellBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="18" column="34" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
+          <folding>
+            <element signature="e#1414#1415#0" expanded="true" />
+            <element signature="e#1451#1452#0" expanded="true" />
+            <element signature="e#1487#1488#0" expanded="true" />
+            <element signature="e#1527#1528#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/minesweeper4java/CellBuilderTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="35" column="41" selection-start-line="35" selection-start-column="41" selection-end-line="35" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>minesweeper4java_test|minesweeper4java</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Gradle: junit:junit:4.11</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>

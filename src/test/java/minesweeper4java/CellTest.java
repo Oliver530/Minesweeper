@@ -12,43 +12,43 @@ public class CellTest {
     @Test
     public void createNewCell() {
         Cell cell = new Cell();
-        Assert.assertEquals(cell.isVisited(), false);
-        Assert.assertEquals(cell.isMine(), false);
+        Assert.assertFalse(cell.isVisited());
+        Assert.assertFalse(cell.isMine());
     }
 
     @Test
     public void visitCellOnce() {
         Cell cell = new Cell();
-        Assert.assertEquals(cell.isVisited(), false);
+        Assert.assertFalse(cell.isVisited());
         cell.visit();
-        Assert.assertEquals(cell.isVisited(), true);
+        Assert.assertTrue(cell.isVisited());
     }
 
     @Test(expected = IllegalStateException.class)
     public void visitCellTwice() {
         Cell cell = new Cell();
-        Assert.assertEquals(cell.isVisited(), false);
+        Assert.assertFalse(cell.isVisited());
         cell.visit();
-        Assert.assertEquals(cell.isVisited(), true);
+        Assert.assertTrue(cell.isVisited());
         cell.visit();
     }
 
     @Test
     public void setMineIntoCellOnce() {
         Cell cell = new Cell();
-        Assert.assertEquals(cell.isMine(), false);
+        Assert.assertFalse(cell.isMine());
         boolean mined = cell.setMine();
-        Assert.assertEquals(mined, true);
-        Assert.assertEquals(cell.isMine(), true);
+        Assert.assertTrue(mined);
+        Assert.assertTrue(cell.isMine());
     }
 
     @Test
     public void setMineIntoCellTwice() {
         Cell cell = new Cell();
-        Assert.assertEquals(cell.isMine(), false);
+        Assert.assertFalse(cell.isMine());
         boolean mined = cell.setMine();
-        Assert.assertEquals(mined, true);
+        Assert.assertTrue(mined);
         mined = cell.setMine();
-        Assert.assertEquals(mined, false);
+        Assert.assertFalse(mined);
     }
 }
