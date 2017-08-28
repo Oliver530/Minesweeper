@@ -42,7 +42,8 @@ public class GameModel {
     }
 
     public CellInfo getCellInfo(int row, int col) {
-        return new CellInfo(board.getCell(row, col));
+        Cell cell = board.getCell(row, col);
+        return new CellInfo(cell, board.getCountOfNeighbourMines(cell));
     }
 
     public int getRowCount() {

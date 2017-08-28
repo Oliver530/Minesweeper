@@ -31,4 +31,18 @@ public class CellInfoTest {
         cell.visit();
         Assert.assertTrue(cellInfo.isVisited());
     }
+
+    @Test
+    public void getCountOfNeighbourMinesZero() {
+        Cell cell = new Cell();
+        CellInfo cellInfo = new CellInfo(cell, 0);
+        Assert.assertEquals(0, cellInfo.getCountOfNeighbourMines());
+    }
+
+    @Test
+    public void getCountOfNeighbourMinesThree() {
+        Cell cell = new Cell();
+        CellInfo cellInfo = new CellInfo(cell, 3);
+        Assert.assertEquals(3, cellInfo.getCountOfNeighbourMines());
+    }
 }

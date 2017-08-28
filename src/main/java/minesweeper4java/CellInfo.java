@@ -6,12 +6,22 @@ package minesweeper4java;
 public class CellInfo {
 
     private final Cell cell;
+    private final int countOfNeighbourMines;
+
+    public CellInfo(Cell cell, int countOfneighbourMines) {
+        this.cell = cell;
+        this.countOfNeighbourMines = countOfneighbourMines;
+    }
 
     public CellInfo(Cell cell) {
-        this.cell = cell;
+        this(cell, 0);
     }
 
     public boolean isVisited() {
         return cell.isVisited();
+    }
+
+    public int getCountOfNeighbourMines() {
+        return this.countOfNeighbourMines;
     }
 }
