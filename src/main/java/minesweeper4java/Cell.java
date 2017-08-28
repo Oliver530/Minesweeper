@@ -35,4 +35,5 @@ public class Cell {
         isMine = true;
         return true;
     }
+
 }
