@@ -16,4 +16,14 @@ public class NullCell extends Cell {
         }
         return instance;
     }
+
+    @Override
+    public boolean isVisited() {
+        return false;
+    }
+
+    @Override
+    public boolean isMine() {
+        return false;
+    }
 }
