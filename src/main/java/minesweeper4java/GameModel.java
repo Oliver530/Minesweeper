@@ -7,14 +7,22 @@ public class GameModel {
 
     private Board board;
     private GameState state = GameState.READY;
+    private int countOfMines;
+
 
     public GameState getState() {
         return state;
     }
 
-    public void startGame(Board board) {
-        this.board = board;
+    public void startGame(int dimension, GameDifficulty difficulty) {
+        this.countOfMines = getCountOfMinesByDifficulty(dimension, difficulty);
+        CellBuilder cellBuilder = new CellBuilder(dimension, this.countOfMines);
+        this.board = new Board(cellBuilder.buildBoard());
         this.state = GameState.RUNNING;
+    }
+
+    private int getCountOfMinesByDifficulty(int dimension, GameDifficulty difficulty) {
+        return (int) (difficulty.getPercentage() * (dimension * dimension));
     }
 
     public void openCell(int row, int col) {
@@ -52,5 +60,9 @@ public class GameModel {
 
     public int getColCount() {
         return this.board.getColCount();
+    }
+
+    public int getCountOfMines() {
+        return this.countOfMines;
     }
 }
