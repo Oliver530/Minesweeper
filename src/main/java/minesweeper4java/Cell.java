@@ -7,10 +7,12 @@ public class Cell {
 
     private boolean isVisited;
     private boolean isMine;
+    private boolean markedAsBomb;
 
     public Cell() {
         this.isVisited = false;
         this.isMine = false;
+        this.markedAsBomb = false;
     }
 
     public boolean isVisited() {
@@ -36,4 +38,11 @@ public class Cell {
         return true;
     }
 
+    public boolean isMarkedAsBomb() {
+        return this.markedAsBomb;
+    }
+
+    public void changeMarkedAsBomb() {
+        this.markedAsBomb = !this.markedAsBomb;
+    }
 }

@@ -24,4 +24,8 @@ public class CellInfo {
     public int getCountOfNeighbourMines() {
         return this.countOfNeighbourMines;
     }
+
+    public boolean isMarkedAsBomb() {
+        return cell.isMarkedAsBomb();
+    }
 }

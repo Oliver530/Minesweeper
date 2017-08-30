@@ -64,11 +64,7 @@ public class GameModelTest {
         GameModel game = new GameModel();
         CellBuilder builder = new CellBuilder(4, 0);
         game.startGame(4, GameDifficulty.PEACE);
-        for (int row = 0; row < game.getRowCount(); row++) {
-            for (int col = 0; col < game.getColCount(); col++) {
-                game.openCell(row, col);
-            }
-        }
+        game.openCell(0,0);
         Assert.assertEquals(GameState.WON, game.getState());
     }
 
@@ -112,6 +108,17 @@ public class GameModelTest {
         GameModel game = new GameModel();
         game.startGame(5, GameDifficulty.HARD);
         Assert.assertEquals(7, game.getCountOfMines());
+    }
+
+    @Test
+    public void markCellAsBomb() {
+        GameModel game = new GameModel();
+        game.startGame(5, GameDifficulty.EASY);
+
+        CellInfo cellInfo = game.getCellInfo(0,0);
+        Assert.assertFalse(cellInfo.isMarkedAsBomb());
+        game.changeMarkedAsBomb(0,0);
+        Assert.assertTrue(cellInfo.isMarkedAsBomb());
     }
 
 }

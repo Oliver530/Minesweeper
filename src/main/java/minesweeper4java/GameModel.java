@@ -1,5 +1,7 @@
 package minesweeper4java;
 
+import java.util.List;
+
 /**
  * Created by olivergerhardt on 28.08.17.
  */
@@ -29,13 +31,33 @@ public class GameModel {
         if (state != GameState.RUNNING) {
             throw new IllegalStateException("GameState is + " + state);
         }
+
         Cell cell = board.getCell(row, col);
         if (cell.isMine()) {
             state = GameState.LOST;
             return;
         }
         cell.visit();
+
+        if (board.getCountOfNeighbourMines(cell) == 0) {
+            openCellR(cell);
+        }
+
         checkWinCondition();
+    }
+
+    public void openCellR(Cell cell) {
+        List<Cell> neighbours = board.getNeighbourCells(cell);
+        for (Cell neighbour : neighbours) {
+            if (neighbour.isVisited()) {
+                continue;
+            }
+            neighbour.visit();
+
+            if (board.getCountOfNeighbourMines(neighbour) == 0) {
+                openCellR(neighbour);
+            }
+        }
     }
 
     private void checkWinCondition() {
@@ -64,5 +86,10 @@ public class GameModel {
 
     public int getCountOfMines() {
         return this.countOfMines;
+    }
+
+    public void changeMarkedAsBomb(int row, int col) {
+        Cell cell = board.getCell(row, col);
+        cell.changeMarkedAsBomb();
     }
 }
