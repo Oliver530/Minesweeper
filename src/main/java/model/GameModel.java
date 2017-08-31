@@ -41,13 +41,18 @@ public class GameModel {
             state = GameState.LOST;
             return;
         }
-        cell.visit();
 
-        if (board.getCountOfNeighbourMines(cell) == 0) {
+        if (!cell.isVisited()) {
+            cell.visit();
+
+            if (board.getCountOfNeighbourMines(cell) == 0) {
+                openCellR(cell);
+            }
+        } else {
             openCellR(cell);
         }
-
         checkWinCondition();
+
     }
 
     private void openCellR(Cell cell) {
@@ -55,11 +60,15 @@ public class GameModel {
         for (Cell neighbour : neighbours) {
             if (neighbour.isVisited()) {
                 continue;
-            }
-            neighbour.visit();
+            } else if (cell.isMine() && !cell.isMarkedAsBomb()) {
+                state = GameState.LOST;
+                return;
+            } else {
+                neighbour.visit();
 
-            if (board.getCountOfNeighbourMines(neighbour) == 0) {
-                openCellR(neighbour);
+                if (board.getCountOfNeighbourMines(neighbour) == 0) {
+                    openCellR(neighbour);
+                }
             }
         }
     }
@@ -109,5 +118,11 @@ public class GameModel {
                 }
             }
         }
+    }
+
+    public void debug(Board board, int countOfMines) {
+        this.board = board;
+        this.countOfMines = countOfMines;
+        this.state = GameState.RUNNING;
     }
 }

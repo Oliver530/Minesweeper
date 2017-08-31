@@ -13,6 +13,7 @@ java -jar minesweeper4java-0.1.jar
 Enter column count (positive integer): <dimension>
 - open <row> <col>
 - mark <row> <col>
+- help
 - exit
 ```
 
@@ -76,7 +77,7 @@ Enjoy!
 **Feedback and pull requests appreciated**
 
 ## ToDos
-- Command 'open' on an already visited cell reveals all neighbouring fields that are not marked as bombs
+- First hit can't be a mine
 - Graphical user interface
 - UML diagrams
 - arc42 documentation

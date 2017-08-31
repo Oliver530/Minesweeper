@@ -1,5 +1,6 @@
 package model;
 
+import model.Cell.Cell;
 import model.Cell.CellBuilder;
 import model.Cell.CellInfo;
 import org.junit.Assert;
@@ -135,6 +136,29 @@ public class GameModelTest {
                 Assert.assertTrue(game.getCellInfo(row, col).isVisited());
             }
         }
+    }
+
+    @Test
+    public void openVisitedCell() {
+        CellBuilder builder = new CellBuilder(5, 0);
+        Cell[][] fields = builder.buildBoard();
+        fields[0][1].changeMarkedAsBomb();
+        fields[0][1].setMine();
+        fields[1][1].changeMarkedAsBomb();
+        fields[1][1].setMine();
+        fields[2][1].changeMarkedAsBomb();
+        fields[2][1].setMine();
+        fields[2][0].changeMarkedAsBomb();
+        fields[2][0].setMine();
+        Board board = new Board(fields);
+
+        GameModel game = new GameModel();
+        game.debug(board, 4);
+
+        game.openCell(0, 0);
+        Assert.assertFalse(game.getCellInfo(1, 0).isVisited());
+        game.openCell(0, 0);
+        Assert.assertTrue(game.getCellInfo(1, 0).isVisited());
     }
 
 }

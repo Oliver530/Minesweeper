@@ -1,5 +1,6 @@
 package View.Console.UserAction;
 
+import View.Console.ConsoleViewDrawer;
 import model.GameModel;
 
 /**
@@ -7,6 +8,6 @@ import model.GameModel;
  */
 public abstract class UserAction {
 
-    public abstract void perform(GameModel gameModel);
+    public abstract void perform(GameModel gameModel, ConsoleViewDrawer drawer);
 
 }

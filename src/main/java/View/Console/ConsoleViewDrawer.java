@@ -6,7 +6,7 @@ import model.GameModel;
 /**
  * Created by olivergerhardt on 31.08.17.
  */
-class ConsoleViewDrawer {
+public class ConsoleViewDrawer {
 
     private final static String ICON_NOT_VISITED = " · ";
     private final static String ICON_IS_MARKED_AS_BOMB = " @ ";

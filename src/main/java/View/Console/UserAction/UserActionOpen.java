@@ -1,5 +1,6 @@
 package View.Console.UserAction;
 
+import View.Console.ConsoleViewDrawer;
 import model.GameModel;
 
 /**
@@ -16,8 +17,10 @@ public class UserActionOpen extends UserAction {
     }
 
     @Override
-    public void perform(GameModel gameModel) {
+    public void perform(GameModel gameModel, ConsoleViewDrawer drawer) {
         gameModel.openCell(row, col);
+        System.out.println();
+        drawer.draw();
     }
 
     public int getRow() {

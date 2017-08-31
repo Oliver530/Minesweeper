@@ -1,5 +1,6 @@
 package View.Console.UserAction;
 
+import View.Console.ConsoleViewDrawer;
 import model.GameModel;
 
 /**
@@ -8,7 +9,7 @@ import model.GameModel;
 public class UserActionExit extends UserAction {
 
     @Override
-    public void perform(GameModel gameModel) {
+    public void perform(GameModel gameModel, ConsoleViewDrawer drawer) {
         System.exit(0);
     }
 }
