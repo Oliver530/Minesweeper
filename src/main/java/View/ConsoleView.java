@@ -12,6 +12,10 @@ import java.util.Scanner;
  */
 public class ConsoleView {
 
+    private final static String ICON_NOT_VISITED = " · ";
+    private final static String ICON_IS_BOMB = " @ ";
+
+
     private final GameModel gameModel;
     private final Scanner keyboard;
     private final CommandLineUserActionPicker picker;
@@ -60,7 +64,8 @@ public class ConsoleView {
     private void printBoard() {
         printHeader();
         for (int row = 0; row < gameModel.getRowCount(); row++) {
-            System.out.print(row + " |");
+            String index = String.format("%1$2s", row);
+            System.out.print(index + " |");
             for (int col = 0; col < gameModel.getColCount(); col++) {
                 CellInfo cellInfo = gameModel.getCellInfo(row, col);
                 System.out.print(getIcon(cellInfo));
@@ -72,20 +77,21 @@ public class ConsoleView {
 
     private String getIcon(CellInfo cellInfo) {
         if (cellInfo.isMarkedAsBomb()) {
-            return "@ ";
+            return ICON_IS_BOMB;
         }
         if (!cellInfo.isVisited()) {
-            return "· ";
+            return ICON_NOT_VISITED;
         }
-        return cellInfo.getCountOfNeighbourMines() + " ";
+        return " " + cellInfo.getCountOfNeighbourMines() + " ";
     }
 
     private void printHeader() {
-        String headerCols = "  |";
-        String headerLine = "--|";
+        String headerCols = "   |";
+        String headerLine = "---|";
         for (int i = 0; i < gameModel.getColCount(); i++) {
-            headerCols = headerCols.concat(i + " ");
-            headerLine = headerLine.concat("--");
+            String index = String.format("%1$2s", i);
+            headerCols = headerCols.concat(index + " ");
+            headerLine = headerLine.concat("---");
         }
         System.out.println(headerCols);
         System.out.println(headerLine);
