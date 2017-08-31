@@ -1,7 +1,7 @@
 # Minesweeper4java
 A simple test driven mineweeper clone for java
 
-## How to play (command line view)
+## How to play (console view)
 
 ```sh
 java -jar minesweeper4java-0.1.jar
@@ -15,3 +15,8 @@ mark 3 3
 Enjoy!
 
 **Feedback and pull requests appreciated**
+
+## ToDos
+- Graphical user interface
+- UML diagrams
+- arc42 documentation
