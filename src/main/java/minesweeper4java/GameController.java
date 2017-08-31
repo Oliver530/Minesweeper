@@ -6,14 +6,11 @@ import model.GameModel;
 /**
  * Created by olivergerhardt on 31.08.17.
  */
-public class GameController {
-
-    private GameModel gameModel;
-    private MinesweeperView view;
+class GameController {
 
     public void start() {
-        gameModel = new GameModel();
-        view = new ConsoleView(gameModel);
+        GameModel gameModel = new GameModel();
+        MinesweeperView view = new ConsoleView(gameModel);
         view.play();
     }
 

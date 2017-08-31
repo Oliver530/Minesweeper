@@ -8,9 +8,9 @@ public class CellInfo {
     private final Cell cell;
     private final int countOfNeighbourMines;
 
-    public CellInfo(Cell cell, int countOfneighbourMines) {
+    public CellInfo(Cell cell, int countOfNeighbourMines) {
         this.cell = cell;
-        this.countOfNeighbourMines = countOfneighbourMines;
+        this.countOfNeighbourMines = countOfNeighbourMines;
     }
 
     public CellInfo(Cell cell) {

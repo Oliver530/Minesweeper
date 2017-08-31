@@ -50,7 +50,7 @@ public class GameModel {
         checkWinCondition();
     }
 
-    public void openCellR(Cell cell) {
+    private void openCellR(Cell cell) {
         List<Cell> neighbours = board.getNeighbourCells(cell);
         for (Cell neighbour : neighbours) {
             if (neighbour.isVisited()) {

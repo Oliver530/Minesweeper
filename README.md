@@ -1,5 +1,5 @@
 # Minesweeper4java
-A simple test driven mineweeper clone for java
+A simple test driven minesweeper clone for java
 
 ## How to play (console view)
 

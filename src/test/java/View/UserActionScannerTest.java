@@ -18,36 +18,32 @@ public class UserActionScannerTest {
 
     @Test
     public void getUserActionExit() {
-        UserActionScanner scanner = new UserActionScanner();
         String input = "exit";
-        UserAction userAction = scanner.getUserAction(input);
+        UserAction userAction = UserActionScanner.getUserAction(input);
 
         assertTrue(userAction instanceof UserActionExit);
     }
 
     @Test
     public void getUserActionOpenWithTooManyParameters() {
-        UserActionScanner scanner = new UserActionScanner();
         String input = "open 1 2 3";
-        UserAction userAction = scanner.getUserAction(input);
+        UserAction userAction = UserActionScanner.getUserAction(input);
 
         assertNull(userAction);
     }
 
     @Test
     public void getUserActionOpenWithTooFewParameters() {
-        UserActionScanner scanner = new UserActionScanner();
         String input = "open 1";
-        UserAction userAction = scanner.getUserAction(input);
+        UserAction userAction = UserActionScanner.getUserAction(input);
 
         assertNull(userAction);
     }
 
     @Test
     public void getUserActionOpen() {
-        UserActionScanner scanner = new UserActionScanner();
         String input = "open 1 2";
-        UserAction userAction = scanner.getUserAction(input);
+        UserAction userAction = UserActionScanner.getUserAction(input);
 
         assertTrue(userAction instanceof UserActionOpen);
         UserActionOpen userActionOpen = (UserActionOpen) userAction;
@@ -57,9 +53,8 @@ public class UserActionScannerTest {
 
     @Test
     public void getUserActionMark() {
-        UserActionScanner scanner = new UserActionScanner();
         String input = "mark 1 2";
-        UserAction userAction = scanner.getUserAction(input);
+        UserAction userAction = UserActionScanner.getUserAction(input);
 
         assertTrue(userAction instanceof UserActionMark);
         UserActionMark userActionMark = (UserActionMark) userAction;

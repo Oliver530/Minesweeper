@@ -9,10 +9,10 @@ import java.util.List;
 /**
  * Created by olivergerhardt on 27.08.17.
  */
-public class Board {
+class Board {
 
-    public static final int rowCountMinimum = 3;
-    public static final int colCountMinimum = 3;
+    private static final int rowCountMinimum = 3;
+    private static final int colCountMinimum = 3;
 
     private final Cell[][] field;
     private final int rowCount;
@@ -39,7 +39,14 @@ public class Board {
     }
 
     private boolean isValidPosition(int row, int col) {
-        return row >= 0 && row < this.rowCount && col >= 0 && col < colCount && field[row][col] instanceof Cell;
+        if (row < 0 || row >= rowCount)
+            return false;
+
+        if (col < 0 || col >= colCount) {
+            return false;
+        }
+
+        return field[row][col] != null;
     }
 
     public int getRowCount() {
@@ -59,11 +66,11 @@ public class Board {
             }
 
         }
-        return new ArrayList<Cell>();
+        return new ArrayList<>();
     }
 
     private List<Cell> getNeighbourCells(int row, int col) {
-        List<Cell> neighbours = new ArrayList<Cell>();
+        List<Cell> neighbours = new ArrayList<>();
         if (isValidPosition(row - 1, col - 1)) {
             neighbours.add(field[row - 1][col - 1]);
         }

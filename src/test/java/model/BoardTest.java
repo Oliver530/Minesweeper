@@ -5,7 +5,6 @@ import model.Cell.NullCell;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -16,7 +15,7 @@ public class BoardTest {
     @Test(expected = IllegalArgumentException.class)
     public void createBoardWithTooSmallFieldFails() {
         Cell[][] field = new Cell[1][1];
-        Board board = new Board(field);
+        new Board(field);
     }
 
     @Test

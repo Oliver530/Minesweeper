@@ -8,8 +8,6 @@ public class NullCell extends Cell {
     // Singleton
     private static NullCell instance;
 
-    private NullCell() {};
-
     public static Cell getInstance() {
         if (instance == null) {
             instance = new NullCell();

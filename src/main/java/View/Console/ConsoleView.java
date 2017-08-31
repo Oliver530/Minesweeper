@@ -1,15 +1,10 @@
 package View.Console;
 
 import View.Console.UserAction.UserAction;
-import View.Console.UserAction.UserActionExit;
-import View.Console.UserAction.UserActionMark;
-import View.Console.UserAction.UserActionOpen;
 import minesweeper4java.MinesweeperView;
 import model.GameDifficulty;
 import model.GameModel;
-import model.GameState;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 
@@ -21,14 +16,12 @@ public class ConsoleView implements MinesweeperView {
     private final GameModel gameModel;
     private final ConsoleViewDrawer drawer;
     private final Scanner keyboard;
-    private final CommandLineUserActionPicker picker;
 
 
     public ConsoleView(GameModel gameModel) {
         this.gameModel = gameModel;
         drawer = new ConsoleViewDrawer(gameModel);
         this.keyboard = new Scanner(System.in);
-        this.picker = new CommandLineUserActionPicker();
     }
 
 

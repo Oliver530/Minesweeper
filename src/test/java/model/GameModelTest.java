@@ -64,7 +64,6 @@ public class GameModelTest {
     @Test
     public void openAllFreeFields() {
         GameModel game = new GameModel();
-        CellBuilder builder = new CellBuilder(4, 0);
         game.startGame(4, GameDifficulty.PEACE);
         game.openCell(0,0);
         Assert.assertEquals(GameState.WON, game.getState());
