@@ -29,6 +29,7 @@ public class ConsoleView implements MinesweeperView {
 
         int dimension = getPositiveIntegerFromUser(keyboard, "Enter column count (positive integer): ");
         gameModel.startGame(dimension, GameDifficulty.EASY);
+        System.out.println("There are " + gameModel.getCountOfMines() + " mines. Good luck!");
 
         UserAction userAction;
         commandScanner: while (true) {
@@ -36,6 +37,7 @@ public class ConsoleView implements MinesweeperView {
 
             userAction = getUserAction();
             userAction.perform(gameModel);
+            System.out.println();
 
             switch (gameModel.getState()) {
                 case WON:
