@@ -1,8 +1,8 @@
-package View;
+package View.Console;
 
-import minesweeper4java.CellInfo;
-import minesweeper4java.GameDifficulty;
-import minesweeper4java.GameModel;
+import minesweeper4java.MinesweeperView;
+import model.GameDifficulty;
+import model.GameModel;
 
 import java.util.Scanner;
 
@@ -10,12 +10,7 @@ import java.util.Scanner;
 /**
  * Created by olivergerhardt on 30.08.17.
  */
-public class ConsoleView {
-
-    private final static String ICON_NOT_VISITED = " · ";
-    private final static String ICON_IS_MARKED_AS_BOMB = " @ ";
-    private final static String ICON_IS_BOMB = " X ";
-
+public class ConsoleView implements MinesweeperView {
 
     private final GameModel gameModel;
     private final Scanner keyboard;
@@ -81,47 +76,5 @@ public class ConsoleView {
         }
     }
 
-    private void printBoard() {
-        printHeader();
-        for (int row = 0; row < gameModel.getRowCount(); row++) {
-            String index = String.format("%1$2s", row);
-            System.out.print(index + " |");
-            for (int col = 0; col < gameModel.getColCount(); col++) {
-                CellInfo cellInfo = gameModel.getCellInfo(row, col);
-                System.out.print(getIcon(cellInfo));
-            }
-            System.out.println();
-        }
-        System.out.println();
-    }
 
-    private String getIcon(CellInfo cellInfo) {
-        if (cellInfo.isMarkedAsBomb()) {
-            return ICON_IS_MARKED_AS_BOMB;
-        }
-        if (!cellInfo.isVisited()) {
-            return ICON_NOT_VISITED;
-        }
-        if (cellInfo.isMine()) {
-            return ICON_IS_BOMB;
-        }
-        int neighbourCount = cellInfo.getCountOfNeighbourMines();
-        if (neighbourCount == 0) {
-            return "   ";
-        } else {
-            return " " + neighbourCount + " ";
-        }
-    }
-
-    private void printHeader() {
-        String headerCols = "   |";
-        String headerLine = "---|";
-        for (int i = 0; i < gameModel.getColCount(); i++) {
-            String index = String.format("%1$2s", i);
-            headerCols = headerCols.concat(index + " ");
-            headerLine = headerLine.concat("---");
-        }
-        System.out.println(headerCols);
-        System.out.println(headerLine);
-    }
 }

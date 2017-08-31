@@ -1,6 +1,6 @@
-package minesweeper4java;
+package model;
 
-import minesweeper4java.Cell;
+import model.Cell.Cell;
 import org.junit.Assert;
 import org.junit.Test;
 

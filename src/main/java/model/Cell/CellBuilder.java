@@ -1,4 +1,4 @@
-package minesweeper4java;
+package model;
 
 import java.util.concurrent.ThreadLocalRandom;
 
