@@ -6,9 +6,10 @@ A simple test driven mineweeper clone for java
 ```sh
 java -jar minesweeper4java-0.1.jar
 
-Enter dimension: 15
+Enter column count (positive integer): 15
 open 5 5
-mark 3 3
+open 4 5
+mark 4 4
 ...
 ```
 
@@ -17,6 +18,7 @@ Enjoy!
 **Feedback and pull requests appreciated**
 
 ## ToDos
+- Command 'open' on an already visited cell reveals all neighbouring fields that are not marked as bombs
 - Graphical user interface
 - UML diagrams
 - arc42 documentation

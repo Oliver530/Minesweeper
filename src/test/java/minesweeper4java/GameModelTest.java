@@ -121,4 +121,19 @@ public class GameModelTest {
         Assert.assertTrue(cellInfo.isMarkedAsBomb());
     }
 
+    @Test
+    public void visitAllAndRemoveMarks() {
+        GameModel game = new GameModel();
+        game.startGame(5, GameDifficulty.EASY);
+        game.changeMarkedAsBomb(0, 0);
+
+        game.visitAllAndRemoveMarks();
+        Assert.assertFalse(game.getCellInfo(0, 0).isMarkedAsBomb());
+        for (int row = 0; row < game.getRowCount(); row++) {
+            for (int col = 0; col < game.getColCount(); col++) {
+                Assert.assertTrue(game.getCellInfo(row, col).isVisited());
+            }
+        }
+    }
+
 }

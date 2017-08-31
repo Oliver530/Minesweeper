@@ -13,12 +13,14 @@ import java.util.Scanner;
 public class ConsoleView {
 
     private final static String ICON_NOT_VISITED = " · ";
-    private final static String ICON_IS_BOMB = " @ ";
+    private final static String ICON_IS_MARKED_AS_BOMB = " @ ";
+    private final static String ICON_IS_BOMB = " X ";
 
 
     private final GameModel gameModel;
     private final Scanner keyboard;
     private final CommandLineUserActionPicker picker;
+
 
     public ConsoleView(GameModel gameModel) {
         this.gameModel = gameModel;
@@ -26,17 +28,30 @@ public class ConsoleView {
         this.picker = new CommandLineUserActionPicker();
     }
 
+    public int getDimension(Scanner scanner, String prompt) {
+        int dimension = -1;
+        while (dimension < 1) {
+            System.out.print(prompt);
+            String input = scanner.nextLine();
+            try {
+                dimension = Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                continue;
+            }
+        }
+        return dimension;
+    }
+
     public void play() {
 
-        System.out.print("Enter dimension: ");
-        int dimension = keyboard.nextInt();
+        int dimension = getDimension(keyboard, "Enter column count (positive integer): ");
         gameModel.startGame(dimension, GameDifficulty.EASY);
 
         CommandLineUserAction userAction;
         while (true) {
             printBoard();
 
-            userAction = picker.getUserAction(new String[]{"open", "mark"});
+            userAction = picker.getUserAction(new String[]{"open", "mark"}, "exit");
 
             switch (userAction.getMode()) {
                 case "open":
@@ -45,17 +60,22 @@ public class ConsoleView {
                 case "mark":
                     gameModel.changeMarkedAsBomb(userAction.getRow(), userAction.getCol());
                     break;
+                case "exit":
+                    gameModel.changeMarkedAsBomb(userAction.getRow(), userAction.getCol());
+                    System.exit(0);
             }
 
             switch (gameModel.getState()) {
                 case WON:
                     System.out.println("You've won!");
+                    gameModel.visitAllAndRemoveMarks();
+                    printBoard();
                     System.exit(0);
-                    break;
                 case LOST:
                     System.out.println("You've lost!");
+                    gameModel.visitAllAndRemoveMarks();
+                    printBoard();
                     System.exit(0);
-                    break;
             }
 
         }
@@ -72,17 +92,25 @@ public class ConsoleView {
             }
             System.out.println();
         }
-
+        System.out.println();
     }
 
     private String getIcon(CellInfo cellInfo) {
         if (cellInfo.isMarkedAsBomb()) {
-            return ICON_IS_BOMB;
+            return ICON_IS_MARKED_AS_BOMB;
         }
         if (!cellInfo.isVisited()) {
             return ICON_NOT_VISITED;
         }
-        return " " + cellInfo.getCountOfNeighbourMines() + " ";
+        if (cellInfo.isMine()) {
+            return ICON_IS_BOMB;
+        }
+        int neighbourCount = cellInfo.getCountOfNeighbourMines();
+        if (neighbourCount == 0) {
+            return "   ";
+        } else {
+            return " " + neighbourCount + " ";
+        }
     }
 
     private void printHeader() {

@@ -28,4 +28,11 @@ public class CellInfo {
     public boolean isMarkedAsBomb() {
         return cell.isMarkedAsBomb();
     }
+
+    public boolean isMine() {
+        if (!isVisited()) {
+            throw new IllegalStateException("isMine() check is only valid on visited cells!");
+        }
+        return cell.isMine();
+    }
 }

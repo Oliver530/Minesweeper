@@ -14,7 +14,7 @@ public class CommandLineUserActionPicker {
         keyboard = new Scanner(System.in);
     }
 
-    public CommandLineUserAction getUserAction(String[] validCommands) {
+    public CommandLineUserAction getUserAction(String[] validCommands, String exitCommand) {
         int row;
         int col;
         String mode;
@@ -24,6 +24,11 @@ public class CommandLineUserActionPicker {
             String userInputs = keyboard.nextLine();
 
             String[] userInput = userInputs.split("\\s+");
+            if (userInput[0].equals(exitCommand)) {
+                return new CommandLineUserAction(exitCommand, 0, 0);
+            }
+
+
             if (userInput.length != 3) {
                 continue;
             }

@@ -92,4 +92,18 @@ public class GameModel {
         Cell cell = board.getCell(row, col);
         cell.changeMarkedAsBomb();
     }
+
+    public void visitAllAndRemoveMarks() {
+        for (int row = 0; row < board.getRowCount(); row++) {
+            for (int col = 0; col < board.getColCount(); col++) {
+                Cell cell = board.getCell(row, col);
+                if (!cell.isVisited()) {
+                    cell.visit();
+                }
+                if (cell.isMarkedAsBomb()) {
+                    cell.changeMarkedAsBomb();
+                }
+            }
+        }
+    }
 }
