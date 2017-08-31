@@ -1,9 +1,9 @@
-package minesweeper4java;
+package model;
 
+import model.Cell.Cell;
+import model.Cell.NullCell;
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.util.List;
 
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;

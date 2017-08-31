@@ -1,4 +1,4 @@
-package View;
+package View.Console;
 
 /**
  * Created by olivergerhardt on 26.08.17.

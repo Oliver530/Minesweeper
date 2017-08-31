@@ -1,4 +1,8 @@
-package minesweeper4java;
+package model;
+
+import model.Cell.Cell;
+import model.Cell.CellBuilder;
+import model.Cell.CellInfo;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package model;
+package model.Cell;
 
 import model.Cell.Cell;
 import org.junit.Assert;

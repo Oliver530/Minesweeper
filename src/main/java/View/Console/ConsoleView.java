@@ -1,9 +1,15 @@
 package View.Console;
 
+import View.Console.UserAction.UserAction;
+import View.Console.UserAction.UserActionExit;
+import View.Console.UserAction.UserActionMark;
+import View.Console.UserAction.UserActionOpen;
 import minesweeper4java.MinesweeperView;
 import model.GameDifficulty;
 import model.GameModel;
+import model.GameState;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 
@@ -13,68 +19,69 @@ import java.util.Scanner;
 public class ConsoleView implements MinesweeperView {
 
     private final GameModel gameModel;
+    private final ConsoleViewDrawer drawer;
     private final Scanner keyboard;
     private final CommandLineUserActionPicker picker;
 
 
     public ConsoleView(GameModel gameModel) {
         this.gameModel = gameModel;
+        drawer = new ConsoleViewDrawer(gameModel);
         this.keyboard = new Scanner(System.in);
         this.picker = new CommandLineUserActionPicker();
     }
 
-    public int getDimension(Scanner scanner, String prompt) {
-        int dimension = -1;
-        while (dimension < 1) {
-            System.out.print(prompt);
-            String input = scanner.nextLine();
-            try {
-                dimension = Integer.parseInt(input);
-            } catch (NumberFormatException e) {
-                continue;
-            }
-        }
-        return dimension;
-    }
 
     public void play() {
 
-        int dimension = getDimension(keyboard, "Enter column count (positive integer): ");
+        int dimension = getPositiveIntegerFromUser(keyboard, "Enter column count (positive integer): ");
         gameModel.startGame(dimension, GameDifficulty.EASY);
 
-        CommandLineUserAction userAction;
-        while (true) {
-            printBoard();
+        UserAction userAction;
+        commandScanner: while (true) {
+            drawer.draw();
 
-            userAction = picker.getUserAction(new String[]{"open", "mark"}, "exit");
-
-            switch (userAction.getMode()) {
-                case "open":
-                    gameModel.openCell(userAction.getRow(), userAction.getCol());
-                    break;
-                case "mark":
-                    gameModel.changeMarkedAsBomb(userAction.getRow(), userAction.getCol());
-                    break;
-                case "exit":
-                    gameModel.changeMarkedAsBomb(userAction.getRow(), userAction.getCol());
-                    System.exit(0);
-            }
+            userAction = getUserAction();
+            userAction.perform(gameModel);
 
             switch (gameModel.getState()) {
                 case WON:
                     System.out.println("You've won!");
-                    gameModel.visitAllAndRemoveMarks();
-                    printBoard();
-                    System.exit(0);
+                    break commandScanner;
                 case LOST:
                     System.out.println("You've lost!");
-                    gameModel.visitAllAndRemoveMarks();
-                    printBoard();
-                    System.exit(0);
+                    break commandScanner;
             }
-
         }
+
+        System.out.println();
+        gameModel.visitAllAndRemoveMarks();
+        drawer.draw();
+        System.exit(0);
+    }
+
+    private int getPositiveIntegerFromUser(Scanner scanner, String prompt) {
+        int value = -1;
+        while (value < 1) {
+            System.out.print(prompt);
+            String input = scanner.nextLine();
+            try {
+                value = Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                continue;
+            }
+        }
+        return value;
     }
 
 
+    private UserAction getUserAction() {
+        UserAction userAction = null;
+        while (userAction == null) {
+            System.out.print("Command: ");
+            String userInput = keyboard.nextLine();
+            userAction = UserActionScanner.getUserAction(userInput);
+        }
+        return userAction;
+    }
 }

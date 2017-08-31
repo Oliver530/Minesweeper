@@ -1,4 +1,4 @@
-package View;
+package View.Console;
 
 import java.util.Arrays;
 import java.util.Scanner;
