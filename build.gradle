@@ -2,6 +2,13 @@ group 'gerhardt.oliver'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
+    version = '0.1'
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'View.Main'
+    }
+}
 
 repositories {
     mavenCentral()
@@ -10,3 +17,10 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
+
+task copyJarToRootDir(type: Copy) {
+    from 'build/libs/minesweeper4java-0.1.jar'
+    into '.'
+}
+
+build.finalizedBy(copyJarToRootDir)

@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="minesweeper4java.CellBuilderTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-08-27T17:08:27" hostname="Olivers-MacBook-Pro.local" time="0.002">
+<testsuite name="minesweeper4java.CellBuilderTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2017-08-31T12:06:13" hostname="Olivers-MacBook-Pro.local" time="0.006">
   <properties/>
-  <testcase name="createCellBuilderWithTwoMines" classname="minesweeper4java.CellBuilderTest" time="0.002"/>
+  <testcase name="buildBoardWithDimensionFiveAnd2Mines" classname="minesweeper4java.CellBuilderTest" time="0.001"/>
+  <testcase name="buildBoardWithDimensionTwoAndZeroMines" classname="minesweeper4java.CellBuilderTest" time="0.0"/>
+  <testcase name="createCellBuilderWithTwoMines" classname="minesweeper4java.CellBuilderTest" time="0.0"/>
+  <testcase name="createCellBuilderWithNoDimension" classname="minesweeper4java.CellBuilderTest" time="0.0"/>
+  <testcase name="createCellBuilderWithMoreMinesThanCells" classname="minesweeper4java.CellBuilderTest" time="0.0"/>
+  <testcase name="createCellBuilderWithNegativeMines" classname="minesweeper4java.CellBuilderTest" time="0.0"/>
+  <testcase name="buildBoardWithDimensionFiveAndZeroMines" classname="minesweeper4java.CellBuilderTest" time="0.001"/>
+  <testcase name="createCellBuilderWithDimensionOne" classname="minesweeper4java.CellBuilderTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
