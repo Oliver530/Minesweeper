@@ -3,7 +3,7 @@ package model;
 import minesweeper4java.MinesweeperGameModel;
 import model.cell.Cell;
 import model.cell.CellBuilder;
-import model.cell.CellInfo;
+import model.cell.CellRO;
 
 import java.util.List;
 
@@ -53,9 +53,8 @@ public class GameModel implements MinesweeperGameModel {
 
     }
 
-    public CellInfo getCell(int row, int col) {
-        Cell cell = board.getCell(row, col);
-        return new CellInfo(cell, board.getCountOfNeighbourMines(cell));
+    public CellRO getCell(int row, int col) {
+        return board.getCell(row, col);
     }
 
     public int getRowCount() {

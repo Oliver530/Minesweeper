@@ -1,7 +1,7 @@
 package view.console;
 
 import minesweeper4java.MinesweeperGameModel;
-import model.cell.CellInfo;
+import model.cell.CellRO;
 
 /**
  * Created by olivergerhardt on 31.08.17.
@@ -25,25 +25,25 @@ public class ConsoleViewDrawer {
             String index = String.format("%1$2s", row);
             System.out.print(index + " |");
             for (int col = 0; col < gameModel.getColCount(); col++) {
-                CellInfo cellInfo = gameModel.getCell(row, col);
-                System.out.print(getIcon(cellInfo));
+                CellRO cell = gameModel.getCell(row, col);
+                System.out.print(getIcon(cell));
             }
             System.out.println();
         }
         System.out.println();
     }
 
-    private String getIcon(CellInfo cellInfo) {
-        if (cellInfo.isMarkedAsBomb()) {
+    private String getIcon(CellRO cell) {
+        if (cell.isMarkedAsBomb()) {
             return ICON_IS_MARKED_AS_BOMB;
         }
-        if (!cellInfo.isVisited()) {
+        if (!cell.isVisited()) {
             return ICON_NOT_VISITED;
         }
-        if (cellInfo.isMine()) {
+        if (cell.isMine()) {
             return ICON_IS_BOMB;
         }
-        int neighbourCount = cellInfo.getCountOfNeighbourMines();
+        int neighbourCount = cell.getCountOfNeighbourMines();
         if (neighbourCount == 0) {
             return "   ";
         } else {

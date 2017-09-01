@@ -2,7 +2,7 @@ package model;
 
 import model.cell.Cell;
 import model.cell.CellBuilder;
-import model.cell.CellInfo;
+import model.cell.CellRO;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -41,8 +41,8 @@ public class GameModelTest {
     public void getCellInfo() {
         GameModel game = new GameModel();
         game.startGame(4, GameDifficulty.PEACE);
-        CellInfo cellInfo = game.getCell(0, 0);
-        Assert.assertFalse(cellInfo.isVisited());
+        CellRO cell = game.getCell(0, 0);
+        Assert.assertFalse(cell.isVisited());
     }
 
     @Test
@@ -50,8 +50,8 @@ public class GameModelTest {
         GameModel game = new GameModel();
         game.startGame(4, GameDifficulty.PEACE);
         game.openCell(0, 0);
-        CellInfo cellInfo = game.getCell(0, 0);
-        Assert.assertTrue(cellInfo.isVisited());
+        CellRO cell = game.getCell(0, 0);
+        Assert.assertTrue(cell.isVisited());
     }
 
     @Test
@@ -117,10 +117,10 @@ public class GameModelTest {
         GameModel game = new GameModel();
         game.startGame(5, GameDifficulty.EASY);
 
-        CellInfo cellInfo = game.getCell(0,0);
-        Assert.assertFalse(cellInfo.isMarkedAsBomb());
+        CellRO cell = game.getCell(0,0);
+        Assert.assertFalse(cell.isMarkedAsBomb());
         game.changeMarkedAsBomb(0,0);
-        Assert.assertTrue(cellInfo.isMarkedAsBomb());
+        Assert.assertTrue(cell.isMarkedAsBomb());
     }
 
     @Test

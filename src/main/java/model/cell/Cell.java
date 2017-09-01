@@ -3,16 +3,26 @@ package model.cell;
 /**
  * Created by olivergerhardt on 27.08.17.
  */
-public class Cell {
+public class Cell implements CellRO {
 
     private boolean isVisited;
     private boolean isMine;
     private boolean markedAsBomb;
+    private int countOfNeighbourMines;
+
+    public int getCountOfNeighbourMines() {
+        return countOfNeighbourMines;
+    }
+
+    public void setCountOfNeighbourMines(int countOfNeighbourMines) {
+        this.countOfNeighbourMines = countOfNeighbourMines;
+    }
 
     public Cell() {
         this.isVisited = false;
         this.isMine = false;
         this.markedAsBomb = false;
+        countOfNeighbourMines = 0;
     }
 
     public boolean isVisited() {
@@ -21,6 +31,10 @@ public class Cell {
 
     public boolean isMine() {
         return isMine;
+    }
+
+    public boolean isMarkedAsBomb() {
+        return this.markedAsBomb;
     }
 
     public void visit() {
@@ -36,10 +50,6 @@ public class Cell {
         }
         isMine = true;
         return true;
-    }
-
-    public boolean isMarkedAsBomb() {
-        return this.markedAsBomb;
     }
 
     public void changeMarkedAsBomb() {

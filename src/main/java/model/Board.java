@@ -29,6 +29,8 @@ class Board {
         this.field = field;
         rowCount = field.length;
         colCount = field[0].length;
+
+        setNeighbourCount();
     }
 
     public Cell getCell(int row, int col) {
@@ -36,6 +38,15 @@ class Board {
             return NullCell.getInstance();
         }
         return field[row][col];
+    }
+
+    private void setNeighbourCount() {
+        for (int row = 0; row < rowCount; row++) {
+            for (int col = 0; col < colCount; col++) {
+                Cell cell = getCell(row, col);
+                cell.setCountOfNeighbourMines(getCountOfNeighbourMines(cell));
+            }
+        }
     }
 
     private boolean isValidPosition(int row, int col) {
