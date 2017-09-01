@@ -1,9 +1,9 @@
 package view.console;
 
+import minesweeper4java.MinesweeperGameModel;
 import view.console.useraction.UserAction;
 import minesweeper4java.MinesweeperView;
 import model.GameDifficulty;
-import model.GameModel;
 
 import java.util.Scanner;
 
@@ -13,12 +13,12 @@ import java.util.Scanner;
  */
 public class ConsoleView implements MinesweeperView {
 
-    private final GameModel gameModel;
+    private final MinesweeperGameModel gameModel;
     private final ConsoleViewDrawer drawer;
     private final Scanner keyboard;
 
 
-    public ConsoleView(GameModel gameModel) {
+    public ConsoleView(MinesweeperGameModel gameModel) {
         this.gameModel = gameModel;
         drawer = new ConsoleViewDrawer(gameModel);
         this.keyboard = new Scanner(System.in);

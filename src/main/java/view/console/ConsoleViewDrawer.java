@@ -1,7 +1,7 @@
 package view.console;
 
+import minesweeper4java.MinesweeperGameModel;
 import model.cell.CellInfo;
-import model.GameModel;
 
 /**
  * Created by olivergerhardt on 31.08.17.
@@ -12,9 +12,9 @@ public class ConsoleViewDrawer {
     private final static String ICON_IS_MARKED_AS_BOMB = " @ ";
     private final static String ICON_IS_BOMB = " X ";
 
-    private final GameModel gameModel;
+    private final MinesweeperGameModel gameModel;
 
-    public ConsoleViewDrawer(GameModel gameModel) {
+    public ConsoleViewDrawer(MinesweeperGameModel gameModel) {
         this.gameModel = gameModel;
     }
 
@@ -25,7 +25,7 @@ public class ConsoleViewDrawer {
             String index = String.format("%1$2s", row);
             System.out.print(index + " |");
             for (int col = 0; col < gameModel.getColCount(); col++) {
-                CellInfo cellInfo = gameModel.getCellInfo(row, col);
+                CellInfo cellInfo = gameModel.getCell(row, col);
                 System.out.print(getIcon(cellInfo));
             }
             System.out.println();

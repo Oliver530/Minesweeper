@@ -1,5 +1,6 @@
 package model;
 
+import minesweeper4java.MinesweeperGameModel;
 import model.cell.Cell;
 import model.cell.CellBuilder;
 import model.cell.CellInfo;
@@ -9,26 +10,23 @@ import java.util.List;
 /**
  * Created by olivergerhardt on 28.08.17.
  */
-public class GameModel {
+public class GameModel implements MinesweeperGameModel {
 
     private Board board;
-    private GameState state = GameState.READY;
+    private GameState state;
     private int countOfMines;
 
-
-    public GameState getState() {
-        return state;
+    public GameModel() {
+        state = GameState.READY;
     }
 
     public void startGame(int dimension, GameDifficulty difficulty) {
-        this.countOfMines = getCountOfMinesByDifficulty(dimension, difficulty);
-        CellBuilder cellBuilder = new CellBuilder(dimension, this.countOfMines);
-        this.board = new Board(cellBuilder.buildBoard());
-        this.state = GameState.RUNNING;
+        board = createBoard(dimension, difficulty);
+        state = GameState.RUNNING;
     }
 
-    private int getCountOfMinesByDifficulty(int dimension, GameDifficulty difficulty) {
-        return (int) (difficulty.getPercentage() * (dimension * dimension));
+    public GameState getState() {
+        return state;
     }
 
     public void openCell(int row, int col) {
@@ -55,36 +53,7 @@ public class GameModel {
 
     }
 
-    private void openCellR(Cell cell) {
-        List<Cell> neighbours = board.getNeighbourCells(cell);
-        for (Cell neighbour : neighbours) {
-            if (neighbour.isVisited()) {
-                continue;
-            } else if (cell.isMine() && !cell.isMarkedAsBomb()) {
-                state = GameState.LOST;
-                return;
-            } else {
-                neighbour.visit();
-
-                if (board.getCountOfNeighbourMines(neighbour) == 0) {
-                    openCellR(neighbour);
-                }
-            }
-        }
-    }
-
-    private void checkWinCondition() {
-        for (int row = 0; row < board.getRowCount(); row++) {
-            for (int col = 0; col < board.getColCount(); col++) {
-                if (!board.getCell(row, col).isMine() && !board.getCell(row, col).isVisited()) {
-                    return;
-                }
-            }
-        }
-        state = GameState.WON;
-    }
-
-    public CellInfo getCellInfo(int row, int col) {
+    public CellInfo getCell(int row, int col) {
         Cell cell = board.getCell(row, col);
         return new CellInfo(cell, board.getCountOfNeighbourMines(cell));
     }
@@ -118,6 +87,46 @@ public class GameModel {
                 }
             }
         }
+    }
+
+    private Board createBoard(int dimension, GameDifficulty difficulty) {
+        this.countOfMines = getCountOfMinesByDifficulty(dimension, difficulty);
+
+        CellBuilder cellBuilder = new CellBuilder(dimension, this.countOfMines);
+        return new Board(cellBuilder.buildBoard());
+    }
+
+    private int getCountOfMinesByDifficulty(int dimension, GameDifficulty difficulty) {
+        return (int) (difficulty.getPercentage() * (dimension * dimension));
+    }
+
+    private void openCellR(Cell cell) {
+        List<Cell> neighbours = board.getNeighbourCells(cell);
+        for (Cell neighbour : neighbours) {
+            if (neighbour.isVisited()) {
+                continue;
+            } else if (cell.isMine() && !cell.isMarkedAsBomb()) {
+                state = GameState.LOST;
+                return;
+            } else {
+                neighbour.visit();
+
+                if (board.getCountOfNeighbourMines(neighbour) == 0) {
+                    openCellR(neighbour);
+                }
+            }
+        }
+    }
+
+    private void checkWinCondition() {
+        for (int row = 0; row < board.getRowCount(); row++) {
+            for (int col = 0; col < board.getColCount(); col++) {
+                if (!board.getCell(row, col).isMine() && !board.getCell(row, col).isVisited()) {
+                    return;
+                }
+            }
+        }
+        state = GameState.WON;
     }
 
     public void debug(Board board, int countOfMines) {

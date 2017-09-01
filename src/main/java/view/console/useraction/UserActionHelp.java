@@ -1,14 +1,14 @@
 package view.console.useraction;
 
+import minesweeper4java.MinesweeperGameModel;
 import view.console.ConsoleViewDrawer;
-import model.GameModel;
 
 /**
  * Created by olivergerhardt on 31.08.17.
  */
 public class UserActionHelp extends UserAction {
     @Override
-    public void perform(GameModel gameModel, ConsoleViewDrawer drawer) {
+    public void perform(MinesweeperGameModel gameModel, ConsoleViewDrawer drawer) {
         System.out.println("The following commands are available:");
         System.out.println(" - open <row> <col>     Use to open an unvisited cell");
         System.out.println(" - o <row> <col>        Use to open an unvisited cell");

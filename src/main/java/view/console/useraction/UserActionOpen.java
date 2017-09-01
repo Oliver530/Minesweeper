@@ -1,7 +1,7 @@
 package view.console.useraction;
 
+import minesweeper4java.MinesweeperGameModel;
 import view.console.ConsoleViewDrawer;
-import model.GameModel;
 
 /**
  * Created by olivergerhardt on 31.08.17.
@@ -17,7 +17,7 @@ public class UserActionOpen extends UserAction {
     }
 
     @Override
-    public void perform(GameModel gameModel, ConsoleViewDrawer drawer) {
+    public void perform(MinesweeperGameModel gameModel, ConsoleViewDrawer drawer) {
         gameModel.openCell(row, col);
         System.out.println();
         drawer.draw();

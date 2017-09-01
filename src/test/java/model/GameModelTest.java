@@ -41,7 +41,7 @@ public class GameModelTest {
     public void getCellInfo() {
         GameModel game = new GameModel();
         game.startGame(4, GameDifficulty.PEACE);
-        CellInfo cellInfo = game.getCellInfo(0, 0);
+        CellInfo cellInfo = game.getCell(0, 0);
         Assert.assertFalse(cellInfo.isVisited());
     }
 
@@ -50,7 +50,7 @@ public class GameModelTest {
         GameModel game = new GameModel();
         game.startGame(4, GameDifficulty.PEACE);
         game.openCell(0, 0);
-        CellInfo cellInfo = game.getCellInfo(0, 0);
+        CellInfo cellInfo = game.getCell(0, 0);
         Assert.assertTrue(cellInfo.isVisited());
     }
 
@@ -117,7 +117,7 @@ public class GameModelTest {
         GameModel game = new GameModel();
         game.startGame(5, GameDifficulty.EASY);
 
-        CellInfo cellInfo = game.getCellInfo(0,0);
+        CellInfo cellInfo = game.getCell(0,0);
         Assert.assertFalse(cellInfo.isMarkedAsBomb());
         game.changeMarkedAsBomb(0,0);
         Assert.assertTrue(cellInfo.isMarkedAsBomb());
@@ -130,10 +130,10 @@ public class GameModelTest {
         game.changeMarkedAsBomb(0, 0);
 
         game.visitAllAndRemoveMarks();
-        Assert.assertFalse(game.getCellInfo(0, 0).isMarkedAsBomb());
+        Assert.assertFalse(game.getCell(0, 0).isMarkedAsBomb());
         for (int row = 0; row < game.getRowCount(); row++) {
             for (int col = 0; col < game.getColCount(); col++) {
-                Assert.assertTrue(game.getCellInfo(row, col).isVisited());
+                Assert.assertTrue(game.getCell(row, col).isVisited());
             }
         }
     }
@@ -156,9 +156,9 @@ public class GameModelTest {
         game.debug(board, 4);
 
         game.openCell(0, 0);
-        Assert.assertFalse(game.getCellInfo(1, 0).isVisited());
+        Assert.assertFalse(game.getCell(1, 0).isVisited());
         game.openCell(0, 0);
-        Assert.assertTrue(game.getCellInfo(1, 0).isVisited());
+        Assert.assertTrue(game.getCell(1, 0).isVisited());
     }
 
 }

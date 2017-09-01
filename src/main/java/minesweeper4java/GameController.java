@@ -9,7 +9,7 @@ import model.GameModel;
 class GameController {
 
     public void start() {
-        GameModel gameModel = new GameModel();
+        MinesweeperGameModel gameModel = new GameModel();
         MinesweeperView view = new ConsoleView(gameModel);
         view.play();
     }
