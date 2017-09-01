@@ -1,7 +1,7 @@
 package model;
 
-import model.Cell.Cell;
-import model.Cell.NullCell;
+import model.cell.Cell;
+import model.cell.NullCell;
 import org.junit.Assert;
 import org.junit.Test;
 

@@ -1,10 +1,10 @@
-package View;
+package view;
 
-import View.Console.UserAction.UserAction;
-import View.Console.UserAction.UserActionExit;
-import View.Console.UserAction.UserActionMark;
-import View.Console.UserAction.UserActionOpen;
-import View.Console.UserActionScanner;
+import view.console.useraction.UserAction;
+import view.console.useraction.UserActionExit;
+import view.console.useraction.UserActionMark;
+import view.console.useraction.UserActionOpen;
+import view.console.UserActionScanner;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

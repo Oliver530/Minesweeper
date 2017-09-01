@@ -1,6 +1,6 @@
 package minesweeper4java;
 
-import View.Console.ConsoleView;
+import view.console.ConsoleView;
 import model.GameModel;
 
 /**

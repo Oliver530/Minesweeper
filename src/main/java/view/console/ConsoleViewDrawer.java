@@ -1,6 +1,6 @@
-package View.Console;
+package view.console;
 
-import model.Cell.CellInfo;
+import model.cell.CellInfo;
 import model.GameModel;
 
 /**

@@ -1,6 +1,6 @@
-package View.Console;
+package view.console;
 
-import View.Console.UserAction.UserAction;
+import view.console.useraction.UserAction;
 import minesweeper4java.MinesweeperView;
 import model.GameDifficulty;
 import model.GameModel;

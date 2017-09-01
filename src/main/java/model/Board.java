@@ -1,7 +1,7 @@
 package model;
 
-import model.Cell.Cell;
-import model.Cell.NullCell;
+import model.cell.Cell;
+import model.cell.NullCell;
 
 import java.util.ArrayList;
 import java.util.List;

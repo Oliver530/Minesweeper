@@ -1,6 +1,6 @@
-package View.Console.UserAction;
+package view.console.useraction;
 
-import View.Console.ConsoleViewDrawer;
+import view.console.ConsoleViewDrawer;
 import model.GameModel;
 
 /**

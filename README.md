@@ -78,6 +78,8 @@ Enjoy!
 
 ## ToDos
 - First hit can't be a mine
+- Use Logging Framework
+- Change CellInfo to Read-Only interface
 - Graphical user interface
 - UML diagrams
 - arc42 documentation

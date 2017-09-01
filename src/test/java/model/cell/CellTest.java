@@ -1,6 +1,5 @@
-package model.Cell;
+package model.cell;
 
-import model.Cell.Cell;
 import org.junit.Assert;
 import org.junit.Test;
 

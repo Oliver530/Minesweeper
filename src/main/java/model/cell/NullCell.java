@@ -1,4 +1,4 @@
-package model.Cell;
+package model.cell;
 
 /**
  * Created by olivergerhardt on 27.08.17.

@@ -1,8 +1,8 @@
 package model;
 
-import model.Cell.Cell;
-import model.Cell.CellBuilder;
-import model.Cell.CellInfo;
+import model.cell.Cell;
+import model.cell.CellBuilder;
+import model.cell.CellInfo;
 import org.junit.Assert;
 import org.junit.Test;
 

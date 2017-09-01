@@ -1,4 +1,4 @@
-package model.Cell;
+package model.cell;
 
 import java.util.concurrent.ThreadLocalRandom;
 

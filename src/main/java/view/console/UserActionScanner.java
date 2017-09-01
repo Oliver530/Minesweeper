@@ -1,6 +1,6 @@
-package View.Console;
+package view.console;
 
-import View.Console.UserAction.*;
+import view.console.useraction.*;
 
 /**
  * Created by olivergerhardt on 31.08.17.
