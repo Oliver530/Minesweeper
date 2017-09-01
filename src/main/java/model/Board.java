@@ -17,9 +17,9 @@ public class Board {
     public static final int MINIMUM_COLUMNS = 4;
 
     private final Cell[][] field;
-    private int rowCount;
-    private int colCount;
-    private int countOfMines;
+    private final int rowCount;
+    private final int colCount;
+    private final int countOfMines;
 
 
     public Board(int dimension, GameDifficulty difficulty) {

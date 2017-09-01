@@ -1,9 +1,8 @@
 package minesweeper4java;
 
 import model.Board;
-import model.GameDifficulty;
-import model.GameState;
 import model.cell.CellRO;
+import model.state.GameModelState;
 
 /**
  * Created by olivergerhardt on 01.09.17.
@@ -19,8 +18,7 @@ public interface MinesweeperGameModel {
 
 
     // State information
-    GameState getState();
-
+    GameModelState getState();
     int getRowCount();
     int getColCount();
     int getCountOfMines();

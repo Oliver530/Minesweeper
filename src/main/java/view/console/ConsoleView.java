@@ -2,6 +2,8 @@ package view.console;
 
 import minesweeper4java.MinesweeperGameModel;
 import model.Board;
+import model.state.GameStateLost;
+import model.state.GameStateWon;
 import view.console.useraction.UserAction;
 import minesweeper4java.MinesweeperView;
 import model.GameDifficulty;
@@ -34,17 +36,16 @@ public class ConsoleView implements MinesweeperView {
         drawer.draw();
 
         UserAction userAction;
-        commandScanner: while (true) {
+        while (true) {
             userAction = getUserAction();
             userAction.perform(gameModel, drawer);
 
-            switch (gameModel.getState()) {
-                case WON:
-                    System.out.println("You've won!");
-                    break commandScanner;
-                case LOST:
-                    System.out.println("You've lost!");
-                    break commandScanner;
+            if (gameModel.getState() instanceof GameStateWon) {
+                System.out.println("You've won!");
+                break;
+            } else if (gameModel.getState() instanceof GameStateLost) {
+                System.out.println("You've lost!");
+                break;
             }
         }
 

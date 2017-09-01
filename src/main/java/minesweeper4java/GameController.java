@@ -1,8 +1,5 @@
 package minesweeper4java;
 
-import model.Board;
-import model.GameDifficulty;
-import model.cell.CellBuilder;
 import view.console.ConsoleView;
 import model.GameModel;
 

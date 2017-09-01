@@ -2,10 +2,9 @@ package model;
 
 import minesweeper4java.MinesweeperGameModel;
 import model.cell.Cell;
-import model.cell.CellBuilder;
-import model.cell.CellRO;
-
-import java.util.List;
+import model.state.GameModelState;
+import model.state.GameStateMissingBoard;
+import model.state.GameStateReady;
 
 /**
  * Created by olivergerhardt on 28.08.17.
@@ -13,53 +12,42 @@ import java.util.List;
 public class GameModel implements MinesweeperGameModel {
 
     private Board board;
-    private GameState state;
+    private GameModelState state;
 
     public GameModel() {
-        state = GameState.MISSING_BOARD;
+        state = new GameStateMissingBoard();
+    }
+
+    public Board getBoard() {
+        return board;
+    }
+
+    public GameModelState getState() {
+        return state;
+    }
+
+    public void setState(GameModelState state) {
+        this.state = state;
     }
 
     public void startGame(Board board) {
         this.board = board;
-        state = GameState.READY;
-    }
-
-    public GameState getState() {
-        return state;
+        state = new GameStateReady();
     }
 
     public void openCell(int row, int col) {
-        if (state != GameState.READY && state != GameState.RUNNING) {
-            throw new IllegalStateException("GameState is + " + state);
-        }
-
-        Cell cell = board.getCell(row, col);
-        if (state == GameState.READY) {
-            if (cell.isMine()) {
-                board.moveMineToRandomCell(row, col);
-            }
-            state = GameState.RUNNING;
-        }
-
-        if (cell.isMine()) {
-            state = GameState.LOST;
-            return;
-        }
-
-        if (!cell.isVisited()) {
-            cell.visit();
-
-            if (board.getCountOfNeighbourMines(cell) == 0) {
-                openCellR(cell);
-            }
-        } else {
-            openCellR(cell);
-        }
-        checkWinCondition();
-
+        state.openCell(this, row, col);
     }
 
-    public CellRO getCell(int row, int col) {
+    public void changeMarkedAsBomb(int row, int col) {
+        state.changeMarkedAsBomb(this, row, col);
+    }
+
+    public void visitAllAndRemoveMarks() {
+        state.visitAllAndRemoveMarks(this);
+    }
+
+    public Cell getCell(int row, int col) {
         return board.getCell(row, col);
     }
 
@@ -75,56 +63,8 @@ public class GameModel implements MinesweeperGameModel {
         return board.getCountOfMines();
     }
 
-    public void changeMarkedAsBomb(int row, int col) {
-        Cell cell = board.getCell(row, col);
-        cell.changeMarkedAsBomb();
-    }
-
-    public void visitAllAndRemoveMarks() {
-        for (int row = 0; row < board.getRowCount(); row++) {
-            for (int col = 0; col < board.getColCount(); col++) {
-                Cell cell = board.getCell(row, col);
-                if (!cell.isVisited()) {
-                    cell.visit();
-                }
-                if (cell.isMarkedAsBomb()) {
-                    cell.changeMarkedAsBomb();
-                }
-            }
-        }
-    }
-
-    private void openCellR(Cell cell) {
-        List<Cell> neighbours = board.getNeighbourCells(cell);
-        for (Cell neighbour : neighbours) {
-            if (neighbour.isVisited()) {
-                continue;
-            } else if (cell.isMine() && !cell.isMarkedAsBomb()) {
-                state = GameState.LOST;
-                return;
-            } else {
-                neighbour.visit();
-
-                if (board.getCountOfNeighbourMines(neighbour) == 0) {
-                    openCellR(neighbour);
-                }
-            }
-        }
-    }
-
-    private void checkWinCondition() {
-        for (int row = 0; row < board.getRowCount(); row++) {
-            for (int col = 0; col < board.getColCount(); col++) {
-                if (!board.getCell(row, col).isMine() && !board.getCell(row, col).isVisited()) {
-                    return;
-                }
-            }
-        }
-        state = GameState.WON;
-    }
-
     public void debug(Cell[][] field, int countOfMines) {
         this.board = new Board(field, countOfMines);
-        this.state = GameState.READY;
+        this.state = new GameStateReady();
     }
 }

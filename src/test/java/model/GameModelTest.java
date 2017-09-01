@@ -3,6 +3,7 @@ package model;
 import model.cell.Cell;
 import model.cell.CellBuilder;
 import model.cell.CellRO;
+import model.state.*;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -14,17 +15,17 @@ public class GameModelTest {
     @Test
     public void createGameModel() {
         GameModel game = new GameModel();
-        Assert.assertEquals(GameState.MISSING_BOARD, game.getState());
+        Assert.assertTrue(game.getState() instanceof GameStateMissingBoard);
     }
 
     @Test
     public void startGame() {
         GameModel game = new GameModel();
         game.startGame(new Board(4, GameDifficulty.PEACE));
-        Assert.assertEquals(GameState.READY, game.getState());
+        Assert.assertTrue(game.getState() instanceof GameStateReady);
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void openCellBeforeGameIsRunning() {
         GameModel game = new GameModel();
         game.openCell(0, 0);
@@ -59,7 +60,7 @@ public class GameModelTest {
         GameModel game = new GameModel();
         game.startGame(new Board(4, GameDifficulty.PEACE));
         game.openCell(0,0);
-        Assert.assertEquals(GameState.WON, game.getState());
+        Assert.assertTrue(game.getState() instanceof GameStateWon);
     }
 
     @Test
@@ -120,6 +121,7 @@ public class GameModelTest {
         GameModel game = new GameModel();
         game.startGame(new Board(5, GameDifficulty.EASY));
         game.changeMarkedAsBomb(0, 0);
+        game.setState(new GameStateLost());
 
         game.visitAllAndRemoveMarks();
         Assert.assertFalse(game.getCell(0, 0).isMarkedAsBomb());
@@ -163,10 +165,10 @@ public class GameModelTest {
         game.debug(fields, 1);
         CellRO cell = game.getCell(0, 0);
 
-        Assert.assertTrue(game.getState() == GameState.READY);
+        Assert.assertTrue(game.getState() instanceof GameStateReady);
         Assert.assertTrue(cell.isMine());
         game.openCell(0, 0);
-        Assert.assertTrue(game.getState() == GameState.RUNNING);
+        Assert.assertTrue(game.getState() instanceof GameStateRunning);
         Assert.assertFalse(cell.isMine());
     }
 

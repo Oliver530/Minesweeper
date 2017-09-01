@@ -14,7 +14,6 @@ public class BoardTest {
 
     @Test
     public void createBoardWithTooSmallFieldFails() {
-        Cell[][] field = new Cell[1][1];
         Board board = new Board(1, GameDifficulty.EASY);
         Assert.assertEquals(Board.MINIMUM_ROWS, board.getRowCount());
         Assert.assertEquals(Board.MINIMUM_COLUMNS, board.getColCount());
