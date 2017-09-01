@@ -11,15 +11,19 @@ public interface MinesweeperGameModel {
 
     // User actions
     void startGame(int dimension, GameDifficulty difficulty);
+    void visitAllAndRemoveMarks();
+
     void openCell(int row, int col);
     void changeMarkedAsBomb(int row, int col);
-    void visitAllAndRemoveMarks();
+
 
     // State information
     GameState getState();
-    CellRO getCell(int row, int col);
+
     int getRowCount();
     int getColCount();
     int getCountOfMines();
+
+    CellRO getCell(int row, int col);
 
 }

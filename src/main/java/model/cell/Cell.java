@@ -9,7 +9,7 @@ public class Cell implements CellRO {
     private boolean isMine;
     private boolean markedAsBomb;
     private int countOfNeighbourMines;
-
+    
     public int getCountOfNeighbourMines() {
         return countOfNeighbourMines;
     }
