@@ -28,7 +28,7 @@ public class ConsoleView implements MinesweeperView {
     public void play() {
 
         int dimension = getPositiveIntegerFromUser(keyboard, "Enter column count (positive integer): ");
-        gameModel.startGame(dimension, GameDifficulty.EASY);
+        gameModel.startGame(dimension, GameDifficulty.HARD);
         System.out.println("There are " + gameModel.getCountOfMines() + " mines. Good luck!");
         drawer.draw();
 

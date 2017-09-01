@@ -5,6 +5,7 @@ import model.cell.NullCell;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by olivergerhardt on 27.08.17.
@@ -118,5 +119,20 @@ class Board {
             }
         }
         return countOfNeighbourMines;
+    }
+
+    public void moveMineToRandomCell(int row, int col) {
+        Cell cell = getCell(row, col);
+        if (!cell.isMine()) {
+            return;
+        }
+        int rowNew = row;
+        int colNew = col;
+        while (rowNew == row || colNew == col || getCell(rowNew, colNew).isMine()) {
+            rowNew = ThreadLocalRandom.current().nextInt(0, rowCount);
+            colNew = ThreadLocalRandom.current().nextInt(0, colCount);
+        }
+        cell.removeMine();
+        getCell(rowNew, colNew).setMine();
     }
 }

@@ -21,7 +21,7 @@ public class GameModelTest {
     public void startGame() {
         GameModel game = new GameModel();
         game.startGame(4, GameDifficulty.PEACE);
-        Assert.assertEquals(GameState.RUNNING, game.getState());
+        Assert.assertEquals(GameState.FIRSTHIT, game.getState());
     }
 
     @Test(expected = IllegalStateException.class)
@@ -52,14 +52,6 @@ public class GameModelTest {
         game.openCell(0, 0);
         CellRO cell = game.getCell(0, 0);
         Assert.assertTrue(cell.isVisited());
-    }
-
-    @Test
-    public void openMine() {
-        GameModel game = new GameModel();
-        game.startGame(4, GameDifficulty.HELL);
-        game.openCell(0, 0);
-        Assert.assertEquals(GameState.LOST, game.getState());
     }
 
     @Test
@@ -159,6 +151,24 @@ public class GameModelTest {
         Assert.assertFalse(game.getCell(1, 0).isVisited());
         game.openCell(0, 0);
         Assert.assertTrue(game.getCell(1, 0).isVisited());
+    }
+
+    @Test
+    public void firstHitIsAMine() {
+        CellBuilder builder = new CellBuilder(5, 0);
+        Cell[][] fields = builder.buildBoard();
+        fields[0][0].setMine();
+
+        Board board = new Board(fields);
+        GameModel game = new GameModel();
+        game.debug(board, 1);
+        CellRO cell = game.getCell(0, 0);
+
+        Assert.assertTrue(game.getState() == GameState.FIRSTHIT);
+        Assert.assertTrue(cell.isMine());
+        game.openCell(0, 0);
+        Assert.assertTrue(game.getState() == GameState.RUNNING);
+        Assert.assertFalse(cell.isMine());
     }
 
 }

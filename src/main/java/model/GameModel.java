@@ -22,7 +22,7 @@ public class GameModel implements MinesweeperGameModel {
 
     public void startGame(int dimension, GameDifficulty difficulty) {
         board = createBoard(dimension, difficulty);
-        state = GameState.RUNNING;
+        state = GameState.FIRSTHIT;
     }
 
     public GameState getState() {
@@ -30,11 +30,18 @@ public class GameModel implements MinesweeperGameModel {
     }
 
     public void openCell(int row, int col) {
-        if (state != GameState.RUNNING) {
+        if (state != GameState.FIRSTHIT && state != GameState.RUNNING) {
             throw new IllegalStateException("GameState is + " + state);
         }
 
         Cell cell = board.getCell(row, col);
+        if (state == GameState.FIRSTHIT) {
+            if (cell.isMine()) {
+                board.moveMineToRandomCell(row, col);
+            }
+            state = GameState.RUNNING;
+        }
+
         if (cell.isMine()) {
             state = GameState.LOST;
             return;
@@ -131,6 +138,6 @@ public class GameModel implements MinesweeperGameModel {
     public void debug(Board board, int countOfMines) {
         this.board = board;
         this.countOfMines = countOfMines;
-        this.state = GameState.RUNNING;
+        this.state = GameState.FIRSTHIT;
     }
 }

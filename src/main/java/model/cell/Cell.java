@@ -55,4 +55,8 @@ public class Cell implements CellRO {
     public void changeMarkedAsBomb() {
         this.markedAsBomb = !this.markedAsBomb;
     }
+
+    public void removeMine() {
+        isMine = false;
+    }
 }
