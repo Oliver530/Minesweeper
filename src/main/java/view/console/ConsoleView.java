@@ -1,6 +1,7 @@
 package view.console;
 
 import minesweeper4java.MinesweeperGameModel;
+import model.Board;
 import view.console.useraction.UserAction;
 import minesweeper4java.MinesweeperView;
 import model.GameDifficulty;
@@ -27,8 +28,8 @@ public class ConsoleView implements MinesweeperView {
 
     public void play() {
 
-        int dimension = getPositiveIntegerFromUser(keyboard, "Enter column count (positive integer): ");
-        gameModel.startGame(dimension, GameDifficulty.HARD);
+        int dimension = getPositiveIntegerFromUser(keyboard, "Enter dimension (>3): ");
+        gameModel.startGame(new Board(dimension, GameDifficulty.EASY));
         System.out.println("There are " + gameModel.getCountOfMines() + " mines. Good luck!");
         drawer.draw();
 
@@ -55,7 +56,7 @@ public class ConsoleView implements MinesweeperView {
 
     private int getPositiveIntegerFromUser(Scanner scanner, String prompt) {
         int value = -1;
-        while (value < 1) {
+        while (value < 4) {
             System.out.print(prompt);
             String input = scanner.nextLine();
             try {

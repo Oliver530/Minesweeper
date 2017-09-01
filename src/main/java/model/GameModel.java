@@ -14,15 +14,14 @@ public class GameModel implements MinesweeperGameModel {
 
     private Board board;
     private GameState state;
-    private int countOfMines;
 
     public GameModel() {
-        state = GameState.READY;
+        state = GameState.MISSING_BOARD;
     }
 
-    public void startGame(int dimension, GameDifficulty difficulty) {
-        board = createBoard(dimension, difficulty);
-        state = GameState.FIRSTHIT;
+    public void startGame(Board board) {
+        this.board = board;
+        state = GameState.READY;
     }
 
     public GameState getState() {
@@ -30,12 +29,12 @@ public class GameModel implements MinesweeperGameModel {
     }
 
     public void openCell(int row, int col) {
-        if (state != GameState.FIRSTHIT && state != GameState.RUNNING) {
+        if (state != GameState.READY && state != GameState.RUNNING) {
             throw new IllegalStateException("GameState is + " + state);
         }
 
         Cell cell = board.getCell(row, col);
-        if (state == GameState.FIRSTHIT) {
+        if (state == GameState.READY) {
             if (cell.isMine()) {
                 board.moveMineToRandomCell(row, col);
             }
@@ -73,7 +72,7 @@ public class GameModel implements MinesweeperGameModel {
     }
 
     public int getCountOfMines() {
-        return this.countOfMines;
+        return board.getCountOfMines();
     }
 
     public void changeMarkedAsBomb(int row, int col) {
@@ -93,17 +92,6 @@ public class GameModel implements MinesweeperGameModel {
                 }
             }
         }
-    }
-
-    private Board createBoard(int dimension, GameDifficulty difficulty) {
-        this.countOfMines = getCountOfMinesByDifficulty(dimension, difficulty);
-
-        CellBuilder cellBuilder = new CellBuilder(dimension, this.countOfMines);
-        return new Board(cellBuilder.buildBoard());
-    }
-
-    private int getCountOfMinesByDifficulty(int dimension, GameDifficulty difficulty) {
-        return (int) (difficulty.getPercentage() * (dimension * dimension));
     }
 
     private void openCellR(Cell cell) {
@@ -135,9 +123,8 @@ public class GameModel implements MinesweeperGameModel {
         state = GameState.WON;
     }
 
-    public void debug(Board board, int countOfMines) {
-        this.board = board;
-        this.countOfMines = countOfMines;
-        this.state = GameState.FIRSTHIT;
+    public void debug(Cell[][] field, int countOfMines) {
+        this.board = new Board(field, countOfMines);
+        this.state = GameState.READY;
     }
 }

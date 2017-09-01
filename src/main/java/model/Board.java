@@ -1,6 +1,7 @@
 package model;
 
 import model.cell.Cell;
+import model.cell.CellBuilder;
 import model.cell.NullCell;
 
 import java.util.ArrayList;
@@ -10,28 +11,36 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * Created by olivergerhardt on 27.08.17.
  */
-class Board {
+public class Board {
 
-    private static final int rowCountMinimum = 3;
-    private static final int colCountMinimum = 3;
+    public static final int MINIMUM_ROWS = 4;
+    public static final int MINIMUM_COLUMNS = 4;
 
     private final Cell[][] field;
-    private final int rowCount;
-    private final int colCount;
+    private int rowCount;
+    private int colCount;
+    private int countOfMines;
 
 
-    public Board(Cell[][] field) {
-        if (field.length < rowCountMinimum) {
-            throw new IllegalArgumentException("There are not enough rows in the passed field!");
-        }
-        if (field[0].length < colCountMinimum) {
-            throw new IllegalArgumentException("There are not enough columns in the passed field!");
-        }
-        this.field = field;
-        rowCount = field.length;
-        colCount = field[0].length;
+    public Board(int dimension, GameDifficulty difficulty) {
+        this.rowCount = Math.max(dimension, MINIMUM_ROWS);
+        this.colCount = Math.max(dimension, MINIMUM_COLUMNS);
+        this.countOfMines = getCountOfMinesByDifficulty(dimension, difficulty);
 
+        CellBuilder cellBuilder = new CellBuilder(this.rowCount, countOfMines);
+        this.field = cellBuilder.buildBoard();
         setNeighbourCount();
+    }
+
+    public Board(Cell[][] field, int countOfMines) {
+        this.rowCount = field.length;
+        this.colCount = field[0].length;
+        this.countOfMines = countOfMines;
+        this.field = field;
+    }
+
+    private int getCountOfMinesByDifficulty(int dimension, GameDifficulty difficulty) {
+        return (int) (difficulty.getPercentage() * (dimension * dimension));
     }
 
     public Cell getCell(int row, int col) {
@@ -51,8 +60,9 @@ class Board {
     }
 
     private boolean isValidPosition(int row, int col) {
-        if (row < 0 || row >= rowCount)
+        if (row < 0 || row >= rowCount) {
             return false;
+        }
 
         if (col < 0 || col >= colCount) {
             return false;
@@ -134,5 +144,9 @@ class Board {
         }
         cell.removeMine();
         getCell(rowNew, colNew).setMine();
+    }
+
+    public int getCountOfMines() {
+        return countOfMines;
     }
 }

@@ -10,7 +10,7 @@ A simple test driven minesweeper clone for java
 ```sh
 java -jar minesweeper4java-0.1.jar
 
-Enter column count (positive integer): <dimension>
+Enter dimension (>3): <dimension>
 - open <row> <col>
 - mark <row> <col>
 - help
@@ -19,7 +19,7 @@ Enter column count (positive integer): <dimension>
 
 Example:
 ```sh
-Enter column count (positive integer): 12
+Enter dimension (>3): 12
 There are 14 mines. Good luck!
    | 0  1  2  3  4  5  6  7  8  9 10 11 
 ---|------------------------------------

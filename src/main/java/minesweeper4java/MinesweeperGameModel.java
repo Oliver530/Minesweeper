@@ -1,5 +1,6 @@
 package minesweeper4java;
 
+import model.Board;
 import model.GameDifficulty;
 import model.GameState;
 import model.cell.CellRO;
@@ -10,7 +11,7 @@ import model.cell.CellRO;
 public interface MinesweeperGameModel {
 
     // User actions
-    void startGame(int dimension, GameDifficulty difficulty);
+    void startGame(Board board);
     void visitAllAndRemoveMarks();
 
     void openCell(int row, int col);

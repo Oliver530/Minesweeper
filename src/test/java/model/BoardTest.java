@@ -12,54 +12,45 @@ import static org.junit.Assert.assertTrue;
  */
 public class BoardTest {
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void createBoardWithTooSmallFieldFails() {
         Cell[][] field = new Cell[1][1];
-        new Board(field);
+        Board board = new Board(1, GameDifficulty.EASY);
+        Assert.assertEquals(Board.MINIMUM_ROWS, board.getRowCount());
+        Assert.assertEquals(Board.MINIMUM_COLUMNS, board.getColCount());
     }
 
     @Test
     public void getFieldInBounds() {
-        Cell[][] field = new Cell[4][5];
-        field[3][4] = new Cell();
-
-        Board board = new Board(field);
+        Board board = new Board(5, GameDifficulty.EASY);
         Cell cell = board.getCell(3, 4);
         Assert.assertNotNull(cell);
     }
 
     @Test
     public void getFieldNegativeRowOutOfBound() {
-        Cell[][] field = new Cell[4][4];
-
-        Board board = new Board(field);
+        Board board = new Board(4, GameDifficulty.EASY);
         Cell cell = board.getCell(-1, 2);
         assertTrue(cell instanceof NullCell);
     }
 
     @Test
     public void getFieldPositiveRowOutOfBound() {
-        Cell[][] field = new Cell[4][4];
-
-        Board board = new Board(field);
+        Board board = new Board(4, GameDifficulty.EASY);
         Cell cell = board.getCell(4, 2);
         assertTrue(cell instanceof NullCell);
     }
 
     @Test
     public void getFieldNegativeColOutOfBound() {
-        Cell[][] field = new Cell[4][4];
-
-        Board board = new Board(field);
+        Board board = new Board(4, GameDifficulty.EASY);
         Cell cell = board.getCell(2, -1);
         assertTrue(cell instanceof NullCell);
     }
 
     @Test
     public void getFieldPositiveColOutOfBound() {
-        Cell[][] field = new Cell[4][4];
-
-        Board board = new Board(field);
+        Board board = new Board(4, GameDifficulty.EASY);
         Cell cell = board.getCell(4, -1);
         assertTrue(cell instanceof NullCell);
     }
@@ -69,7 +60,7 @@ public class BoardTest {
         Cell[][] field = new Cell[4][4];
         Cell cell = field[0][0] = new Cell();
 
-        Board board = new Board(field);
+        Board board = new Board(field, 0);
         Assert.assertTrue(board.getNeighbourCells(cell).isEmpty());
     }
 
@@ -79,7 +70,7 @@ public class BoardTest {
         Cell cell = field[0][0] = new Cell();
         field[0][1] = new Cell();
 
-        Board board = new Board(field);
+        Board board = new Board(field, 0);
         Assert.assertEquals(1, board.getNeighbourCells(cell).size());
     }
 
@@ -90,7 +81,7 @@ public class BoardTest {
         field[0][1] = new Cell();
         field[1][0] = new Cell();
 
-        Board board = new Board(field);
+        Board board = new Board(field, 0);
         Assert.assertEquals(2, board.getNeighbourCells(cell).size());
     }
 
@@ -107,7 +98,7 @@ public class BoardTest {
         field[2][1] = new Cell();
         field[2][2] = new Cell();
 
-        Board board = new Board(field);
+        Board board = new Board(field, 0);
         Assert.assertEquals(8, board.getNeighbourCells(cell).size());
     }
 
@@ -124,7 +115,7 @@ public class BoardTest {
         field[2][1] = new Cell();
         field[2][2] = new Cell();
 
-        Board board = new Board(field);
+        Board board = new Board(field, 0);
         Assert.assertEquals(0, board.getCountOfNeighbourMines(cell));
     }
 
@@ -142,7 +133,7 @@ public class BoardTest {
         field[2][1] = new Cell();
         field[2][2] = new Cell();
 
-        Board board = new Board(field);
+        Board board = new Board(field, 0);
         Assert.assertEquals(1, board.getCountOfNeighbourMines(cell));
     }
 
@@ -162,7 +153,7 @@ public class BoardTest {
         field[2][2] = new Cell();
         field[2][2].setMine();
 
-        Board board = new Board(field);
+        Board board = new Board(field, 0);
         Assert.assertEquals(3, board.getCountOfNeighbourMines(cell));
     }
 

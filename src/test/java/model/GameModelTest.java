@@ -14,14 +14,14 @@ public class GameModelTest {
     @Test
     public void createGameModel() {
         GameModel game = new GameModel();
-        Assert.assertEquals(GameState.READY, game.getState());
+        Assert.assertEquals(GameState.MISSING_BOARD, game.getState());
     }
 
     @Test
     public void startGame() {
         GameModel game = new GameModel();
-        game.startGame(4, GameDifficulty.PEACE);
-        Assert.assertEquals(GameState.FIRSTHIT, game.getState());
+        game.startGame(new Board(4, GameDifficulty.PEACE));
+        Assert.assertEquals(GameState.READY, game.getState());
     }
 
     @Test(expected = IllegalStateException.class)
@@ -33,14 +33,14 @@ public class GameModelTest {
     @Test
     public void openCellWhileGameIsRunning() {
         GameModel game = new GameModel();
-        game.startGame(4, GameDifficulty.PEACE);
+        game.startGame(new Board(4, GameDifficulty.PEACE));
         game.openCell(0, 0);
     }
 
     @Test
     public void getCellInfo() {
         GameModel game = new GameModel();
-        game.startGame(4, GameDifficulty.PEACE);
+        game.startGame(new Board(4, GameDifficulty.PEACE));
         CellRO cell = game.getCell(0, 0);
         Assert.assertFalse(cell.isVisited());
     }
@@ -48,7 +48,7 @@ public class GameModelTest {
     @Test
     public void openCellAndGetCellInfo() {
         GameModel game = new GameModel();
-        game.startGame(4, GameDifficulty.PEACE);
+        game.startGame(new Board(4, GameDifficulty.PEACE));
         game.openCell(0, 0);
         CellRO cell = game.getCell(0, 0);
         Assert.assertTrue(cell.isVisited());
@@ -57,7 +57,7 @@ public class GameModelTest {
     @Test
     public void openAllFreeFields() {
         GameModel game = new GameModel();
-        game.startGame(4, GameDifficulty.PEACE);
+        game.startGame(new Board(4, GameDifficulty.PEACE));
         game.openCell(0,0);
         Assert.assertEquals(GameState.WON, game.getState());
     }
@@ -65,49 +65,49 @@ public class GameModelTest {
     @Test
     public void getCountOfMinesOnEasyGameAndDimension10() {
         GameModel game = new GameModel();
-        game.startGame(10, GameDifficulty.EASY);
+        game.startGame(new Board(10, GameDifficulty.EASY));
         Assert.assertEquals(10, game.getCountOfMines());
     }
 
     @Test
     public void getCountOfMinesOnEasyGameAndDimension5() {
         GameModel game = new GameModel();
-        game.startGame(5, GameDifficulty.EASY);
+        game.startGame(new Board(5, GameDifficulty.EASY));
         Assert.assertEquals(2, game.getCountOfMines());
     }
 
     @Test
     public void getCountOfMinesOnMediumGameAndDimension10() {
         GameModel game = new GameModel();
-        game.startGame(10, GameDifficulty.MEDIUM);
+        game.startGame(new Board(10, GameDifficulty.MEDIUM));
         Assert.assertEquals(20, game.getCountOfMines());
     }
 
     @Test
     public void getCountOfMinesOnMediumGameAndDimension5() {
         GameModel game = new GameModel();
-        game.startGame(5, GameDifficulty.MEDIUM);
+        game.startGame(new Board(5, GameDifficulty.MEDIUM));
         Assert.assertEquals(5, game.getCountOfMines());
     }
 
     @Test
     public void getCountOfMinesOnHardGameAndDimension10() {
         GameModel game = new GameModel();
-        game.startGame(10, GameDifficulty.HARD);
+        game.startGame(new Board(10, GameDifficulty.HARD));
         Assert.assertEquals(30, game.getCountOfMines());
     }
 
     @Test
     public void getCountOfMinesOnHardGameAndDimension5() {
         GameModel game = new GameModel();
-        game.startGame(5, GameDifficulty.HARD);
+        game.startGame(new Board(5, GameDifficulty.HARD));
         Assert.assertEquals(7, game.getCountOfMines());
     }
 
     @Test
     public void markCellAsBomb() {
         GameModel game = new GameModel();
-        game.startGame(5, GameDifficulty.EASY);
+        game.startGame(new Board(5, GameDifficulty.EASY));
 
         CellRO cell = game.getCell(0,0);
         Assert.assertFalse(cell.isMarkedAsBomb());
@@ -118,7 +118,7 @@ public class GameModelTest {
     @Test
     public void visitAllAndRemoveMarks() {
         GameModel game = new GameModel();
-        game.startGame(5, GameDifficulty.EASY);
+        game.startGame(new Board(5, GameDifficulty.EASY));
         game.changeMarkedAsBomb(0, 0);
 
         game.visitAllAndRemoveMarks();
@@ -142,10 +142,9 @@ public class GameModelTest {
         fields[2][1].setMine();
         fields[2][0].changeMarkedAsBomb();
         fields[2][0].setMine();
-        Board board = new Board(fields);
 
         GameModel game = new GameModel();
-        game.debug(board, 4);
+        game.debug(fields, 4);
 
         game.openCell(0, 0);
         Assert.assertFalse(game.getCell(1, 0).isVisited());
@@ -158,13 +157,13 @@ public class GameModelTest {
         CellBuilder builder = new CellBuilder(5, 0);
         Cell[][] fields = builder.buildBoard();
         fields[0][0].setMine();
+        fields[2][2].setMine();
 
-        Board board = new Board(fields);
         GameModel game = new GameModel();
-        game.debug(board, 1);
+        game.debug(fields, 1);
         CellRO cell = game.getCell(0, 0);
 
-        Assert.assertTrue(game.getState() == GameState.FIRSTHIT);
+        Assert.assertTrue(game.getState() == GameState.READY);
         Assert.assertTrue(cell.isMine());
         game.openCell(0, 0);
         Assert.assertTrue(game.getState() == GameState.RUNNING);
