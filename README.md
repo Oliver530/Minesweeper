@@ -5,6 +5,18 @@ A simple test driven minesweeper clone for java
 1. clone repository to your local computer
 2. run "./gradlew build" in project directory
 
+## How to manually import in eclipse
+1. Download zip
+2. unzip project
+3. eclipse > File > Import... > Gradle > Existing Gradle Project
+4. Enjoy
+
+## How to manually import in IntelliJ
+1. Download zip
+2. unzip project
+3. IntelliJ > File > New > Project from existing sources > Gradle > Next > Finish
+4. Enjoy
+
 ## How to play (console view)
 
 ```sh
