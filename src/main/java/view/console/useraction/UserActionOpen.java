@@ -19,8 +19,10 @@ public final class UserActionOpen extends UserAction {
     @Override
     public void perform(final GameModel gameModel, final ConsoleViewDrawer drawer) {
         gameModel.openCell(row, col);
-        System.out.println();
-        drawer.draw();
+        if (!gameModel.gameLost() && !gameModel.gameWon()) {
+            System.out.println();
+            drawer.draw();
+        }
     }
 
     public int getRow() {

@@ -51,20 +51,27 @@ public final class ConsoleView implements View {
             userAction.perform(gameModel, drawer);
 
             if (gameModel.gameWon()) {
-                System.out.println("You've won!");
-                return;
+                gameOver();
+                System.out.println("***************************");
+                System.out.println("Congratulation. You've won!");
+                System.out.println("***************************");
+                break;
             } else if (gameModel.gameLost()) {
-                System.out.println("You've lost!");
-                return;
+                gameOver();
+                System.out.println("*******************");
+                System.out.println("Sorry. You've lost!");
+                System.out.println("*******************");
+                break;
             }
         }
+        System.exit(0);
     }
 
     private void gameOver() {
         System.out.println();
         gameModel.visitAllAndRemoveMarks();
         drawer.draw();
-        System.exit(0);
+
     }
 
     private int getPositiveIntegerFromUser(final Scanner scanner, final String prompt, final int minimum) {
