@@ -1,7 +1,6 @@
 package model;
 
 import model.cell.Cell;
-import model.cell.CellBuilder;
 import model.cell.CellRO;
 import model.state.*;
 import org.junit.Assert;
@@ -24,7 +23,7 @@ public class GameModelImplTest {
     @Test
     public void startGame() {
         GameModelImpl game = new GameModelImpl();
-        game.setBoard(new Board(4, GameDifficulty.PEACE));
+        game.setBoard(new Board(4, 4, GameDifficulty.PEACE));
         Assert.assertTrue(game.getState() instanceof GameStateReady);
     }
 
@@ -37,14 +36,14 @@ public class GameModelImplTest {
     @Test
     public void openCellWhileGameIsRunning() {
         GameModelImpl game = new GameModelImpl();
-        game.setBoard(new Board(4, GameDifficulty.PEACE));
+        game.setBoard(new Board(4, 4, GameDifficulty.PEACE));
         game.openCell(0, 0);
     }
 
     @Test
     public void getCellInfo() {
         GameModelImpl game = new GameModelImpl();
-        game.setBoard(new Board(4, GameDifficulty.PEACE));
+        game.setBoard(new Board(4, 4, GameDifficulty.PEACE));
         CellRO cell = game.getCell(0, 0);
         Assert.assertFalse(cell.isVisited());
     }
@@ -52,7 +51,7 @@ public class GameModelImplTest {
     @Test
     public void openCellAndGetCellInfo() {
         GameModelImpl game = new GameModelImpl();
-        game.setBoard(new Board(4, GameDifficulty.PEACE));
+        game.setBoard(new Board(4, 4, GameDifficulty.PEACE));
         game.openCell(0, 0);
         CellRO cell = game.getCell(0, 0);
         Assert.assertTrue(cell.isVisited());
@@ -61,7 +60,7 @@ public class GameModelImplTest {
     @Test
     public void openAllFreeFields() {
         GameModelImpl game = new GameModelImpl();
-        game.setBoard(new Board(4, GameDifficulty.PEACE));
+        game.setBoard(new Board(4, 4, GameDifficulty.PEACE));
         game.openCell(0,0);
         Assert.assertTrue(game.getState() instanceof GameStateWon);
     }
@@ -69,49 +68,49 @@ public class GameModelImplTest {
     @Test
     public void getCountOfMinesOnEasyGameAndDimension10() {
         GameModelImpl game = new GameModelImpl();
-        game.setBoard(new Board(10, GameDifficulty.EASY));
+        game.setBoard(new Board(10, 10, GameDifficulty.EASY));
         Assert.assertEquals(10, game.getCountOfMines());
     }
 
     @Test
     public void getCountOfMinesOnEasyGameAndDimension5() {
         GameModelImpl game = new GameModelImpl();
-        game.setBoard(new Board(5, GameDifficulty.EASY));
+        game.setBoard(new Board(5, 5, GameDifficulty.EASY));
         Assert.assertEquals(2, game.getCountOfMines());
     }
 
     @Test
     public void getCountOfMinesOnMediumGameAndDimension10() {
         GameModelImpl game = new GameModelImpl();
-        game.setBoard(new Board(10, GameDifficulty.MEDIUM));
+        game.setBoard(new Board(10, 10, GameDifficulty.MEDIUM));
         Assert.assertEquals(20, game.getCountOfMines());
     }
 
     @Test
     public void getCountOfMinesOnMediumGameAndDimension5() {
         GameModelImpl game = new GameModelImpl();
-        game.setBoard(new Board(5, GameDifficulty.MEDIUM));
+        game.setBoard(new Board(5, 5, GameDifficulty.MEDIUM));
         Assert.assertEquals(5, game.getCountOfMines());
     }
 
     @Test
     public void getCountOfMinesOnHardGameAndDimension10() {
         GameModelImpl game = new GameModelImpl();
-        game.setBoard(new Board(10, GameDifficulty.HARD));
+        game.setBoard(new Board(10, 10, GameDifficulty.HARD));
         Assert.assertEquals(30, game.getCountOfMines());
     }
 
     @Test
     public void getCountOfMinesOnHardGameAndDimension5() {
         GameModelImpl game = new GameModelImpl();
-        game.setBoard(new Board(5, GameDifficulty.HARD));
+        game.setBoard(new Board(5, 5, GameDifficulty.HARD));
         Assert.assertEquals(7, game.getCountOfMines());
     }
 
     @Test
     public void markCellAsBomb() {
         GameModelImpl game = new GameModelImpl();
-        game.setBoard(new Board(5, GameDifficulty.EASY));
+        game.setBoard(new Board(5, 5, GameDifficulty.EASY));
 
         CellRO cell = game.getCell(0,0);
         Assert.assertFalse(cell.isMarkedAsBomb());
@@ -122,7 +121,7 @@ public class GameModelImplTest {
     @Test
     public void visitAllAndRemoveMarks() {
         GameModelImpl game = new GameModelImpl();
-        game.setBoard(new Board(5, GameDifficulty.EASY));
+        game.setBoard(new Board(5, 5, GameDifficulty.EASY));
         game.changeMarkedAsBomb(0, 0);
         game.setState(new GameStateLost());
 
@@ -137,7 +136,7 @@ public class GameModelImplTest {
 
     @Test
     public void openVisitedCell() {
-        CellBuilder builder = new CellBuilder(5, 0);
+        CellBuilder builder = new CellBuilder(5, 5, 0);
         Cell[][] fields = builder.buildBoard();
         fields[0][1].changeMarkedAsBomb();
         fields[0][1].setMine();
@@ -159,7 +158,7 @@ public class GameModelImplTest {
 
     @Test
     public void firstHitIsAMine() {
-        CellBuilder builder = new CellBuilder(5, 0);
+        CellBuilder builder = new CellBuilder(5, 5, 0);
         Cell[][] fields = builder.buildBoard();
         fields[0][0].setMine();
         fields[2][2].setMine();

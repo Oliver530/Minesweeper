@@ -1,7 +1,6 @@
 package model;
 
 import model.cell.Cell;
-import model.cell.CellBuilder;
 import model.cell.NullCell;
 import util.GameDifficulty;
 
@@ -26,16 +25,16 @@ public class Board {
     Default constructor will use default values
      */
     public Board() {
-        this(MINIMUM_ROWS, GameDifficulty.EASY);
+        this(MINIMUM_ROWS, MINIMUM_COLUMNS, GameDifficulty.EASY);
     }
 
 
-    public Board(int dimension, GameDifficulty difficulty) {
-        this.rowCount = Math.max(dimension, MINIMUM_ROWS);
-        this.colCount = Math.max(dimension, MINIMUM_COLUMNS);
-        this.countOfMines = getCountOfMinesByDifficulty(dimension, difficulty);
+    public Board(int countOfRows, int countOfColumns, GameDifficulty difficulty) {
+        this.rowCount = Math.max(countOfRows, MINIMUM_ROWS);
+        this.colCount = Math.max(countOfColumns, MINIMUM_COLUMNS);
+        this.countOfMines = getCountOfMinesByDifficulty(this.rowCount * this.colCount, difficulty);
 
-        CellBuilder cellBuilder = new CellBuilder(this.rowCount, countOfMines);
+        CellBuilder cellBuilder = new CellBuilder(this.rowCount, this.colCount, countOfMines);
         this.field = cellBuilder.buildBoard();
         setNeighbourCount();
     }
@@ -47,8 +46,8 @@ public class Board {
         this.field = field;
     }
 
-    private int getCountOfMinesByDifficulty(int dimension, GameDifficulty difficulty) {
-        return (int) (difficulty.getPercentage() * (dimension * dimension));
+    private int getCountOfMinesByDifficulty(int countOfCells, GameDifficulty difficulty) {
+        return (int) (difficulty.getPercentage() * countOfCells);
     }
 
     public Cell getCell(int row, int col) {

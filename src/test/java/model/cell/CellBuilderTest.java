@@ -1,5 +1,6 @@
 package model.cell;
 
+import model.CellBuilder;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -9,38 +10,26 @@ import org.junit.Test;
 public class CellBuilderTest {
 
     @Test
-    public void createCellBuilderWithNoDimension() {
-        CellBuilder builder = new CellBuilder(0, 0);
-        Assert.assertEquals(CellBuilder.dimensionMinimum, builder.getDimension());
-    }
-
-    @Test
     public void createCellBuilderWithNegativeMines() {
-        CellBuilder builder = new CellBuilder(5, -2);
+        CellBuilder builder = new CellBuilder(5, 5, -2);
         Assert.assertEquals(0, builder.getCountOfMines());
     }
 
     @Test
-    public void createCellBuilderWithDimensionOne() {
-        CellBuilder builder = new CellBuilder(1, 0);
-        Assert.assertEquals(CellBuilder.dimensionMinimum, builder.getDimension());
-    }
-
-    @Test
     public void createCellBuilderWithTwoMines() {
-        CellBuilder builder = new CellBuilder(5, 2);
+        CellBuilder builder = new CellBuilder(5, 5, 2);
         Assert.assertEquals(2, builder.getCountOfMines());
     }
 
     @Test
     public void createCellBuilderWithMoreMinesThanCells() {
-        CellBuilder builder = new CellBuilder(5, 5*5+2);
+        CellBuilder builder = new CellBuilder(5, 5, 5*5+2);
         Assert.assertEquals(5*5, builder.getCountOfMines());
     }
 
     @Test
     public void buildBoardWithDimensionTwoAndZeroMines() {
-        CellBuilder builder = new CellBuilder(2, 0);
+        CellBuilder builder = new CellBuilder(2, 2, 0);
         Cell[][] board = builder.buildBoard();
         Assert.assertEquals(2, board.length);
         Assert.assertEquals(2, board[0].length);
@@ -49,7 +38,7 @@ public class CellBuilderTest {
 
     @Test
     public void buildBoardWithDimensionFiveAndZeroMines() {
-        CellBuilder builder = new CellBuilder(5, 0);
+        CellBuilder builder = new CellBuilder(5, 5, 0);
         Cell[][] board = builder.buildBoard();
         Assert.assertEquals(5, board.length);
         Assert.assertEquals(5, board[0].length);
@@ -62,7 +51,7 @@ public class CellBuilderTest {
 
     @Test
     public void buildBoardWithDimensionFiveAnd2Mines() {
-        CellBuilder builder = new CellBuilder(5, 2);
+        CellBuilder builder = new CellBuilder(5, 5, 2);
         Cell[][] board = builder.buildBoard();
         Assert.assertEquals(5, board.length);
         Assert.assertEquals(5, board[0].length);

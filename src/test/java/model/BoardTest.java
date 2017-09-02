@@ -15,42 +15,42 @@ public class BoardTest {
 
     @Test
     public void createBoardWithTooSmallFieldFails() {
-        Board board = new Board(1, GameDifficulty.EASY);
+        Board board = new Board(1, 1, GameDifficulty.EASY);
         Assert.assertEquals(Board.MINIMUM_ROWS, board.getRowCount());
         Assert.assertEquals(Board.MINIMUM_COLUMNS, board.getColCount());
     }
 
     @Test
     public void getFieldInBounds() {
-        Board board = new Board(5, GameDifficulty.EASY);
+        Board board = new Board(5, 5, GameDifficulty.EASY);
         Cell cell = board.getCell(3, 4);
         Assert.assertNotNull(cell);
     }
 
     @Test
     public void getFieldNegativeRowOutOfBound() {
-        Board board = new Board(4, GameDifficulty.EASY);
+        Board board = new Board(4, 4, GameDifficulty.EASY);
         Cell cell = board.getCell(-1, 2);
         assertTrue(cell instanceof NullCell);
     }
 
     @Test
     public void getFieldPositiveRowOutOfBound() {
-        Board board = new Board(4, GameDifficulty.EASY);
+        Board board = new Board(4, 4, GameDifficulty.EASY);
         Cell cell = board.getCell(4, 2);
         assertTrue(cell instanceof NullCell);
     }
 
     @Test
     public void getFieldNegativeColOutOfBound() {
-        Board board = new Board(4, GameDifficulty.EASY);
+        Board board = new Board(4, 4, GameDifficulty.EASY);
         Cell cell = board.getCell(2, -1);
         assertTrue(cell instanceof NullCell);
     }
 
     @Test
     public void getFieldPositiveColOutOfBound() {
-        Board board = new Board(4, GameDifficulty.EASY);
+        Board board = new Board(4, 4, GameDifficulty.EASY);
         Cell cell = board.getCell(4, -1);
         assertTrue(cell instanceof NullCell);
     }

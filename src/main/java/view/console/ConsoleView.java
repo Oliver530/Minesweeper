@@ -33,8 +33,9 @@ public class ConsoleView implements View {
     }
 
     private void setup() {
-        int dimension = getPositiveIntegerFromUser(keyboard, "Enter dimension (>3): ");
-        gameModel.setBoard(new Board(dimension, GameDifficulty.EASY));
+        int countOfRows = getPositiveIntegerFromUser(keyboard, "Enter count of rows (>" + (Board.MINIMUM_ROWS - 1) + "): ");
+        int countOfColumns = getPositiveIntegerFromUser(keyboard, "Enter count of columns (>" + (Board.MINIMUM_COLUMNS - 1) + "): ");
+        gameModel.setBoard(new Board(countOfRows, countOfColumns, GameDifficulty.EASY));
         System.out.println("There are " + gameModel.getCountOfMines() + " mines. Good luck!");
         drawer.draw();
     }

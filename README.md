@@ -22,7 +22,8 @@ A simple test driven minesweeper clone for java
 ```sh
 java -jar minesweeper4java-0.1.jar
 
-Enter dimension (>3): <dimension>
+Enter count of rows (>3): <countOfRows>
+Enter count of columns (>3): <countOfColumns>
 - open <row> <col>
 - mark <row> <col>
 - help
@@ -31,7 +32,8 @@ Enter dimension (>3): <dimension>
 
 Example:
 ```sh
-Enter dimension (>3): 12
+Enter count of rows (>3): 12
+Enter count of columns (>3): 12
 There are 14 mines. Good luck!
    | 0  1  2  3  4  5  6  7  8  9 10 11 
 ---|------------------------------------

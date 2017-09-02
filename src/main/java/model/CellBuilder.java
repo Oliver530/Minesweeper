@@ -1,4 +1,6 @@
-package model.cell;
+package model;
+
+import model.cell.Cell;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -7,25 +9,26 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class CellBuilder {
 
-    public static final int dimensionMinimum = 2;
-    private final int dimension;
+    private final int countOfRows;
+    private final int countOfColumns;
     private final int countOfMines;
 
-    public CellBuilder(int dimension, int countOfMines) {
-        this.dimension = Math.max(dimension, dimensionMinimum);
-        this.countOfMines = Math.max(0, Math.min(countOfMines, this.dimension * this.dimension));
+    public CellBuilder(int countOfRows, int countOfColumns, int countOfMines) {
+        this.countOfRows = countOfRows;
+        this.countOfColumns = countOfColumns;
+        this.countOfMines = Math.max(0, Math.min(countOfMines, this.countOfRows * this.countOfColumns));
     }
 
     public Cell[][] buildBoard() {
-        Cell[][] board = new Cell[dimension][dimension];
+        Cell[][] board = new Cell[this.countOfRows][this.countOfColumns];
         populateBoardWithCells(board);
         populateBoardWithMines(board);
         return board;
     }
 
     private void populateBoardWithCells(Cell[][] board) {
-        for (int row = 0; row < dimension; row++) {
-            for (int col = 0; col < dimension; col++) {
+        for (int row = 0; row < this.countOfRows; row++) {
+            for (int col = 0; col < this.countOfColumns; col++) {
                 board[row][col] = new Cell();
             }
         }
@@ -34,16 +37,12 @@ public class CellBuilder {
     private void populateBoardWithMines(Cell[][] board) {
         int countOfMinesAdded = 0;
         while (countOfMinesAdded < this.countOfMines) {
-            int rowRandom = ThreadLocalRandom.current().nextInt(0, this.dimension);
-            int colRandom = ThreadLocalRandom.current().nextInt(0, this.dimension);
+            int rowRandom = ThreadLocalRandom.current().nextInt(0, this.countOfRows);
+            int colRandom = ThreadLocalRandom.current().nextInt(0, this.countOfColumns);
             if (board[rowRandom][colRandom].setMine()) {
                 countOfMinesAdded++;
             }
         }
-    }
-
-    public int getDimension() {
-        return this.dimension;
     }
 
     public int getCountOfMines() {
