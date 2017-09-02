@@ -4,8 +4,10 @@ import view.console.useraction.*;
 
 /**
  * Created by olivergerhardt on 31.08.17.
+ *
+ * Convert an input string to an UserAction
  */
-public class UserActionScanner {
+public class UserActionFactory {
 
     public static UserAction getUserAction(String input) {
 
@@ -16,9 +18,13 @@ public class UserActionScanner {
             return new UserActionHelp();
         }
 
+        return getActionWithRowAndCol(input);
+    }
+
+    private static UserAction getActionWithRowAndCol(String input) {
         String[] inputArray = input.split("\\s+");
         if (inputArray.length != 3) {
-            return null;
+            return new UserActionInvalid();
         }
 
         int row;
@@ -27,7 +33,7 @@ public class UserActionScanner {
             row = Integer.parseInt(inputArray[1]);
             col = Integer.parseInt(inputArray[2]);
         } catch (NumberFormatException e) {
-            return null;
+            return new UserActionInvalid();
         }
 
         if (inputArray[0].equals("open") || inputArray[0].equals("o")) {
@@ -36,6 +42,6 @@ public class UserActionScanner {
         if (inputArray[0].equals("mark") || inputArray[0].equals("m")) {
             return new UserActionMark(row, col);
         }
-        return null;
+        return new UserActionInvalid();
     }
 }

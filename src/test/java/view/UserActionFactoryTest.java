@@ -1,10 +1,7 @@
 package view;
 
-import view.console.useraction.UserAction;
-import view.console.useraction.UserActionExit;
-import view.console.useraction.UserActionMark;
-import view.console.useraction.UserActionOpen;
-import view.console.UserActionScanner;
+import view.console.useraction.*;
+import view.console.UserActionFactory;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -14,12 +11,12 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by olivergerhardt on 31.08.17.
  */
-public class UserActionScannerTest {
+public class UserActionFactoryTest {
 
     @Test
     public void getUserActionExit() {
         String input = "exit";
-        UserAction userAction = UserActionScanner.getUserAction(input);
+        UserAction userAction = UserActionFactory.getUserAction(input);
 
         assertTrue(userAction instanceof UserActionExit);
     }
@@ -27,23 +24,23 @@ public class UserActionScannerTest {
     @Test
     public void getUserActionOpenWithTooManyParameters() {
         String input = "open 1 2 3";
-        UserAction userAction = UserActionScanner.getUserAction(input);
+        UserAction userAction = UserActionFactory.getUserAction(input);
 
-        assertNull(userAction);
+        assertTrue(userAction instanceof UserActionInvalid);
     }
 
     @Test
     public void getUserActionOpenWithTooFewParameters() {
         String input = "open 1";
-        UserAction userAction = UserActionScanner.getUserAction(input);
+        UserAction userAction = UserActionFactory.getUserAction(input);
 
-        assertNull(userAction);
+        assertTrue(userAction instanceof UserActionInvalid);
     }
 
     @Test
     public void getUserActionOpen() {
         String input = "open 1 2";
-        UserAction userAction = UserActionScanner.getUserAction(input);
+        UserAction userAction = UserActionFactory.getUserAction(input);
 
         assertTrue(userAction instanceof UserActionOpen);
         UserActionOpen userActionOpen = (UserActionOpen) userAction;
@@ -54,7 +51,7 @@ public class UserActionScannerTest {
     @Test
     public void getUserActionMark() {
         String input = "mark 1 2";
-        UserAction userAction = UserActionScanner.getUserAction(input);
+        UserAction userAction = UserActionFactory.getUserAction(input);
 
         assertTrue(userAction instanceof UserActionMark);
         UserActionMark userActionMark = (UserActionMark) userAction;

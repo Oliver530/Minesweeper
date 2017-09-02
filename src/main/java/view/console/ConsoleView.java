@@ -24,17 +24,24 @@ public class ConsoleView implements MinesweeperView {
     public ConsoleView(MinesweeperGameModel gameModel) {
         this.gameModel = gameModel;
         drawer = new ConsoleViewDrawer(gameModel);
-        this.keyboard = new Scanner(System.in);
+        keyboard = new Scanner(System.in);
     }
 
 
     public void play() {
+        setup();
+        performUserActions();
+        gameOver();
+    }
 
+    private void setup() {
         int dimension = getPositiveIntegerFromUser(keyboard, "Enter dimension (>3): ");
         gameModel.startGame(new Board(dimension, GameDifficulty.EASY));
         System.out.println("There are " + gameModel.getCountOfMines() + " mines. Good luck!");
         drawer.draw();
+    }
 
+    private void performUserActions() {
         UserAction userAction;
         while (true) {
             userAction = getUserAction();
@@ -42,13 +49,15 @@ public class ConsoleView implements MinesweeperView {
 
             if (gameModel.getState() instanceof GameStateWon) {
                 System.out.println("You've won!");
-                break;
+                return;
             } else if (gameModel.getState() instanceof GameStateLost) {
                 System.out.println("You've lost!");
-                break;
+                return;
             }
         }
+    }
 
+    private void gameOver() {
         System.out.println();
         gameModel.visitAllAndRemoveMarks();
         drawer.draw();
@@ -71,12 +80,8 @@ public class ConsoleView implements MinesweeperView {
 
 
     private UserAction getUserAction() {
-        UserAction userAction = null;
-        while (userAction == null) {
-            System.out.print("Command: ");
-            String userInput = keyboard.nextLine();
-            userAction = UserActionScanner.getUserAction(userInput);
-        }
-        return userAction;
+        System.out.print("Command: ");
+        String userInput = keyboard.nextLine();
+        return UserActionFactory.getUserAction(userInput);
     }
 }
