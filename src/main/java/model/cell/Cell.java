@@ -15,13 +15,13 @@ public class Cell implements CellRO {
     }
 
     public void setCountOfNeighbourMines(final int count) {
-        this.countOfNeighbourMines = count;
+        countOfNeighbourMines = count;
     }
 
     public Cell() {
-        this.isVisited = false;
-        this.isMine = false;
-        this.markedAsBomb = false;
+        isVisited = false;
+        isMine = false;
+        markedAsBomb = false;
         countOfNeighbourMines = 0;
     }
 
@@ -34,7 +34,7 @@ public class Cell implements CellRO {
     }
 
     public boolean isMarkedAsBomb() {
-        return this.markedAsBomb;
+        return markedAsBomb;
     }
 
     public void visit() {
@@ -53,7 +53,7 @@ public class Cell implements CellRO {
     }
 
     public void changeMarkedAsBomb() {
-        this.markedAsBomb = !this.markedAsBomb;
+        markedAsBomb = !markedAsBomb;
     }
 
     public void removeMine() {
