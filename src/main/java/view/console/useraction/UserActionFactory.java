@@ -1,6 +1,6 @@
-package view.console;
+package view.console.useraction;
 
-import view.console.useraction.*;
+import view.console.ConsoleView;
 
 /**
  * Created by olivergerhardt on 31.08.17.
@@ -9,7 +9,7 @@ import view.console.useraction.*;
  */
 public class UserActionFactory {
 
-    public static UserAction getUserAction(String input) {
+    public static UserAction getUserAction(String input, int rowCount, int colCount) {
 
         if (input.equals("exit")) {
             return new UserActionExit();
@@ -18,10 +18,10 @@ public class UserActionFactory {
             return new UserActionHelp();
         }
 
-        return getActionWithRowAndCol(input);
+        return getActionWithRowAndCol(input, rowCount, colCount);
     }
 
-    private static UserAction getActionWithRowAndCol(String input) {
+    private static UserAction getActionWithRowAndCol(String input, int rowCount, int colCount) {
         String[] inputArray = input.split("\\s+");
         if (inputArray.length != 3) {
             return new UserActionInvalid();
@@ -33,6 +33,14 @@ public class UserActionFactory {
             row = Integer.parseInt(inputArray[1]);
             col = Integer.parseInt(inputArray[2]);
         } catch (NumberFormatException e) {
+            return new UserActionInvalid();
+        }
+
+        if (row < 0 || row >= rowCount) {
+            return new UserActionInvalid();
+        }
+
+        if (col < 0 || col >= colCount) {
             return new UserActionInvalid();
         }
 
