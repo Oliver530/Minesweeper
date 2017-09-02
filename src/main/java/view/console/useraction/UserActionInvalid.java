@@ -9,6 +9,8 @@ import view.console.ConsoleViewDrawer;
 public class UserActionInvalid extends UserAction {
 
     @Override
-    public void perform(GameModel gameModel, ConsoleViewDrawer drawer) {}
+    public void perform(final GameModel gameModel, final ConsoleViewDrawer drawer) {
+        // Ignore invalid user input
+    }
 
 }

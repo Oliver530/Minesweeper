@@ -6,18 +6,18 @@ import view.console.ConsoleViewDrawer;
 /**
  * Created by olivergerhardt on 31.08.17.
  */
-public class UserActionOpen extends UserAction {
+public final class UserActionOpen extends UserAction {
 
     private final int row;
     private final int col;
 
-    public UserActionOpen(int row, int col) {
+    public UserActionOpen(final int row, final int col) {
         this.row = row;
         this.col = col;
     }
 
     @Override
-    public void perform(GameModel gameModel, ConsoleViewDrawer drawer) {
+    public void perform(final GameModel gameModel, final ConsoleViewDrawer drawer) {
         gameModel.openCell(row, col);
         System.out.println();
         drawer.draw();

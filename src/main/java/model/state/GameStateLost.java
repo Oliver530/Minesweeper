@@ -6,20 +6,20 @@ import model.cell.Cell;
 /**
  * Created by olivergerhardt on 01.09.17.
  */
-public class GameStateLost implements GameModelState {
+public final class GameStateLost implements GameModelState {
 
     @Override
-    public void openCell(GameModelImpl context, int row, int col) {
+    public void openCell(final GameModelImpl context, final int row, final int col) {
         // Operation not allowed in this state!
     }
 
     @Override
-    public void changeMarkedAsBomb(GameModelImpl context, int row, int col) {
+    public void changeMarkedAsBomb(final GameModelImpl context, final int row, final int col) {
         // Operation not allowed in this state!
     }
 
     @Override
-    public void visitAllAndRemoveMarks(GameModelImpl context) {
+    public void visitAllAndRemoveMarks(final GameModelImpl context) {
         int rowCount = context.getBoard().getRowCount();
         int colCount = context.getBoard().getColCount();
 
@@ -31,7 +31,7 @@ public class GameStateLost implements GameModelState {
         }
     }
 
-    private void visitAndRemoveMark(Cell cell) {
+    private void visitAndRemoveMark(final Cell cell) {
         if (!cell.isVisited()) {
             cell.visit();
         }

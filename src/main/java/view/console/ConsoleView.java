@@ -13,7 +13,7 @@ import java.util.Scanner;
 /**
  * Created by olivergerhardt on 30.08.17.
  */
-public class ConsoleView implements View {
+public final class ConsoleView implements View {
 
     private final GameModel gameModel;
     private final ConsoleViewDrawer drawer;
@@ -23,7 +23,7 @@ public class ConsoleView implements View {
     private int countOfColumns;
 
 
-    public ConsoleView(GameModel gameModel) {
+    public ConsoleView(final GameModel gameModel) {
         this.gameModel = gameModel;
         drawer = new ConsoleViewDrawer(gameModel);
         keyboard = new Scanner(System.in);
@@ -37,8 +37,8 @@ public class ConsoleView implements View {
     }
 
     private void setup() {
-        this.countOfRows = getPositiveIntegerFromUser(keyboard, "Enter count of rows (>" + (Board.MINIMUM_ROWS - 1) + "): ");
-        this.countOfColumns = getPositiveIntegerFromUser(keyboard, "Enter count of columns (>" + (Board.MINIMUM_COLUMNS - 1) + "): ");
+        this.countOfRows = getPositiveIntegerFromUser(keyboard, "Enter count of rows (>" + (Board.MINIMUM_ROWS - 1) + "): ", Board.MINIMUM_ROWS);
+        this.countOfColumns = getPositiveIntegerFromUser(keyboard, "Enter count of columns (>" + (Board.MINIMUM_COLUMNS - 1) + "): ", Board.MINIMUM_COLUMNS);
         gameModel.setBoard(new Board(countOfRows, countOfColumns, GameDifficulty.EASY));
         System.out.println("There are " + gameModel.getCountOfMines() + " mines. Good luck!");
         drawer.draw();
@@ -67,9 +67,9 @@ public class ConsoleView implements View {
         System.exit(0);
     }
 
-    private int getPositiveIntegerFromUser(Scanner scanner, String prompt) {
+    private int getPositiveIntegerFromUser(final Scanner scanner, final String prompt, final int minimum) {
         int value = -1;
-        while (value < 4) {
+        while (value < minimum) {
             System.out.print(prompt);
             String input = scanner.nextLine();
             try {
@@ -87,11 +87,11 @@ public class ConsoleView implements View {
         return UserActionFactory.getUserAction(userInput, getCountOfRows(), getCountOfColumns());
     }
 
-    public int getCountOfRows() {
+    private int getCountOfRows() {
         return countOfRows;
     }
 
-    public int getCountOfColumns() {
+    private int getCountOfColumns() {
         return countOfColumns;
     }
 }

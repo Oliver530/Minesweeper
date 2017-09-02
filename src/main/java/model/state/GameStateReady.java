@@ -1,15 +1,14 @@
 package model.state;
 
 import model.GameModelImpl;
-import model.cell.Cell;
 
 /**
  * Created by olivergerhardt on 01.09.17.
  */
-public class GameStateReady extends GameStateRunning {
+public final class GameStateReady extends GameStateRunning {
 
     @Override
-    public void openCell(GameModelImpl context, int row, int col) {
+    public void openCell(final GameModelImpl context, final int row, final int col) {
         if (context.getCell(row, col).isMine()) {
             context.getBoard().moveMineToRandomCell(row, col);
         }

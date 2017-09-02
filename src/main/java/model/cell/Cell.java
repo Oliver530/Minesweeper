@@ -9,13 +9,13 @@ public class Cell implements CellRO {
     private boolean isMine;
     private boolean markedAsBomb;
     private int countOfNeighbourMines;
-    
+
     public int getCountOfNeighbourMines() {
         return countOfNeighbourMines;
     }
 
-    public void setCountOfNeighbourMines(int countOfNeighbourMines) {
-        this.countOfNeighbourMines = countOfNeighbourMines;
+    public void setCountOfNeighbourMines(final int count) {
+        this.countOfNeighbourMines = count;
     }
 
     public Cell() {

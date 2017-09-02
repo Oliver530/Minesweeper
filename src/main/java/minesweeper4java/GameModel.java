@@ -2,7 +2,6 @@ package minesweeper4java;
 
 import model.Board;
 import model.cell.CellRO;
-import model.state.GameModelState;
 
 /**
  * Created by olivergerhardt on 01.09.17.

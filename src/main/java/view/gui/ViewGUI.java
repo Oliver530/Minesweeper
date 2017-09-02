@@ -10,7 +10,7 @@ public class ViewGUI implements View {
 
     private final GameModel gameModel;
 
-    public ViewGUI(GameModel gameModel) {
+    public ViewGUI(final GameModel gameModel) {
         this.gameModel = gameModel;
     }
 

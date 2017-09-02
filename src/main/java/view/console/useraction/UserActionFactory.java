@@ -1,7 +1,5 @@
 package view.console.useraction;
 
-import view.console.ConsoleView;
-
 /**
  * Created by olivergerhardt on 31.08.17.
  *
@@ -9,7 +7,7 @@ import view.console.ConsoleView;
  */
 public class UserActionFactory {
 
-    public static UserAction getUserAction(String input, int rowCount, int colCount) {
+    public static UserAction getUserAction(final String input, final int rowCount, final int colCount) {
 
         if (input.equals("exit")) {
             return new UserActionExit();
@@ -21,7 +19,7 @@ public class UserActionFactory {
         return getActionWithRowAndCol(input, rowCount, colCount);
     }
 
-    private static UserAction getActionWithRowAndCol(String input, int rowCount, int colCount) {
+    private static UserAction getActionWithRowAndCol(final String input, final int rowCount, final int colCount) {
         String[] inputArray = input.split("\\s+");
         if (inputArray.length != 3) {
             return new UserActionInvalid();

@@ -20,7 +20,7 @@ class Minesweeper4Java {
 
     }
 
-    private static View getView(GameModel gameModel, boolean noGUI) {
+    private static View getView(final GameModel gameModel, final boolean noGUI) {
         if (noGUI) {
             return new ConsoleView(gameModel);
         } else {

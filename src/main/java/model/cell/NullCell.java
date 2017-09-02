@@ -3,7 +3,7 @@ package model.cell;
 /**
  * Created by olivergerhardt on 27.08.17.
  */
-public class NullCell extends Cell {
+public final class NullCell extends Cell {
 
     // Singleton
     private static NullCell instance;

@@ -7,16 +7,16 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * Created by olivergerhardt on 27.08.17.
  */
-public class CellBuilder {
+public final class CellBuilder {
 
     private final int countOfRows;
     private final int countOfColumns;
     private final int countOfMines;
 
-    public CellBuilder(int countOfRows, int countOfColumns, int countOfMines) {
-        this.countOfRows = countOfRows;
-        this.countOfColumns = countOfColumns;
-        this.countOfMines = Math.max(0, Math.min(countOfMines, this.countOfRows * this.countOfColumns));
+    public CellBuilder(final int rowCount, final int colCount, final int minesCount) {
+        countOfRows = rowCount;
+        countOfColumns = colCount;
+        countOfMines = Math.max(0, Math.min(minesCount, countOfRows * countOfColumns));
     }
 
     public Cell[][] buildBoard() {
@@ -26,7 +26,7 @@ public class CellBuilder {
         return board;
     }
 
-    private void populateBoardWithCells(Cell[][] board) {
+    private void populateBoardWithCells(final Cell[][] board) {
         for (int row = 0; row < this.countOfRows; row++) {
             for (int col = 0; col < this.countOfColumns; col++) {
                 board[row][col] = new Cell();
@@ -34,7 +34,7 @@ public class CellBuilder {
         }
     }
 
-    private void populateBoardWithMines(Cell[][] board) {
+    private void populateBoardWithMines(final Cell[][] board) {
         int countOfMinesAdded = 0;
         while (countOfMinesAdded < this.countOfMines) {
             int rowRandom = ThreadLocalRandom.current().nextInt(0, this.countOfRows);

@@ -5,20 +5,20 @@ import model.GameModelImpl;
 /**
  * Created by olivergerhardt on 01.09.17.
  */
-public class GameStateWon implements GameModelState {
+public final class GameStateWon implements GameModelState {
 
     @Override
-    public void openCell(GameModelImpl context, int row, int col) {
+    public void openCell(final GameModelImpl context, final int row, final int col) {
         // Operation not allowed in this state!
     }
 
     @Override
-    public void changeMarkedAsBomb(GameModelImpl context, int row, int col) {
+    public void changeMarkedAsBomb(final GameModelImpl context, final int row, final int col) {
         // Operation not allowed in this state!
     }
 
     @Override
-    public void visitAllAndRemoveMarks(GameModelImpl context) {
+    public void visitAllAndRemoveMarks(final GameModelImpl context) {
         // Operation not allowed in this state!
     }
 }

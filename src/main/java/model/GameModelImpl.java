@@ -2,12 +2,15 @@ package model;
 
 import minesweeper4java.GameModel;
 import model.cell.Cell;
-import model.state.*;
+import model.state.GameModelState;
+import model.state.GameStateLost;
+import model.state.GameStateReady;
+import model.state.GameStateWon;
 
 /**
  * Created by olivergerhardt on 28.08.17.
  */
-public class GameModelImpl implements GameModel {
+public final class GameModelImpl implements GameModel {
 
     // Board contains cell objects (abstraction of two dimensional array)
     private Board board;
@@ -24,18 +27,18 @@ public class GameModelImpl implements GameModel {
 
     // Inject board and start game
     @Override
-    public void setBoard(Board board) {
+    public void setBoard(final Board board) {
         this.board = board;
         state = new GameStateReady();
     }
 
     @Override
-    public void openCell(int row, int col) {
+    public void openCell(final int row, final int col) {
         state.openCell(this, row, col);
     }
 
     @Override
-    public void changeMarkedAsBomb(int row, int col) {
+    public void changeMarkedAsBomb(final int row, final int col) {
         state.changeMarkedAsBomb(this, row, col);
     }
 
@@ -45,7 +48,7 @@ public class GameModelImpl implements GameModel {
     }
 
     @Override
-    public Cell getCell(int row, int col) {
+    public Cell getCell(final int row, final int col) {
         return board.getCell(row, col);
     }
 
@@ -78,7 +81,7 @@ public class GameModelImpl implements GameModel {
         return state;
     }
 
-    public void setState(GameModelState state) {
+    public void setState(final GameModelState state) {
         this.state = state;
     }
 
@@ -87,7 +90,7 @@ public class GameModelImpl implements GameModel {
         return board;
     }
 
-    public void debug(Cell[][] field, int countOfMines) {
+    public void debug(final Cell[][] field, final int countOfMines) {
         setBoard(new Board(field, countOfMines));
     }
 

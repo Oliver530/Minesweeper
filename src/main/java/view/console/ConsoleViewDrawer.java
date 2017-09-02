@@ -6,15 +6,15 @@ import model.cell.CellRO;
 /**
  * Created by olivergerhardt on 31.08.17.
  */
-public class ConsoleViewDrawer {
+public final class ConsoleViewDrawer {
 
-    private final static String ICON_NOT_VISITED = " · ";
-    private final static String ICON_IS_MARKED_AS_BOMB = " @ ";
-    private final static String ICON_IS_BOMB = " X ";
+    private static final String ICON_NOT_VISITED = " · ";
+    private static final String ICON_IS_MARKED_AS_BOMB = " @ ";
+    private static final String ICON_IS_BOMB = " X ";
 
     private final GameModel gameModel;
 
-    public ConsoleViewDrawer(GameModel gameModel) {
+    public ConsoleViewDrawer(final GameModel gameModel) {
         this.gameModel = gameModel;
     }
 
@@ -33,7 +33,7 @@ public class ConsoleViewDrawer {
         System.out.println();
     }
 
-    private String getIcon(CellRO cell) {
+    private String getIcon(final CellRO cell) {
         if (cell.isMarkedAsBomb()) {
             return ICON_IS_MARKED_AS_BOMB;
         }
