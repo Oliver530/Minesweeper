@@ -10,13 +10,10 @@ public class GameStateReady extends GameStateRunning {
 
     @Override
     public void openCell(GameModelImpl context, int row, int col) {
-        Cell cell = context.getCell(row, col);
-
-        if (cell.isMine()) {
+        if (context.getCell(row, col).isMine()) {
             context.getBoard().moveMineToRandomCell(row, col);
         }
         context.setState(new GameStateRunning());
-
         super.openCell(context, row, col);
     }
 

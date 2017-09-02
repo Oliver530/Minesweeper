@@ -9,23 +9,34 @@ import model.cell.Cell;
 public class GameStateLost implements GameModelState {
 
     @Override
-    public void openCell(GameModelImpl context, int row, int col) {}
+    public void openCell(GameModelImpl context, int row, int col) {
+        // Operation not allowed in this state!
+    }
 
     @Override
-    public void changeMarkedAsBomb(GameModelImpl context, int row, int col) {}
+    public void changeMarkedAsBomb(GameModelImpl context, int row, int col) {
+        // Operation not allowed in this state!
+    }
 
     @Override
     public void visitAllAndRemoveMarks(GameModelImpl context) {
-        for (int row = 0; row < context.getBoard().getRowCount(); row++) {
-            for (int col = 0; col < context.getBoard().getColCount(); col++) {
+        int rowCount = context.getBoard().getRowCount();
+        int colCount = context.getBoard().getColCount();
+
+        for (int row = 0; row < rowCount; row++) {
+            for (int col = 0; col < colCount; col++) {
                 Cell cell = context.getBoard().getCell(row, col);
-                if (!cell.isVisited()) {
-                    cell.visit();
-                }
-                if (cell.isMarkedAsBomb()) {
-                    cell.changeMarkedAsBomb();
-                }
+                visitAndRemoveMark(cell);
             }
+        }
+    }
+
+    private void visitAndRemoveMark(Cell cell) {
+        if (!cell.isVisited()) {
+            cell.visit();
+        }
+        if (cell.isMarkedAsBomb()) {
+            cell.changeMarkedAsBomb();
         }
     }
 

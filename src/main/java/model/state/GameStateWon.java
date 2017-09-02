@@ -8,11 +8,17 @@ import model.GameModelImpl;
 public class GameStateWon implements GameModelState {
 
     @Override
-    public void openCell(GameModelImpl context, int row, int col) {}
+    public void openCell(GameModelImpl context, int row, int col) {
+        // Operation not allowed in this state!
+    }
 
     @Override
-    public void changeMarkedAsBomb(GameModelImpl context, int row, int col) {}
+    public void changeMarkedAsBomb(GameModelImpl context, int row, int col) {
+        // Operation not allowed in this state!
+    }
 
     @Override
-    public void visitAllAndRemoveMarks(GameModelImpl context) {}
+    public void visitAllAndRemoveMarks(GameModelImpl context) {
+        // Operation not allowed in this state!
+    }
 }

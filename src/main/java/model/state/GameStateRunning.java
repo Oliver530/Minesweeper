@@ -13,7 +13,6 @@ public class GameStateRunning implements GameModelState {
     @Override
     public void openCell(GameModelImpl context, int row, int col) {
         Cell cell = context.getCell(row, col);
-
         if (cell.isMine()) {
             context.setState(new GameStateLost());
             return;
@@ -25,7 +24,7 @@ public class GameStateRunning implements GameModelState {
             cell.visit();
         }
 
-        if (checkWinCondition(context)) {
+        if (gameIsWon(context)) {
             context.setState(new GameStateWon());
         }
     }
@@ -37,7 +36,9 @@ public class GameStateRunning implements GameModelState {
     }
 
     @Override
-    public void visitAllAndRemoveMarks(GameModelImpl context) {}
+    public void visitAllAndRemoveMarks(GameModelImpl context) {
+        // Operation not allowed in this state!
+    }
 
     private void openCellR(GameModelImpl context, Cell cell) {
         List<Cell> neighbours = context.getBoard().getNeighbourCells(cell);
@@ -59,7 +60,7 @@ public class GameStateRunning implements GameModelState {
         }
     }
 
-    private boolean checkWinCondition(GameModelImpl context) {
+    private boolean gameIsWon(GameModelImpl context) {
         for (int row = 0; row < context.getBoard().getRowCount(); row++) {
             for (int col = 0; col < context.getBoard().getColCount(); col++) {
                 if (!context.getBoard().getCell(row, col).isMine() && !context.getBoard().getCell(row, col).isVisited()) {
