@@ -3,7 +3,7 @@ package minesweeper4java;
 /**
  * Created by olivergerhardt on 31.08.17.
  */
-public interface MinesweeperView {
+public interface View {
 
     void play();
 }

@@ -4,6 +4,7 @@ import model.cell.Cell;
 import model.cell.NullCell;
 import org.junit.Assert;
 import org.junit.Test;
+import util.GameDifficulty;
 
 import static org.junit.Assert.assertTrue;
 

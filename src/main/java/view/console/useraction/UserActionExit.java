@@ -1,6 +1,6 @@
 package view.console.useraction;
 
-import minesweeper4java.MinesweeperGameModel;
+import minesweeper4java.GameModel;
 import view.console.ConsoleViewDrawer;
 
 /**
@@ -9,7 +9,7 @@ import view.console.ConsoleViewDrawer;
 public class UserActionExit extends UserAction {
 
     @Override
-    public void perform(MinesweeperGameModel gameModel, ConsoleViewDrawer drawer) {
+    public void perform(GameModel gameModel, ConsoleViewDrawer drawer) {
         System.exit(0);
     }
 }

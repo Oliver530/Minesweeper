@@ -7,10 +7,10 @@ import model.state.GameModelState;
 /**
  * Created by olivergerhardt on 01.09.17.
  */
-public interface MinesweeperGameModel {
+public interface GameModel {
 
     // User actions
-    void startGame(Board board);
+    void setBoard(Board board);
     void visitAllAndRemoveMarks();
 
     void openCell(int row, int col);

@@ -1,12 +1,10 @@
 package view.console;
 
-import minesweeper4java.MinesweeperGameModel;
+import minesweeper4java.GameModel;
 import model.Board;
-import model.state.GameStateLost;
-import model.state.GameStateWon;
 import view.console.useraction.UserAction;
-import minesweeper4java.MinesweeperView;
-import model.GameDifficulty;
+import minesweeper4java.View;
+import util.GameDifficulty;
 
 import java.util.Scanner;
 
@@ -14,14 +12,14 @@ import java.util.Scanner;
 /**
  * Created by olivergerhardt on 30.08.17.
  */
-public class ConsoleView implements MinesweeperView {
+public class ConsoleView implements View {
 
-    private final MinesweeperGameModel gameModel;
+    private final GameModel gameModel;
     private final ConsoleViewDrawer drawer;
     private final Scanner keyboard;
 
 
-    public ConsoleView(MinesweeperGameModel gameModel) {
+    public ConsoleView(GameModel gameModel) {
         this.gameModel = gameModel;
         drawer = new ConsoleViewDrawer(gameModel);
         keyboard = new Scanner(System.in);
@@ -36,7 +34,7 @@ public class ConsoleView implements MinesweeperView {
 
     private void setup() {
         int dimension = getPositiveIntegerFromUser(keyboard, "Enter dimension (>3): ");
-        gameModel.startGame(new Board(dimension, GameDifficulty.EASY));
+        gameModel.setBoard(new Board(dimension, GameDifficulty.EASY));
         System.out.println("There are " + gameModel.getCountOfMines() + " mines. Good luck!");
         drawer.draw();
     }

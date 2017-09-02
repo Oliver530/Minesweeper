@@ -1,7 +1,8 @@
 package minesweeper4java;
 
-import model.GameModel;
+import model.GameModelImpl;
 import view.console.ConsoleView;
+import view.gui.ViewGUI;
 
 /**
  * Created by olivergerhardt on 31.08.17.
@@ -9,9 +10,23 @@ import view.console.ConsoleView;
 class Minesweeper4Java {
 
     public static void main(String[] args) {
-        MinesweeperGameModel gameModel = new GameModel();
-        MinesweeperView view = new ConsoleView(gameModel);
+
+        // Choose business logic implementation
+        GameModel gameModel = new GameModelImpl();
+
+        // Choose view implementation
+        View view = getView(gameModel, true);
         view.play();
+
+    }
+
+    private static View getView(GameModel gameModel, boolean noGUI) {
+        if (noGUI) {
+            return new ConsoleView(gameModel);
+        } else {
+            // ToDo to be implemented...
+            return new ViewGUI(gameModel);
+        }
     }
 
 }

@@ -3,6 +3,7 @@ package model;
 import model.cell.Cell;
 import model.cell.CellBuilder;
 import model.cell.NullCell;
+import util.GameDifficulty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,13 @@ public class Board {
     private final int rowCount;
     private final int colCount;
     private final int countOfMines;
+
+    /*
+    Default constructor will use default values
+     */
+    public Board() {
+        this(MINIMUM_ROWS, GameDifficulty.EASY);
+    }
 
 
     public Board(int dimension, GameDifficulty difficulty) {

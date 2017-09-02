@@ -1,6 +1,6 @@
 package model.state;
 
-import model.GameModel;
+import model.GameModelImpl;
 
 /**
  * Created by olivergerhardt on 01.09.17.
@@ -8,11 +8,11 @@ import model.GameModel;
 public class GameStateWon implements GameModelState {
 
     @Override
-    public void openCell(GameModel context, int row, int col) {}
+    public void openCell(GameModelImpl context, int row, int col) {}
 
     @Override
-    public void changeMarkedAsBomb(GameModel context, int row, int col) {}
+    public void changeMarkedAsBomb(GameModelImpl context, int row, int col) {}
 
     @Override
-    public void visitAllAndRemoveMarks(GameModel context) {}
+    public void visitAllAndRemoveMarks(GameModelImpl context) {}
 }

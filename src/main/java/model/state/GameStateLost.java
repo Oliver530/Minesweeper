@@ -1,6 +1,6 @@
 package model.state;
 
-import model.GameModel;
+import model.GameModelImpl;
 import model.cell.Cell;
 
 /**
@@ -9,13 +9,13 @@ import model.cell.Cell;
 public class GameStateLost implements GameModelState {
 
     @Override
-    public void openCell(GameModel context, int row, int col) {}
+    public void openCell(GameModelImpl context, int row, int col) {}
 
     @Override
-    public void changeMarkedAsBomb(GameModel context, int row, int col) {}
+    public void changeMarkedAsBomb(GameModelImpl context, int row, int col) {}
 
     @Override
-    public void visitAllAndRemoveMarks(GameModel context) {
+    public void visitAllAndRemoveMarks(GameModelImpl context) {
         for (int row = 0; row < context.getBoard().getRowCount(); row++) {
             for (int col = 0; col < context.getBoard().getColCount(); col++) {
                 Cell cell = context.getBoard().getCell(row, col);

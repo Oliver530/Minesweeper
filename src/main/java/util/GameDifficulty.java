@@ -1,4 +1,4 @@
-package model;
+package util;
 
 /**
  * Created by olivergerhardt on 30.08.17.

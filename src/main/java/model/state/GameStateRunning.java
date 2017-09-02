@@ -1,6 +1,6 @@
 package model.state;
 
-import model.GameModel;
+import model.GameModelImpl;
 import model.cell.Cell;
 
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.List;
 public class GameStateRunning implements GameModelState {
 
     @Override
-    public void openCell(GameModel context, int row, int col) {
+    public void openCell(GameModelImpl context, int row, int col) {
         Cell cell = context.getCell(row, col);
 
         if (cell.isMine()) {
@@ -31,15 +31,15 @@ public class GameStateRunning implements GameModelState {
     }
 
     @Override
-    public void changeMarkedAsBomb(GameModel context, int row, int col) {
+    public void changeMarkedAsBomb(GameModelImpl context, int row, int col) {
         Cell cell = context.getCell(row, col);
         cell.changeMarkedAsBomb();
     }
 
     @Override
-    public void visitAllAndRemoveMarks(GameModel context) {}
+    public void visitAllAndRemoveMarks(GameModelImpl context) {}
 
-    private void openCellR(GameModel context, Cell cell) {
+    private void openCellR(GameModelImpl context, Cell cell) {
         List<Cell> neighbours = context.getBoard().getNeighbourCells(cell);
         for (Cell neighbour : neighbours) {
             if (neighbour.isVisited()) {
@@ -59,7 +59,7 @@ public class GameStateRunning implements GameModelState {
         }
     }
 
-    private boolean checkWinCondition(GameModel context) {
+    private boolean checkWinCondition(GameModelImpl context) {
         for (int row = 0; row < context.getBoard().getRowCount(); row++) {
             for (int col = 0; col < context.getBoard().getColCount(); col++) {
                 if (!context.getBoard().getCell(row, col).isMine() && !context.getBoard().getCell(row, col).isVisited()) {

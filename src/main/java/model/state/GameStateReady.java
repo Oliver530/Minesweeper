@@ -1,6 +1,6 @@
 package model.state;
 
-import model.GameModel;
+import model.GameModelImpl;
 import model.cell.Cell;
 
 /**
@@ -9,7 +9,7 @@ import model.cell.Cell;
 public class GameStateReady extends GameStateRunning {
 
     @Override
-    public void openCell(GameModel context, int row, int col) {
+    public void openCell(GameModelImpl context, int row, int col) {
         Cell cell = context.getCell(row, col);
 
         if (cell.isMine()) {

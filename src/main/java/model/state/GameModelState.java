@@ -1,16 +1,16 @@
 package model.state;
 
-import model.GameModel;
+import model.GameModelImpl;
 
 /**
  * Created by olivergerhardt on 01.09.17.
  */
 public interface GameModelState {
 
-    void openCell(GameModel context, int row, int col);
+    void openCell(GameModelImpl context, int row, int col);
 
-    void changeMarkedAsBomb(GameModel context, int row, int col);
+    void changeMarkedAsBomb(GameModelImpl context, int row, int col);
 
-    void visitAllAndRemoveMarks(GameModel context);
+    void visitAllAndRemoveMarks(GameModelImpl context);
 
 }

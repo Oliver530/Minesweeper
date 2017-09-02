@@ -1,6 +1,6 @@
 package view.console.useraction;
 
-import minesweeper4java.MinesweeperGameModel;
+import minesweeper4java.GameModel;
 import view.console.ConsoleViewDrawer;
 
 /**
@@ -8,6 +8,6 @@ import view.console.ConsoleViewDrawer;
  */
 public abstract class UserAction {
 
-    public abstract void perform(MinesweeperGameModel gameModel, ConsoleViewDrawer drawer);
+    public abstract void perform(GameModel gameModel, ConsoleViewDrawer drawer);
 
 }

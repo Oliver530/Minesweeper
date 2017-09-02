@@ -1,6 +1,6 @@
 package view.console;
 
-import minesweeper4java.MinesweeperGameModel;
+import minesweeper4java.GameModel;
 import model.cell.CellRO;
 
 /**
@@ -12,9 +12,9 @@ public class ConsoleViewDrawer {
     private final static String ICON_IS_MARKED_AS_BOMB = " @ ";
     private final static String ICON_IS_BOMB = " X ";
 
-    private final MinesweeperGameModel gameModel;
+    private final GameModel gameModel;
 
-    public ConsoleViewDrawer(MinesweeperGameModel gameModel) {
+    public ConsoleViewDrawer(GameModel gameModel) {
         this.gameModel = gameModel;
     }
 
