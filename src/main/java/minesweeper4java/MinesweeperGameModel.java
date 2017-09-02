@@ -18,7 +18,8 @@ public interface MinesweeperGameModel {
 
 
     // State information
-    GameModelState getState();
+    boolean gameWon();
+    boolean gameLost();
     int getRowCount();
     int getColCount();
     int getCountOfMines();

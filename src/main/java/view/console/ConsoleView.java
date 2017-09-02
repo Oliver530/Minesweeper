@@ -47,10 +47,10 @@ public class ConsoleView implements MinesweeperView {
             userAction = getUserAction();
             userAction.perform(gameModel, drawer);
 
-            if (gameModel.getState() instanceof GameStateWon) {
+            if (gameModel.gameWon()) {
                 System.out.println("You've won!");
                 return;
-            } else if (gameModel.getState() instanceof GameStateLost) {
+            } else if (gameModel.gameLost()) {
                 System.out.println("You've lost!");
                 return;
             }

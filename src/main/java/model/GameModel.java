@@ -2,9 +2,7 @@ package model;
 
 import minesweeper4java.MinesweeperGameModel;
 import model.cell.Cell;
-import model.state.GameModelState;
-import model.state.GameStateMissingBoard;
-import model.state.GameStateReady;
+import model.state.*;
 
 /**
  * Created by olivergerhardt on 28.08.17.
@@ -66,5 +64,15 @@ public class GameModel implements MinesweeperGameModel {
     public void debug(Cell[][] field, int countOfMines) {
         this.board = new Board(field, countOfMines);
         this.state = new GameStateReady();
+    }
+
+    @Override
+    public boolean gameWon() {
+        return state instanceof GameStateWon;
+    }
+
+    @Override
+    public boolean gameLost() {
+        return state instanceof GameStateLost;
     }
 }
