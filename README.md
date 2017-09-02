@@ -89,9 +89,3 @@ Command: mark 1 6
 Enjoy!
 
 **Feedback and pull requests appreciated**
-
-## ToDos
-- Use Logging Framework
-- Graphical user interface
-- UML diagrams
-- arc42 documentation
