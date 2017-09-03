@@ -2,6 +2,7 @@ package model;
 
 import model.cell.Cell;
 
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -36,9 +37,11 @@ public final class CellBuilder {
 
     private void populateBoardWithMines(final Cell[][] board) {
         int countOfMinesAdded = 0;
+        Random ran = new Random();
         while (countOfMinesAdded < this.countOfMines) {
-            int rowRandom = ThreadLocalRandom.current().nextInt(0, this.countOfRows);
-            int colRandom = ThreadLocalRandom.current().nextInt(0, this.countOfColumns);
+            // ToDo put random random generation together (other part is in Builder)
+            int rowRandom = ran.nextInt(this.countOfRows);
+            int colRandom = ran.nextInt(this.countOfColumns);
             if (board[rowRandom][colRandom].setMine()) {
                 countOfMinesAdded++;
             }

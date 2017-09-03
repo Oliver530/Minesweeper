@@ -5,8 +5,9 @@ import model.cell.NullCell;
 import util.GameDifficulty;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.Random;
 
 /**
  * Created by olivergerhardt on 27.08.17.
@@ -96,7 +97,7 @@ public final class Board {
             }
 
         }
-        return new ArrayList<>();
+        return Collections.emptyList();
     }
 
     private List<Cell> getNeighbourCells(final int row, final int col) {
@@ -146,9 +147,11 @@ public final class Board {
         }
         int rowNew = row;
         int colNew = col;
+        Random ran = new Random();
         while (rowNew == row || colNew == col || getCell(rowNew, colNew).isMine()) {
-            rowNew = ThreadLocalRandom.current().nextInt(0, rowCount);
-            colNew = ThreadLocalRandom.current().nextInt(0, colCount);
+
+            rowNew = ran.nextInt(rowCount);
+            colNew = ran.nextInt(colCount);
         }
         cell.removeMine();
         getCell(rowNew, colNew).setMine();
