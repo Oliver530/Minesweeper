@@ -26,12 +26,12 @@ public final class BoardBuilder {
     }
 
     private static void populateBoardWithMines(final Cell[][] board, final int mines) {
-        int count = 0;
+        int numberOfMinesSet = 0;
         for (int row = 0; row < board.length; row++) {
             for (int col = 0; col < board[0].length; col++) {
-                if (count < mines) {
+                if (numberOfMinesSet < mines) {
                     board[row][col].setMine();
-                    count++;
+                    numberOfMinesSet++;
                 }
             }
         }

@@ -14,9 +14,11 @@ public final class ConsoleViewDrawer {
 
     private final GameModel gameModel;
 
+
     public ConsoleViewDrawer(final GameModel gameModel) {
         this.gameModel = gameModel;
     }
+
 
     public void draw() {
         printHeader();
@@ -62,4 +64,5 @@ public final class ConsoleViewDrawer {
         System.out.println(headerCols);
         System.out.println(headerLine);
     }
+
 }

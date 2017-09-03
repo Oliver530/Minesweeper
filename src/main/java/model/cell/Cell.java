@@ -9,20 +9,25 @@ public class Cell implements CellRO {
     private boolean isMine;
     private boolean isMarkedAsBomb;
 
+
     public Cell() {
         isVisited = false;
         isMine = false;
         isMarkedAsBomb = false;
     }
 
+
+    @Override
     public boolean isVisited() {
         return isVisited;
     }
 
+    @Override
     public boolean isMine() {
         return isMine;
     }
 
+    @Override
     public boolean isMarkedAsBomb() {
         return isMarkedAsBomb;
     }
@@ -33,16 +38,17 @@ public class Cell implements CellRO {
         }
         isVisited = true;
     }
-
+    
     public void setMine() {
         isMine = true;
+    }
+
+    public void removeMine() {
+        isMine = false;
     }
 
     public void changeMarkedAsBomb() {
         isMarkedAsBomb = !isMarkedAsBomb;
     }
 
-    public void removeMine() {
-        isMine = false;
-    }
 }

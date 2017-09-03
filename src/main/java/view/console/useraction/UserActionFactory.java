@@ -50,4 +50,5 @@ public class UserActionFactory {
         }
         return new UserActionInvalid();
     }
+
 }

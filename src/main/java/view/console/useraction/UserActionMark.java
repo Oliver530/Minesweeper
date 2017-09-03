@@ -11,10 +11,12 @@ public final class UserActionMark extends UserAction {
     private final int row;
     private final int col;
 
+
     public UserActionMark(final int row, final int col) {
         this.row = row;
         this.col = col;
     }
+
 
     @Override
     public void perform(final GameModel gameModel, final ConsoleViewDrawer drawer) {

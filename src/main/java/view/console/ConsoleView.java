@@ -30,6 +30,7 @@ public final class ConsoleView implements View {
     }
 
 
+    @Override
     public void play() {
         setup();
         performUserActions();

@@ -12,11 +12,8 @@ import model.state.GameStateWon;
  */
 public final class GameModelImpl implements GameModel {
 
-    // Board contains cell objects (abstraction of two dimensional array)
-    private Board board;
-
-    // State of game (state pattern)
-    private GameModelState state;
+    private Board board;            // Board contains cell objects (abstraction of two dimensional array)
+    private GameModelState state;   // State of game (state pattern)
 
 
     // A new game model will use a default board
@@ -77,6 +74,11 @@ public final class GameModelImpl implements GameModel {
         return state instanceof GameStateLost;
     }
 
+    @Override
+    public int getNeighbourMines(int row, int col) {
+        return board.getNeighbourMineCount(row, col);
+    }
+
     public GameModelState getState() {
         return state;
     }
@@ -88,11 +90,6 @@ public final class GameModelImpl implements GameModel {
     // Board is needed by state pattern
     public Board getBoard() {
         return board;
-    }
-
-    @Override
-    public int getNeighbourMines(int row, int col) {
-        return board.getNeighbourMineCount(row, col);
     }
 
     public int getNeighbourMines(Cell cell) {
