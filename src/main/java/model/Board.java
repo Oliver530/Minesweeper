@@ -1,7 +1,6 @@
 package model;
 
 import model.cell.Cell;
-import model.cell.NullCell;
 import util.GameDifficulty;
 
 import java.util.ArrayList;
@@ -54,7 +53,7 @@ public final class Board {
 
     public Cell getCell(final int row, final int col) {
         if (!inRange(row, col)) {
-            return NullCell.getInstance();
+            throw new IndexOutOfBoundsException();
         }
         return field[row][col];
     }
@@ -91,7 +90,7 @@ public final class Board {
     public List<Cell> getNeighbourCells(final Cell cell) {
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < columns; col++) {
-                if (getCell(row, col) == cell) {
+                if (inRange(row, col) && getCell(row, col) == cell) {
                     return getNeighbourCells(row, col);
                 }
             }

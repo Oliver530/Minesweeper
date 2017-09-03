@@ -1,7 +1,6 @@
 package model;
 
 import model.cell.Cell;
-import model.cell.NullCell;
 import org.junit.Assert;
 import org.junit.Test;
 import util.GameDifficulty;
@@ -27,32 +26,28 @@ public class BoardTest {
         Assert.assertNotNull(cell);
     }
 
-    @Test
+    @Test(expected = IndexOutOfBoundsException.class)
     public void getFieldNegativeRowOutOfBound() {
         Board board = new Board(4, 4, GameDifficulty.EASY);
-        Cell cell = board.getCell(-1, 2);
-        assertTrue(cell instanceof NullCell);
+        board.getCell(-1, 2);
     }
 
-    @Test
+    @Test(expected = IndexOutOfBoundsException.class)
     public void getFieldPositiveRowOutOfBound() {
         Board board = new Board(4, 4, GameDifficulty.EASY);
-        Cell cell = board.getCell(4, 2);
-        assertTrue(cell instanceof NullCell);
+        board.getCell(4, 2);
     }
 
-    @Test
+    @Test(expected = IndexOutOfBoundsException.class)
     public void getFieldNegativeColOutOfBound() {
         Board board = new Board(4, 4, GameDifficulty.EASY);
-        Cell cell = board.getCell(2, -1);
-        assertTrue(cell instanceof NullCell);
+        board.getCell(2, -1);
     }
 
-    @Test
+    @Test(expected = IndexOutOfBoundsException.class)
     public void getFieldPositiveColOutOfBound() {
         Board board = new Board(4, 4, GameDifficulty.EASY);
-        Cell cell = board.getCell(4, -1);
-        assertTrue(cell instanceof NullCell);
+        board.getCell(4, -1);
     }
 
     @Test
