@@ -136,8 +136,7 @@ public class GameModelImplTest {
 
     @Test
     public void openVisitedCell() {
-        CellBuilder builder = new CellBuilder(5, 5, 0);
-        Cell[][] fields = builder.buildBoard();
+        Cell[][] fields = BoardBuilder.buildBoard(5, 5, 0);
         fields[0][1].changeMarkedAsBomb();
         fields[0][1].setMine();
         fields[1][1].changeMarkedAsBomb();
@@ -158,8 +157,7 @@ public class GameModelImplTest {
 
     @Test
     public void firstHitIsAMine() {
-        CellBuilder builder = new CellBuilder(5, 5, 0);
-        Cell[][] fields = builder.buildBoard();
+        Cell[][] fields = BoardBuilder.buildBoard(5, 5, 0);
         fields[0][0].setMine();
         fields[2][2].setMine();
 

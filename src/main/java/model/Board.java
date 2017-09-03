@@ -35,8 +35,7 @@ public final class Board {
         this.columns = Math.max(columns, COLUMNS_MINIMUM);
         this.mines = getMines(difficulty);
 
-        CellBuilder builder = new CellBuilder(this.rows, this.columns, mines);
-        field = builder.buildBoard();
+        field = BoardBuilder.buildBoard(this.rows, this.columns, mines);
         setNeighbourCount();
     }
 
