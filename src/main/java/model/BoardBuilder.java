@@ -1,7 +1,6 @@
 package model;
 
 import model.cell.Cell;
-
 import java.util.Random;
 
 /**

@@ -2,7 +2,6 @@ package model;
 
 import model.cell.Cell;
 import util.GameDifficulty;
-
 import java.util.*;
 
 /**
@@ -16,8 +15,8 @@ public final class Board {
     private Cell[][] field;
     private int mines = 0;
 
-    HashMap<Cell,Integer> cacheRow = new HashMap<Cell,Integer>();
-    HashMap<Cell,Integer> cacheColumn = new HashMap<Cell,Integer>();
+    private HashMap<Cell,Integer> cacheRow = new HashMap<Cell,Integer>();
+    private HashMap<Cell,Integer> cacheColumn = new HashMap<Cell,Integer>();
 
     /*
     Default constructor will use default values
@@ -33,17 +32,20 @@ public final class Board {
         rows = Math.max(rows, ROWS_MINIMUM);
         columns = Math.max(columns, COLUMNS_MINIMUM);
         mines = getMines(rows * columns, difficulty);
-
-        setField(BoardBuilder.buildBoard(rows, columns, mines));
+        this.field = BoardBuilder.buildBoard(rows, columns, mines);
+        buildCache(BoardBuilder.buildBoard(rows, columns, mines));
     }
 
     public Board(final Cell[][] field, final int mineCount) {
         this.mines = mineCount;
-        setField(field);
+        this.field = field;
+        buildCache(field);
     }
 
-    private void setField(final Cell[][] field) {
-        this.field = field;
+    private void buildCache(final Cell[][] field) {
+        cacheRow.clear();
+        cacheColumn.clear();
+
         for (int row = 0; row < getRows(); row++) {
             for (int col = 0; col < getColumns(); col++) {
                 cacheRow.put(field[row][col], row);
