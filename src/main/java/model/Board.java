@@ -16,10 +16,8 @@ public final class Board {
     public static final int ROWS_MINIMUM = 4;
     public static final int COLUMNS_MINIMUM = 4;
 
-    private final Cell[][] field;
-    private final int rows;
-    private final int columns;
-    private final int mines;
+    private Cell[][] field;
+    private int mines = 0;
 
     /*
     Default constructor will use default values
@@ -29,25 +27,28 @@ public final class Board {
     }
 
 
-    public Board(final int rows, final int columns,
+    public Board(int rows, int columns,
                  final GameDifficulty difficulty) {
-        this.rows = Math.max(rows, ROWS_MINIMUM);
-        this.columns = Math.max(columns, COLUMNS_MINIMUM);
-        this.mines = getMines(difficulty);
 
-        field = BoardBuilder.buildBoard(this.rows, this.columns, mines);
+        rows = Math.max(rows, ROWS_MINIMUM);
+        columns = Math.max(columns, COLUMNS_MINIMUM);
+        mines = getMines(rows * columns, difficulty);
+
+        setField(BoardBuilder.buildBoard(rows, columns, mines));
+    }
+
+    public Board(final Cell[][] field, final int mineCount) {
+        this.mines = mineCount;
+        setField(field);
+    }
+
+    private void setField(final Cell[][] field) {
+        this.field = field;
         setNeighbourCount();
     }
 
-    public Board(final Cell[][] fieldOfCells, final int mineCount) {
-        this.rows = fieldOfCells.length;
-        this.columns = fieldOfCells[0].length;
-        this.mines = mineCount;
-        this.field = fieldOfCells;
-    }
-
-    private int getMines(final GameDifficulty difficulty) {
-        return (int) (difficulty.getPercentage() * getCellCount());
+    private int getMines(final int cells, final GameDifficulty difficulty) {
+        return (int) (difficulty.getPercentage() * cells);
     }
 
     public Cell getCell(final int row, final int col) {
@@ -58,8 +59,8 @@ public final class Board {
     }
 
     private void setNeighbourCount() {
-        for (int row = 0; row < rows; row++) {
-            for (int col = 0; col < columns; col++) {
+        for (int row = 0; row < getRows(); row++) {
+            for (int col = 0; col < getColumns(); col++) {
                 Cell cell = getCell(row, col);
                 cell.setNeighbourMines(getNeighbourMineCount(cell));
             }
@@ -67,28 +68,24 @@ public final class Board {
     }
 
     private boolean inRange(final int row, final int col) {
-        if (row < 0 || row >= rows) {
+        if (row < 0 || row >= getRows() || col < 0 || col >= getColumns()) {
             return false;
+        } else {
+            return field[row][col] != null;
         }
-
-        if (col < 0 || col >= columns) {
-            return false;
-        }
-
-        return field[row][col] != null;
     }
 
     public int getRows() {
-        return this.rows;
+        return field.length;
     }
 
     public int getColumns() {
-        return this.columns;
+        return field[0].length;
     }
 
     public List<Cell> getNeighbourCells(final Cell cell) {
-        for (int row = 0; row < rows; row++) {
-            for (int col = 0; col < columns; col++) {
+        for (int row = 0; row < getRows(); row++) {
+            for (int col = 0; col < getColumns(); col++) {
                 if (inRange(row, col) && getCell(row, col) == cell) {
                     return getNeighbourCells(row, col);
                 }
@@ -149,8 +146,8 @@ public final class Board {
         Random ran = new Random();
         while (rowNew == row || colNew == col || getCell(rowNew, colNew).isMine()) {
 
-            rowNew = ran.nextInt(rows);
-            colNew = ran.nextInt(columns);
+            rowNew = ran.nextInt(getRows());
+            colNew = ran.nextInt(getColumns());
         }
         removeMine(cell);
         addMine(getCell(rowNew, colNew));
@@ -177,6 +174,6 @@ public final class Board {
     }
 
     private int getCellCount() {
-        return rows * columns;
+        return getRows() * getColumns();
     }
 }
