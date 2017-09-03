@@ -54,17 +54,17 @@ public final class GameModelImpl implements GameModel {
 
     @Override
     public int getRowCount() {
-        return this.board.getRowCount();
+        return this.board.getRows();
     }
 
     @Override
     public int getColCount() {
-        return this.board.getColCount();
+        return this.board.getColumns();
     }
 
     @Override
     public int getCountOfMines() {
-        return board.getCountOfMines();
+        return board.getMines();
     }
 
     @Override
@@ -93,6 +93,5 @@ public final class GameModelImpl implements GameModel {
     public void debug(final Cell[][] field, final int countOfMines) {
         setBoard(new Board(field, countOfMines));
     }
-
 
 }

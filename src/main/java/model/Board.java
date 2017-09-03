@@ -14,83 +14,83 @@ import java.util.Random;
  */
 public final class Board {
 
-    public static final int MINIMUM_ROWS = 4;
-    public static final int MINIMUM_COLUMNS = 4;
+    public static final int ROWS_MINIMUM = 4;
+    public static final int COLUMNS_MINIMUM = 4;
 
     private final Cell[][] field;
-    private final int rowCount;
-    private final int colCount;
-    private final int countOfMines;
+    private final int rows;
+    private final int columns;
+    private final int mines;
 
     /*
     Default constructor will use default values
      */
     public Board() {
-        this(MINIMUM_ROWS, MINIMUM_COLUMNS, GameDifficulty.EASY);
+        this(ROWS_MINIMUM, COLUMNS_MINIMUM, GameDifficulty.EASY);
     }
 
 
-    public Board(final int countOfRows, final int countOfColumns,
+    public Board(final int rows, final int columns,
                  final GameDifficulty difficulty) {
-        rowCount = Math.max(countOfRows, MINIMUM_ROWS);
-        colCount = Math.max(countOfColumns, MINIMUM_COLUMNS);
-        countOfMines = getCountOfMinesByDifficulty(difficulty);
+        this.rows = Math.max(rows, ROWS_MINIMUM);
+        this.columns = Math.max(columns, COLUMNS_MINIMUM);
+        this.mines = getMines(difficulty);
 
-        CellBuilder builder = new CellBuilder(rowCount, colCount, countOfMines);
+        CellBuilder builder = new CellBuilder(this.rows, this.columns, mines);
         field = builder.buildBoard();
         setNeighbourCount();
     }
 
     public Board(final Cell[][] fieldOfCells, final int mineCount) {
-        this.rowCount = fieldOfCells.length;
-        this.colCount = fieldOfCells[0].length;
-        this.countOfMines = mineCount;
+        this.rows = fieldOfCells.length;
+        this.columns = fieldOfCells[0].length;
+        this.mines = mineCount;
         this.field = fieldOfCells;
     }
 
-    private int getCountOfMinesByDifficulty(final GameDifficulty difficulty) {
-        return (int) (difficulty.getPercentage() * getCountOfCells());
+    private int getMines(final GameDifficulty difficulty) {
+        return (int) (difficulty.getPercentage() * getCellCount());
     }
 
     public Cell getCell(final int row, final int col) {
-        if (!isValidPosition(row, col)) {
+        if (!inRange(row, col)) {
             return NullCell.getInstance();
         }
         return field[row][col];
     }
 
     private void setNeighbourCount() {
-        for (int row = 0; row < rowCount; row++) {
-            for (int col = 0; col < colCount; col++) {
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < columns; col++) {
                 Cell cell = getCell(row, col);
-                cell.setCountOfNeighbourMines(getCountOfNeighbourMines(cell));
+                cell.setNeighbourMines(getNeighbourMineCount(cell));
             }
         }
     }
 
-    private boolean isValidPosition(final int row, final int col) {
-        if (row < 0 || row >= rowCount) {
+    private boolean inRange(final int row, final int col) {
+        if (row < 0 || row >= rows) {
             return false;
         }
 
-        if (col < 0 || col >= colCount) {
+        if (col < 0 || col >= columns) {
             return false;
         }
 
         return field[row][col] != null;
     }
 
-    public int getRowCount() {
-        return this.rowCount;
+    public int getRows() {
+        return this.rows;
     }
 
-    public int getColCount() {
-        return this.colCount;
+    public int getColumns() {
+        return this.columns;
     }
 
     public List<Cell> getNeighbourCells(final Cell cell) {
-        for (int row = 0; row < rowCount; row++) {
-            for (int col = 0; col < colCount; col++) {
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < columns; col++) {
                 if (getCell(row, col) == cell) {
                     return getNeighbourCells(row, col);
                 }
@@ -102,45 +102,46 @@ public final class Board {
 
     private List<Cell> getNeighbourCells(final int row, final int col) {
         List<Cell> neighbours = new ArrayList<>();
-        if (isValidPosition(row - 1, col - 1)) {
+        if (inRange(row - 1, col - 1)) {
             neighbours.add(field[row - 1][col - 1]);
         }
-        if (isValidPosition(row - 1, col)) {
+        if (inRange(row - 1, col)) {
             neighbours.add(field[row - 1][col]);
         }
-        if (isValidPosition(row - 1, col + 1)) {
+        if (inRange(row - 1, col + 1)) {
             neighbours.add(field[row - 1][col + 1]);
         }
-        if (isValidPosition(row, col - 1)) {
+        if (inRange(row, col - 1)) {
             neighbours.add(field[row][col - 1]);
         }
-        if (isValidPosition(row, col + 1)) {
+        if (inRange(row, col + 1)) {
             neighbours.add(field[row][col + 1]);
         }
-        if (isValidPosition(row + 1, col - 1)) {
+        if (inRange(row + 1, col - 1)) {
             neighbours.add(field[row + 1][col - 1]);
         }
-        if (isValidPosition(row + 1, col)) {
+        if (inRange(row + 1, col)) {
             neighbours.add(field[row + 1][col]);
         }
-        if (isValidPosition(row + 1, col + 1)) {
+        if (inRange(row + 1, col + 1)) {
             neighbours.add(field[row + 1][col + 1]);
         }
         return neighbours;
     }
 
-    public int getCountOfNeighbourMines(final Cell cell) {
-        int countOfNeighbourMines = 0;
+    public int getNeighbourMineCount(final Cell cell) {
+        int count = 0;
         List<Cell> neighbours = getNeighbourCells(cell);
         for (Cell neighbour : neighbours) {
             if (neighbour.isMine()) {
-                countOfNeighbourMines++;
+                count++;
             }
         }
-        return countOfNeighbourMines;
+        return count;
     }
 
     public void moveMineToRandomCell(final int row, final int col) {
+        // ToDo performance optimizations? Could be inefficent if there are many mines
         Cell cell = getCell(row, col);
         if (!cell.isMine()) {
             return;
@@ -150,18 +151,34 @@ public final class Board {
         Random ran = new Random();
         while (rowNew == row || colNew == col || getCell(rowNew, colNew).isMine()) {
 
-            rowNew = ran.nextInt(rowCount);
-            colNew = ran.nextInt(colCount);
+            rowNew = ran.nextInt(rows);
+            colNew = ran.nextInt(columns);
         }
+        removeMine(cell);
+        addMine(getCell(rowNew, colNew));
+    }
+
+    private void removeMine(Cell cell) {
         cell.removeMine();
-        getCell(rowNew, colNew).setMine();
+        List<Cell> neighbours = getNeighbourCells(cell);
+        for (Cell neighbour : neighbours) {
+            neighbour.setNeighbourMines(neighbour.getNeighbourMines() - 1);
+        }
     }
 
-    public int getCountOfMines() {
-        return countOfMines;
+    private void addMine(Cell cell) {
+        cell.setMine();
+        List<Cell> neighbours = getNeighbourCells(cell);
+        for (Cell neighbour : neighbours) {
+            neighbour.setNeighbourMines(neighbour.getNeighbourMines() + 1);
+        }
     }
 
-    private int getCountOfCells() {
-        return rowCount * colCount;
+    public int getMines() {
+        return mines;
+    }
+
+    private int getCellCount() {
+        return rows * columns;
     }
 }

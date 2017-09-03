@@ -7,22 +7,24 @@ public class Cell implements CellRO {
 
     private boolean isVisited;
     private boolean isMine;
-    private boolean markedAsBomb;
-    private int countOfNeighbourMines;
+    private boolean isMarkedAsBomb;
+    private int neighbourMines;
 
-    public int getCountOfNeighbourMines() {
-        return countOfNeighbourMines;
+    public int getNeighbourMines() {
+        return neighbourMines;
     }
 
-    public void setCountOfNeighbourMines(final int count) {
-        countOfNeighbourMines = count;
+    public void setNeighbourMines(final int count) {
+        if (count >= 0 && count < 9) {
+            neighbourMines = count;
+        }
     }
 
     public Cell() {
         isVisited = false;
         isMine = false;
-        markedAsBomb = false;
-        countOfNeighbourMines = 0;
+        isMarkedAsBomb = false;
+        neighbourMines = 0;
     }
 
     public boolean isVisited() {
@@ -34,7 +36,7 @@ public class Cell implements CellRO {
     }
 
     public boolean isMarkedAsBomb() {
-        return markedAsBomb;
+        return isMarkedAsBomb;
     }
 
     public void visit() {
@@ -49,7 +51,7 @@ public class Cell implements CellRO {
     }
 
     public void changeMarkedAsBomb() {
-        markedAsBomb = !markedAsBomb;
+        isMarkedAsBomb = !isMarkedAsBomb;
     }
 
     public void removeMine() {

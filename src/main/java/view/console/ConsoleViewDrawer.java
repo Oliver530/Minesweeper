@@ -43,7 +43,7 @@ public final class ConsoleViewDrawer {
         if (cell.isMine()) {
             return ICON_IS_BOMB;
         }
-        int neighbourCount = cell.getCountOfNeighbourMines();
+        int neighbourCount = cell.getNeighbourMines();
         if (neighbourCount == 0) {
             return "   ";
         } else {

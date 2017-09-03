@@ -18,7 +18,7 @@ public class GameStateRunning implements GameModelState {
             return;
         }
 
-        if (cell.isVisited() || context.getBoard().getCountOfNeighbourMines(cell) == 0) {
+        if (cell.isVisited() || context.getBoard().getNeighbourMineCount(cell) == 0) {
             openCellR(context, cell);
         } else {
             cell.visit();
@@ -53,7 +53,7 @@ public class GameStateRunning implements GameModelState {
             } else {
                 neighbour.visit();
 
-                if (context.getBoard().getCountOfNeighbourMines(neighbour) == 0) {
+                if (context.getBoard().getNeighbourMineCount(neighbour) == 0) {
                     openCellR(context, neighbour);
                 }
             }
@@ -61,8 +61,8 @@ public class GameStateRunning implements GameModelState {
     }
 
     private boolean gameIsWon(final GameModelImpl context) {
-        for (int row = 0; row < context.getBoard().getRowCount(); row++) {
-            for (int col = 0; col < context.getBoard().getColCount(); col++) {
+        for (int row = 0; row < context.getBoard().getRows(); row++) {
+            for (int col = 0; col < context.getBoard().getColumns(); col++) {
                 if (!context.getBoard().getCell(row, col).isMine() && !context.getBoard().getCell(row, col).isVisited()) {
                     return false;
                 }

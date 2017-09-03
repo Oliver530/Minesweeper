@@ -16,8 +16,8 @@ public class GameModelImplTest {
     public void createGameModel() {
         GameModelImpl game = new GameModelImpl();
         Assert.assertTrue(game.getState() instanceof GameStateReady);
-        Assert.assertEquals(Board.MINIMUM_ROWS, game.getRowCount());
-        Assert.assertEquals(Board.MINIMUM_COLUMNS, game.getColCount());
+        Assert.assertEquals(Board.ROWS_MINIMUM, game.getRowCount());
+        Assert.assertEquals(Board.COLUMNS_MINIMUM, game.getColCount());
     }
 
     @Test

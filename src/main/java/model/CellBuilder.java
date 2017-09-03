@@ -3,33 +3,32 @@ package model;
 import model.cell.Cell;
 
 import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by olivergerhardt on 27.08.17.
  */
 public final class CellBuilder {
 
-    private final int countOfRows;
-    private final int countOfColumns;
-    private final int countOfMines;
+    private final int rows;
+    private final int columns;
+    private final int mines;
 
     public CellBuilder(final int rowCount, final int colCount, final int minesCount) {
-        countOfRows = rowCount;
-        countOfColumns = colCount;
-        countOfMines = Math.max(0, Math.min(minesCount, countOfRows * countOfColumns));
+        rows = rowCount;
+        columns = colCount;
+        mines = Math.max(0, Math.min(minesCount, rows * columns));
     }
 
     public Cell[][] buildBoard() {
-        Cell[][] board = new Cell[this.countOfRows][this.countOfColumns];
+        Cell[][] board = new Cell[this.rows][this.columns];
         populateBoardWithCells(board);
         populateBoardWithMines(board);
         return board;
     }
 
     private void populateBoardWithCells(final Cell[][] board) {
-        for (int row = 0; row < this.countOfRows; row++) {
-            for (int col = 0; col < this.countOfColumns; col++) {
+        for (int row = 0; row < this.rows; row++) {
+            for (int col = 0; col < this.columns; col++) {
                 board[row][col] = new Cell();
             }
         }
@@ -37,9 +36,9 @@ public final class CellBuilder {
 
     private void populateBoardWithMines(final Cell[][] board) {
         int mines = 0;
-        for (int row = 0; row < this.countOfRows; row++) {
-            for (int col = 0; col < this.countOfColumns; col++) {
-                if (mines < countOfMines) {
+        for (int row = 0; row < this.rows; row++) {
+            for (int col = 0; col < this.columns; col++) {
+                if (mines < this.mines) {
                     board[row][col].setMine();
                     mines++;
                 }
@@ -50,12 +49,12 @@ public final class CellBuilder {
 
     private void shuffleBoard(final Cell[][] board) {
         // Fisher–Yates algorithm
-        Random ran = new Random();
+        Random random = new Random();
 
         for (int row = board.length - 1; row > 0; row--) {
             for (int col = board[row].length - 1; col > 0; col--) {
-                int rowRandom = ran.nextInt(row + 1);
-                int colRandom = ran.nextInt(col + 1);
+                int rowRandom = random.nextInt(row + 1);
+                int colRandom = random.nextInt(col + 1);
 
                 Cell temp = board[row][col];
                 board[row][col] = board[rowRandom][colRandom];
@@ -65,7 +64,7 @@ public final class CellBuilder {
         }
     }
 
-    public int getCountOfMines() {
-        return this.countOfMines;
+    public int getMines() {
+        return this.mines;
     }
 }

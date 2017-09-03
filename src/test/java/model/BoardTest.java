@@ -16,8 +16,8 @@ public class BoardTest {
     @Test
     public void createBoardWithTooSmallFieldFails() {
         Board board = new Board(1, 1, GameDifficulty.EASY);
-        Assert.assertEquals(Board.MINIMUM_ROWS, board.getRowCount());
-        Assert.assertEquals(Board.MINIMUM_COLUMNS, board.getColCount());
+        Assert.assertEquals(Board.ROWS_MINIMUM, board.getRows());
+        Assert.assertEquals(Board.COLUMNS_MINIMUM, board.getColumns());
     }
 
     @Test
@@ -116,7 +116,7 @@ public class BoardTest {
         field[2][2] = new Cell();
 
         Board board = new Board(field, 0);
-        Assert.assertEquals(0, board.getCountOfNeighbourMines(cell));
+        Assert.assertEquals(0, board.getNeighbourMineCount(cell));
     }
 
     @Test
@@ -134,7 +134,7 @@ public class BoardTest {
         field[2][2] = new Cell();
 
         Board board = new Board(field, 0);
-        Assert.assertEquals(1, board.getCountOfNeighbourMines(cell));
+        Assert.assertEquals(1, board.getNeighbourMineCount(cell));
     }
 
     @Test
@@ -154,7 +154,7 @@ public class BoardTest {
         field[2][2].setMine();
 
         Board board = new Board(field, 0);
-        Assert.assertEquals(3, board.getCountOfNeighbourMines(cell));
+        Assert.assertEquals(3, board.getNeighbourMineCount(cell));
     }
 
 }

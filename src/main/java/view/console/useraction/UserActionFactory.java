@@ -7,7 +7,7 @@ package view.console.useraction;
  */
 public class UserActionFactory {
 
-    public static UserAction getUserAction(final String input, final int rowCount, final int colCount) {
+    public static UserAction getUserAction(final String input, final int rows, final int columns) {
 
         if (input.equals("exit")) {
             return new UserActionExit();
@@ -16,10 +16,10 @@ public class UserActionFactory {
             return new UserActionHelp();
         }
 
-        return getActionWithRowAndCol(input, rowCount, colCount);
+        return getActionWithRowAndCol(input, rows, columns);
     }
 
-    private static UserAction getActionWithRowAndCol(final String input, final int rowCount, final int colCount) {
+    private static UserAction getActionWithRowAndCol(final String input, final int rows, final int columns) {
         String[] inputArray = input.split("\\s+");
         if (inputArray.length != 3) {
             return new UserActionInvalid();
@@ -34,11 +34,11 @@ public class UserActionFactory {
             return new UserActionInvalid();
         }
 
-        if (row < 0 || row >= rowCount) {
+        if (row < 0 || row >= rows) {
             return new UserActionInvalid();
         }
 
-        if (col < 0 || col >= colCount) {
+        if (col < 0 || col >= columns) {
             return new UserActionInvalid();
         }
 

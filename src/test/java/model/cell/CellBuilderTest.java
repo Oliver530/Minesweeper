@@ -12,19 +12,19 @@ public class CellBuilderTest {
     @Test
     public void createCellBuilderWithNegativeMines() {
         CellBuilder builder = new CellBuilder(5, 5, -2);
-        Assert.assertEquals(0, builder.getCountOfMines());
+        Assert.assertEquals(0, builder.getMines());
     }
 
     @Test
     public void createCellBuilderWithTwoMines() {
         CellBuilder builder = new CellBuilder(5, 5, 2);
-        Assert.assertEquals(2, builder.getCountOfMines());
+        Assert.assertEquals(2, builder.getMines());
     }
 
     @Test
     public void createCellBuilderWithMoreMinesThanCells() {
         CellBuilder builder = new CellBuilder(5, 5, 5*5+2);
-        Assert.assertEquals(5*5, builder.getCountOfMines());
+        Assert.assertEquals(5*5, builder.getMines());
     }
 
     @Test

@@ -19,8 +19,8 @@ public final class ConsoleView implements View {
     private final ConsoleViewDrawer drawer;
     private final Scanner keyboard;
 
-    private int countOfRows;
-    private int countOfColumns;
+    private int rows;
+    private int columns;
 
 
     public ConsoleView(final GameModel gameModel) {
@@ -37,9 +37,9 @@ public final class ConsoleView implements View {
     }
 
     private void setup() {
-        this.countOfRows = getPositiveIntegerFromUser(keyboard, "Enter count of rows (>" + (Board.MINIMUM_ROWS - 1) + "): ", Board.MINIMUM_ROWS);
-        this.countOfColumns = getPositiveIntegerFromUser(keyboard, "Enter count of columns (>" + (Board.MINIMUM_COLUMNS - 1) + "): ", Board.MINIMUM_COLUMNS);
-        gameModel.setBoard(new Board(countOfRows, countOfColumns, GameDifficulty.EASY));
+        this.rows = getIntFromUser("Enter count of rows (>" + (Board.ROWS_MINIMUM - 1) + "): ", Board.ROWS_MINIMUM);
+        this.columns = getIntFromUser("Enter count of columns (>" + (Board.COLUMNS_MINIMUM - 1) + "): ", Board.COLUMNS_MINIMUM);
+        gameModel.setBoard(new Board(rows, columns, GameDifficulty.EASY));
         System.out.println("There are " + gameModel.getCountOfMines() + " mines. Good luck!");
         drawer.draw();
     }
@@ -74,11 +74,11 @@ public final class ConsoleView implements View {
 
     }
 
-    private int getPositiveIntegerFromUser(final Scanner scanner, final String prompt, final int minimum) {
-        int value = -1;
-        while (value < minimum) {
+    private int getIntFromUser(final String prompt, final int min) {
+        int value = min - 1;
+        while (value < min) {
             System.out.print(prompt);
-            String input = scanner.nextLine();
+            String input = keyboard.nextLine();
             try {
                 value = Integer.parseInt(input);
             } catch (NumberFormatException e) {
@@ -91,14 +91,7 @@ public final class ConsoleView implements View {
     private UserAction getUserAction() {
         System.out.print("Command: ");
         String userInput = keyboard.nextLine();
-        return UserActionFactory.getUserAction(userInput, getCountOfRows(), getCountOfColumns());
+        return UserActionFactory.getUserAction(userInput, rows, columns);
     }
 
-    private int getCountOfRows() {
-        return countOfRows;
-    }
-
-    private int getCountOfColumns() {
-        return countOfColumns;
-    }
 }

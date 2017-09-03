@@ -20,8 +20,8 @@ public final class GameStateLost implements GameModelState {
 
     @Override
     public void visitAllAndRemoveMarks(final GameModelImpl context) {
-        int rowCount = context.getBoard().getRowCount();
-        int colCount = context.getBoard().getColCount();
+        int rowCount = context.getBoard().getRows();
+        int colCount = context.getBoard().getColumns();
 
         for (int row = 0; row < rowCount; row++) {
             for (int col = 0; col < colCount; col++) {
