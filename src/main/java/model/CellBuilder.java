@@ -36,14 +36,31 @@ public final class CellBuilder {
     }
 
     private void populateBoardWithMines(final Cell[][] board) {
-        int countOfMinesAdded = 0;
+        int mines = 0;
+        for (int row = 0; row < this.countOfRows; row++) {
+            for (int col = 0; col < this.countOfColumns; col++) {
+                if (mines < countOfMines) {
+                    board[row][col].setMine();
+                    mines++;
+                }
+            }
+        }
+        shuffleBoard(board);
+    }
+
+    private void shuffleBoard(final Cell[][] board) {
+        // Fisher–Yates algorithm
         Random ran = new Random();
-        while (countOfMinesAdded < this.countOfMines) {
-            // ToDo put random random generation together (other part is in Builder)
-            int rowRandom = ran.nextInt(this.countOfRows);
-            int colRandom = ran.nextInt(this.countOfColumns);
-            if (board[rowRandom][colRandom].setMine()) {
-                countOfMinesAdded++;
+
+        for (int row = board.length - 1; row > 0; row--) {
+            for (int col = board[row].length - 1; col > 0; col--) {
+                int rowRandom = ran.nextInt(row + 1);
+                int colRandom = ran.nextInt(col + 1);
+
+                Cell temp = board[row][col];
+                board[row][col] = board[rowRandom][colRandom];
+                board[rowRandom][colRandom] = temp;
+
             }
         }
     }
