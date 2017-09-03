@@ -3,10 +3,7 @@ package model;
 import model.cell.Cell;
 import util.GameDifficulty;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Created by olivergerhardt on 27.08.17.
@@ -18,6 +15,9 @@ public final class Board {
 
     private Cell[][] field;
     private int mines = 0;
+
+    HashMap<Cell,Integer> cacheRow = new HashMap<Cell,Integer>();
+    HashMap<Cell,Integer> cacheColumn = new HashMap<Cell,Integer>();
 
     /*
     Default constructor will use default values
@@ -44,6 +44,13 @@ public final class Board {
 
     private void setField(final Cell[][] field) {
         this.field = field;
+        for (int row = 0; row < getRows(); row++) {
+            for (int col = 0; col < getColumns(); col++) {
+                cacheRow.put(field[row][col], row);
+                cacheColumn.put(field[row][col], col);
+            }
+        }
+
     }
 
     private int getMines(final int cells, final GameDifficulty difficulty) {
@@ -74,16 +81,9 @@ public final class Board {
     }
 
     public List<Cell> getNeighbourCells(final Cell cell) {
-        // ToDo use HashMap cache for faster access
-        for (int row = 0; row < getRows(); row++) {
-            for (int col = 0; col < getColumns(); col++) {
-                if (inRange(row, col) && getCell(row, col) == cell) {
-                    return getNeighbourCells(row, col);
-                }
-            }
-
-        }
-        return Collections.emptyList();
+        int row = cacheRow.get(cell);
+        int col = cacheColumn.get(cell);
+        return getNeighbourCells(row, col);
     }
 
     private List<Cell> getNeighbourCells(final int row, final int col) {
