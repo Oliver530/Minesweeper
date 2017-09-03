@@ -119,7 +119,7 @@ public class BoardTest {
         Cell[][] field = new Cell[4][4];
         Cell cell = field[1][1] = new Cell();
         field[0][0] = new Cell();
-        field[0][0].setMine();
+        field[0][0].insertMine();
         field[0][1] = new Cell();
         field[0][2] = new Cell();
         field[1][0] = new Cell();
@@ -137,16 +137,16 @@ public class BoardTest {
         Cell[][] field = new Cell[4][4];
         Cell cell = field[1][1] = new Cell();
         field[0][0] = new Cell();
-        field[0][0].setMine();
+        field[0][0].insertMine();
         field[0][1] = new Cell();
-        field[0][1].setMine();
+        field[0][1].insertMine();
         field[0][2] = new Cell();
         field[1][0] = new Cell();
         field[1][2] = new Cell();
         field[2][0] = new Cell();
         field[2][1] = new Cell();
         field[2][2] = new Cell();
-        field[2][2].setMine();
+        field[2][2].insertMine();
 
         Board board = new Board(field, 0);
         Assert.assertEquals(3, board.getNeighbourMineCount(cell));

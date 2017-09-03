@@ -30,7 +30,7 @@ public final class BoardBuilder {
         for (int row = 0; row < board.length; row++) {
             for (int col = 0; col < board[0].length; col++) {
                 if (numberOfMinesSet < mines) {
-                    board[row][col].setMine();
+                    board[row][col].insertMine();
                     numberOfMinesSet++;
                 }
             }

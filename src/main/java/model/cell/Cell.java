@@ -5,50 +5,50 @@ package model.cell;
  */
 public class Cell implements CellRO {
 
-    private boolean isVisited;
-    private boolean isMine;
-    private boolean isMarkedAsBomb;
+    private boolean isOpened;
+    private boolean isMineInside;
+    private boolean isMarkedAsMineByUser;
 
 
     public Cell() {
-        isVisited = false;
-        isMine = false;
-        isMarkedAsBomb = false;
+        isOpened = false;
+        isMineInside = false;
+        isMarkedAsMineByUser = false;
     }
 
 
     @Override
-    public boolean isVisited() {
-        return isVisited;
+    public boolean isOpened() {
+        return isOpened;
     }
 
     @Override
-    public boolean isMine() {
-        return isMine;
+    public boolean isMineInside() {
+        return isMineInside;
     }
 
     @Override
-    public boolean isMarkedAsBomb() {
-        return isMarkedAsBomb;
+    public boolean isMarkedAsMineByUser() {
+        return isMarkedAsMineByUser;
     }
 
-    public void visit() {
-        if (isVisited) {
+    public void open() {
+        if (isOpened) {
             throw new IllegalStateException("A cell can only be visited once!");
         }
-        isVisited = true;
+        isOpened = true;
     }
     
-    public void setMine() {
-        isMine = true;
+    public void insertMine() {
+        isMineInside = true;
     }
 
     public void removeMine() {
-        isMine = false;
+        isMineInside = false;
     }
 
     public void changeMarkedAsBomb() {
-        isMarkedAsBomb = !isMarkedAsBomb;
+        isMarkedAsMineByUser = !isMarkedAsMineByUser;
     }
 
 }

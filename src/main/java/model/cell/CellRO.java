@@ -5,8 +5,8 @@ package model.cell;
  */
 public interface CellRO {
 
-    boolean isVisited();
-    boolean isMine();
-    boolean isMarkedAsBomb();
+    boolean isOpened();
+    boolean isMineInside();
+    boolean isMarkedAsMineByUser();
 
 }

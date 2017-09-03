@@ -69,7 +69,7 @@ public final class Board {
         int amountOfNeighbourMines = 0;
         List<Cell> neighbours = getNeighbourCells(cell);
         for (Cell neighbour : neighbours) {
-            if (neighbour.isMine()) {
+            if (neighbour.isMineInside()) {
                 amountOfNeighbourMines++;
             }
         }
@@ -79,19 +79,19 @@ public final class Board {
     public void moveMineToRandomCell(final int row, final int col) {
         // ToDo performance optimizations? Could be inefficient if there are many mines
         Cell cell = getCell(row, col);
-        if (!cell.isMine()) {
+        if (!cell.isMineInside()) {
             return;
         }
         int rowNew = row;
         int colNew = col;
         Random ran = new Random();
-        while (rowNew == row || colNew == col || getCell(rowNew, colNew).isMine()) {
+        while (rowNew == row || colNew == col || getCell(rowNew, colNew).isMineInside()) {
 
             rowNew = ran.nextInt(getRows());
             colNew = ran.nextInt(getColumns());
         }
         cell.removeMine();
-        getCell(rowNew, colNew).setMine();
+        getCell(rowNew, colNew).insertMine();
     }
 
     public int getMines() {

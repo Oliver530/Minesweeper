@@ -32,10 +32,10 @@ public final class GameStateLost implements GameModelState {
     }
 
     private void visitAndRemoveMark(final Cell cell) {
-        if (!cell.isVisited()) {
-            cell.visit();
+        if (!cell.isOpened()) {
+            cell.open();
         }
-        if (cell.isMarkedAsBomb()) {
+        if (cell.isMarkedAsMineByUser()) {
             cell.changeMarkedAsBomb();
         }
     }

@@ -9,18 +9,6 @@ import org.junit.Test;
  */
 public class BoardBuilderTest {
 
-    private int countMines(Cell[][] field) {
-        int mines = 0;
-        for (int row = 0; row < field.length; row++) {
-            for (int col = 0; col < field[0].length; col++) {
-                if (field[row][col].isMine()) {
-                    mines++;
-                }
-            }
-        }
-        return mines;
-    }
-
     @Test
     public void createBoardBuilderWithNegativeMines() {
         Cell[][] field = BoardBuilder.buildBoard(5, 5, -2);
@@ -74,5 +62,16 @@ public class BoardBuilderTest {
         Assert.assertEquals(4, field[0].length);
     }
 
+    private int countMines(Cell[][] field) {
+        int mines = 0;
+        for (int row = 0; row < field.length; row++) {
+            for (int col = 0; col < field[0].length; col++) {
+                if (field[row][col].isMineInside()) {
+                    mines++;
+                }
+            }
+        }
+        return mines;
+    }
 
 }

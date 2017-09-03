@@ -11,33 +11,33 @@ public class CellTest {
     @Test
     public void createNewCell() {
         Cell cell = new Cell();
-        Assert.assertFalse(cell.isVisited());
-        Assert.assertFalse(cell.isMine());
+        Assert.assertFalse(cell.isOpened());
+        Assert.assertFalse(cell.isMineInside());
     }
 
     @Test
-    public void visitCellOnce() {
+    public void openCellOnce() {
         Cell cell = new Cell();
-        Assert.assertFalse(cell.isVisited());
-        cell.visit();
-        Assert.assertTrue(cell.isVisited());
+        Assert.assertFalse(cell.isOpened());
+        cell.open();
+        Assert.assertTrue(cell.isOpened());
     }
 
     @Test(expected = IllegalStateException.class)
-    public void visitCellTwice() {
+    public void openCellTwice() {
         Cell cell = new Cell();
-        Assert.assertFalse(cell.isVisited());
-        cell.visit();
-        Assert.assertTrue(cell.isVisited());
-        cell.visit();
+        Assert.assertFalse(cell.isOpened());
+        cell.open();
+        Assert.assertTrue(cell.isOpened());
+        cell.open();
     }
 
     @Test
-    public void setMineIntoCellOnce() {
+    public void setMineIntoCell() {
         Cell cell = new Cell();
-        Assert.assertFalse(cell.isMine());
-        cell.setMine();
-        Assert.assertTrue(cell.isMine());
+        Assert.assertFalse(cell.isMineInside());
+        cell.insertMine();
+        Assert.assertTrue(cell.isMineInside());
     }
 
 }

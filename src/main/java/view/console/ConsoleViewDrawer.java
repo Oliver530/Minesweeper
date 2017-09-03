@@ -36,13 +36,13 @@ public final class ConsoleViewDrawer {
 
     private String getIcon(final int row, final int col) {
         CellRO cell = gameModel.getCell(row, col);
-        if (cell.isMarkedAsBomb()) {
+        if (cell.isMarkedAsMineByUser()) {
             return ICON_IS_MARKED_AS_BOMB;
         }
-        if (!cell.isVisited()) {
+        if (!cell.isOpened()) {
             return ICON_NOT_VISITED;
         }
-        if (cell.isMine()) {
+        if (cell.isMineInside()) {
             return ICON_IS_BOMB;
         }
         int neighbourCount = gameModel.getNeighbourMines(row, col);

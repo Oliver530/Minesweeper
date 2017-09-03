@@ -13,15 +13,15 @@ public class GameStateRunning implements GameModelState {
     @Override
     public void openCell(final GameModelImpl context, final int row, final int col) {
         Cell cell = context.getCell(row, col);
-        if (cell.isMine()) {
+        if (cell.isMineInside()) {
             context.setState(new GameStateLost());
             return;
         }
 
-        if (cell.isVisited() || context.getNeighbourMines(cell) == 0) {
+        if (cell.isOpened() || context.getNeighbourMines(cell) == 0) {
             openCellR(context, cell);
         } else {
-            cell.visit();
+            cell.open();
         }
 
         if (gameIsWon(context)) {
@@ -43,15 +43,15 @@ public class GameStateRunning implements GameModelState {
     private void openCellR(final GameModelImpl context, final Cell cell) {
         List<Cell> neighbours = context.getBoard().getNeighbourCells(cell);
         for (Cell neighbour : neighbours) {
-            if (neighbour.isVisited()) {
+            if (neighbour.isOpened()) {
                 continue;
             }
 
-            if (cell.isMine() && !cell.isMarkedAsBomb()) {
+            if (cell.isMineInside() && !cell.isMarkedAsMineByUser()) {
                 context.setState(new GameStateLost());
                 return;
             } else {
-                neighbour.visit();
+                neighbour.open();
 
                 if (context.getBoard().getNeighbourMineCount(neighbour) == 0) {
                     openCellR(context, neighbour);
@@ -63,7 +63,7 @@ public class GameStateRunning implements GameModelState {
     private boolean gameIsWon(final GameModelImpl context) {
         for (int row = 0; row < context.getBoard().getRows(); row++) {
             for (int col = 0; col < context.getBoard().getColumns(); col++) {
-                if (!context.getBoard().getCell(row, col).isMine() && !context.getBoard().getCell(row, col).isVisited()) {
+                if (!context.getBoard().getCell(row, col).isMineInside() && !context.getBoard().getCell(row, col).isOpened()) {
                     return false;
                 }
             }
