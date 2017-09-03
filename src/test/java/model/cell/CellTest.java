@@ -36,18 +36,8 @@ public class CellTest {
     public void setMineIntoCellOnce() {
         Cell cell = new Cell();
         Assert.assertFalse(cell.isMine());
-        boolean mined = cell.setMine();
-        Assert.assertTrue(mined);
+        cell.setMine();
         Assert.assertTrue(cell.isMine());
     }
 
-    @Test
-    public void setMineIntoCellTwice() {
-        Cell cell = new Cell();
-        Assert.assertFalse(cell.isMine());
-        boolean mined = cell.setMine();
-        Assert.assertTrue(mined);
-        mined = cell.setMine();
-        Assert.assertFalse(mined);
-    }
 }

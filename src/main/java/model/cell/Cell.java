@@ -44,12 +44,8 @@ public class Cell implements CellRO {
         isVisited = true;
     }
 
-    public boolean setMine() {
-        if (isMine) {
-            return false;
-        }
+    public void setMine() {
         isMine = true;
-        return true;
     }
 
     public void changeMarkedAsBomb() {
