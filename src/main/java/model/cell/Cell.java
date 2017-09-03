@@ -8,23 +8,11 @@ public class Cell implements CellRO {
     private boolean isVisited;
     private boolean isMine;
     private boolean isMarkedAsBomb;
-    private int neighbourMines;
-
-    public int getNeighbourMines() {
-        return neighbourMines;
-    }
-
-    public void setNeighbourMines(final int count) {
-        if (count >= 0 && count < 9) {
-            neighbourMines = count;
-        }
-    }
 
     public Cell() {
         isVisited = false;
         isMine = false;
         isMarkedAsBomb = false;
-        neighbourMines = 0;
     }
 
     public boolean isVisited() {

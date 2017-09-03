@@ -23,6 +23,7 @@ public interface GameModel {
     int getColCount();
     int getCountOfMines();
 
+    int getNeighbourMines(int row, int col);
     CellRO getCell(int row, int col);
 
 }

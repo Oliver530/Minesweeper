@@ -25,15 +25,15 @@ public final class ConsoleViewDrawer {
             String index = String.format("%1$2s", row);
             System.out.print(index + " |");
             for (int col = 0; col < gameModel.getColCount(); col++) {
-                CellRO cell = gameModel.getCell(row, col);
-                System.out.print(getIcon(cell));
+                System.out.print(getIcon(row, col));
             }
             System.out.println();
         }
         System.out.println();
     }
 
-    private String getIcon(final CellRO cell) {
+    private String getIcon(final int row, final int col) {
+        CellRO cell = gameModel.getCell(row, col);
         if (cell.isMarkedAsBomb()) {
             return ICON_IS_MARKED_AS_BOMB;
         }
@@ -43,7 +43,7 @@ public final class ConsoleViewDrawer {
         if (cell.isMine()) {
             return ICON_IS_BOMB;
         }
-        int neighbourCount = cell.getNeighbourMines();
+        int neighbourCount = gameModel.getNeighbourMines(row, col);
         if (neighbourCount == 0) {
             return "   ";
         } else {

@@ -8,6 +8,5 @@ public interface CellRO {
     boolean isVisited();
     boolean isMine();
     boolean isMarkedAsBomb();
-    int getNeighbourMines();
 
 }

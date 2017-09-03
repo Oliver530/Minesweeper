@@ -44,7 +44,6 @@ public final class Board {
 
     private void setField(final Cell[][] field) {
         this.field = field;
-        setNeighbourCount();
     }
 
     private int getMines(final int cells, final GameDifficulty difficulty) {
@@ -56,15 +55,6 @@ public final class Board {
             throw new IndexOutOfBoundsException();
         }
         return field[row][col];
-    }
-
-    private void setNeighbourCount() {
-        for (int row = 0; row < getRows(); row++) {
-            for (int col = 0; col < getColumns(); col++) {
-                Cell cell = getCell(row, col);
-                cell.setNeighbourMines(getNeighbourMineCount(cell));
-            }
-        }
     }
 
     private boolean inRange(final int row, final int col) {
@@ -84,6 +74,7 @@ public final class Board {
     }
 
     public List<Cell> getNeighbourCells(final Cell cell) {
+        // ToDo use HashMap cache for faster access
         for (int row = 0; row < getRows(); row++) {
             for (int col = 0; col < getColumns(); col++) {
                 if (inRange(row, col) && getCell(row, col) == cell) {
@@ -124,7 +115,11 @@ public final class Board {
         return neighbours;
     }
 
-    public int getNeighbourMineCount(final Cell cell) {
+    public int getNeighbourMineCount(final int row, final int col) {
+        return getNeighbourMineCount(getCell(row, col));
+    }
+
+    public int getNeighbourMineCount(Cell cell) {
         int count = 0;
         List<Cell> neighbours = getNeighbourCells(cell);
         for (Cell neighbour : neighbours) {
@@ -135,8 +130,9 @@ public final class Board {
         return count;
     }
 
+
     public void moveMineToRandomCell(final int row, final int col) {
-        // ToDo performance optimizations? Could be inefficent if there are many mines
+        // ToDo performance optimizations? Could be inefficient if there are many mines
         Cell cell = getCell(row, col);
         if (!cell.isMine()) {
             return;
@@ -149,31 +145,12 @@ public final class Board {
             rowNew = ran.nextInt(getRows());
             colNew = ran.nextInt(getColumns());
         }
-        removeMine(cell);
-        addMine(getCell(rowNew, colNew));
-    }
-
-    private void removeMine(Cell cell) {
         cell.removeMine();
-        List<Cell> neighbours = getNeighbourCells(cell);
-        for (Cell neighbour : neighbours) {
-            neighbour.setNeighbourMines(neighbour.getNeighbourMines() - 1);
-        }
-    }
-
-    private void addMine(Cell cell) {
-        cell.setMine();
-        List<Cell> neighbours = getNeighbourCells(cell);
-        for (Cell neighbour : neighbours) {
-            neighbour.setNeighbourMines(neighbour.getNeighbourMines() + 1);
-        }
+        getCell(rowNew, colNew).setMine();
     }
 
     public int getMines() {
         return mines;
     }
 
-    private int getCellCount() {
-        return getRows() * getColumns();
-    }
 }

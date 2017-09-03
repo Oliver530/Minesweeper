@@ -90,6 +90,15 @@ public final class GameModelImpl implements GameModel {
         return board;
     }
 
+    @Override
+    public int getNeighbourMines(int row, int col) {
+        return board.getNeighbourMineCount(row, col);
+    }
+
+    public int getNeighbourMines(Cell cell) {
+        return board.getNeighbourMineCount(cell);
+    }
+
     public void debug(final Cell[][] field, final int countOfMines) {
         setBoard(new Board(field, countOfMines));
     }

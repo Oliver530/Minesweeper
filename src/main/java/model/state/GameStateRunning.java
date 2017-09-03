@@ -18,7 +18,7 @@ public class GameStateRunning implements GameModelState {
             return;
         }
 
-        if (cell.isVisited() || context.getBoard().getNeighbourMineCount(cell) == 0) {
+        if (cell.isVisited() || context.getNeighbourMines(cell) == 0) {
             openCellR(context, cell);
         } else {
             cell.visit();
