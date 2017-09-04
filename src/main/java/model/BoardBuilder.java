@@ -8,6 +8,8 @@ import java.util.Random;
  */
 public final class BoardBuilder {
 
+    private static Random random = new Random();
+
     public static Cell[][] buildBoard(final int rows, final int columns, int mines) {
         mines = Math.max(0, Math.min(mines, rows * columns));
 
@@ -40,8 +42,6 @@ public final class BoardBuilder {
 
     private static void shuffleBoard(final Cell[][] board) {
         // Fisher–Yates algorithm
-        Random random = new Random();
-
         for (int row = board.length - 1; row > 0; row--) {
             for (int col = board[row].length - 1; col > 0; col--) {
                 int rowRandom = random.nextInt(row + 1);
