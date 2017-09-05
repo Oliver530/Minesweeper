@@ -7,6 +7,7 @@ import minesweeper4java.View;
 import util.GameDifficulty;
 import view.console.useraction.UserActionFactory;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 
@@ -32,9 +33,11 @@ public final class ConsoleView implements View {
 
     @Override
     public void play() {
-        setup();
-        performUserActions();
-        gameOver();
+        do {
+            setup();
+            performUserActions();
+        } while (playAgain());
+        System.out.println("Goodbye!");
     }
 
     private void setup() {
@@ -56,23 +59,23 @@ public final class ConsoleView implements View {
                 System.out.println("***************************");
                 System.out.println("Congratulation. You've won!");
                 System.out.println("***************************");
+                System.out.println();
                 break;
             } else if (gameModel.gameLost()) {
                 gameOver();
                 System.out.println("*******************");
                 System.out.println("Sorry. You've lost!");
                 System.out.println("*******************");
+                System.out.println();
                 break;
             }
         }
-        System.exit(0);
     }
 
     private void gameOver() {
         System.out.println();
         gameModel.visitAllAndRemoveMarks();
         drawer.draw();
-
     }
 
     private int getIntFromUser(final String prompt, final int min) {
@@ -89,10 +92,31 @@ public final class ConsoleView implements View {
         return value;
     }
 
+    private String getStringFromUser(final String prompt, final String[] validInputs) {
+        String input = "";
+        while (true) {
+            System.out.print(prompt);
+            input = keyboard.nextLine();
+
+            if (Arrays.asList(validInputs).contains(input)) {
+                break;
+            }
+        }
+        return input;
+    }
+
     private UserAction getUserAction() {
         System.out.print("Command: ");
         String userInput = keyboard.nextLine();
         return UserActionFactory.getUserAction(userInput, rows, columns);
+    }
+
+    private boolean playAgain() {
+        String playAgain = getStringFromUser("Play again (y/n)? ", new String[]{"y", "n"});
+        if ("y".equals(playAgain)) {
+            return true;
+        }
+        return false;
     }
 
 }
