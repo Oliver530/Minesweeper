@@ -10,7 +10,7 @@ apply plugin: 'java'
 
 jar {
     manifest {
-        attributes 'Main-Class': 'minesweeper4java.Minesweeper4Java'
+        attributes 'Main-Class': 'minesweeper.Minesweeper4Java'
     }
 }
 
@@ -23,7 +23,7 @@ dependencies {
 }
 
 task copyJarToRootDir(type: Copy) {
-    from 'build/libs/minesweeper4java-0.1.jar'
+    from 'build/libs/minesweeper-0.1.jar'
     into '.'
 }
 

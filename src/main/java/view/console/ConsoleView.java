@@ -1,9 +1,10 @@
 package view.console;
 
-import minesweeper4java.GameModel;
+import minesweeper.GameInfoProvider;
+import minesweeper.GameModel;
 import model.Board;
 import view.console.useraction.UserAction;
-import minesweeper4java.View;
+import minesweeper.View;
 import util.GameDifficulty;
 import view.console.useraction.UserActionFactory;
 
@@ -17,6 +18,7 @@ import java.util.Scanner;
 public final class ConsoleView implements View {
 
     private final GameModel gameModel;
+    private final GameInfoProvider gameInfoProvider;
     private final ConsoleViewDrawer drawer;
     private final Scanner keyboard;
 
@@ -26,6 +28,7 @@ public final class ConsoleView implements View {
 
     public ConsoleView(final GameModel gameModel) {
         this.gameModel = gameModel;
+        this.gameInfoProvider = gameModel.getGameInfoProvider();
         drawer = new ConsoleViewDrawer(gameModel);
         keyboard = new Scanner(System.in);
     }
@@ -44,7 +47,7 @@ public final class ConsoleView implements View {
         this.rows = getIntFromUser("Enter count of rows (>" + (Board.ROWS_MINIMUM - 1) + "): ", Board.ROWS_MINIMUM);
         this.columns = getIntFromUser("Enter count of columns (>" + (Board.COLUMNS_MINIMUM - 1) + "): ", Board.COLUMNS_MINIMUM);
         gameModel.setBoard(new Board(rows, columns, GameDifficulty.EASY));
-        System.out.println("There are " + gameModel.getCountOfMines() + " mines. Good luck!");
+        System.out.println("There are " + gameInfoProvider.getCountOfMines() + " mines. Good luck!");
         drawer.draw();
     }
 
@@ -54,14 +57,14 @@ public final class ConsoleView implements View {
             userAction = getUserAction();
             userAction.perform(gameModel, drawer);
 
-            if (gameModel.gameWon()) {
+            if (gameInfoProvider.gameWon()) {
                 gameOver();
                 System.out.println("***************************");
                 System.out.println("Congratulation. You've won!");
                 System.out.println("***************************");
                 System.out.println();
                 break;
-            } else if (gameModel.gameLost()) {
+            } else if (gameInfoProvider.gameLost()) {
                 gameOver();
                 System.out.println("*******************");
                 System.out.println("Sorry. You've lost!");

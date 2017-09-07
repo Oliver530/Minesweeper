@@ -1,7 +1,7 @@
 package view.gui;
 
-import minesweeper4java.GameModel;
-import minesweeper4java.View;
+import minesweeper.GameModel;
+import minesweeper.View;
 
 /**
  * Created by olivergerhardt on 31.08.17.

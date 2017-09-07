@@ -1,4 +1,4 @@
-package minesweeper4java;
+package minesweeper;
 
 import model.GameModelImpl;
 import view.console.ConsoleView;
@@ -7,7 +7,7 @@ import view.gui.ViewGUI;
 /**
  * Created by olivergerhardt on 31.08.17.
  */
-class Minesweeper4Java {
+class Minesweeper {
 
     public static void main(String[] args) {
 

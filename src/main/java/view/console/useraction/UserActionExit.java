@@ -1,6 +1,6 @@
 package view.console.useraction;
 
-import minesweeper4java.GameModel;
+import minesweeper.GameModel;
 import view.console.ConsoleViewDrawer;
 
 /**

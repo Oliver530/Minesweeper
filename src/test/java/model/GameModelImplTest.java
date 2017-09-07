@@ -1,7 +1,7 @@
 package model;
 
 import model.cell.Cell;
-import model.cell.CellRO;
+import model.cell.CellReadOnly;
 import model.state.*;
 import org.junit.Assert;
 import org.junit.Test;
@@ -44,7 +44,7 @@ public class GameModelImplTest {
     public void getCellRO() {
         GameModelImpl game = new GameModelImpl();
         game.setBoard(new Board(4, 4, GameDifficulty.PEACE));
-        CellRO cell = game.getCell(0, 0);
+        CellReadOnly cell = game.getCell(0, 0);
         Assert.assertFalse(cell.isOpened());
     }
 
@@ -53,7 +53,7 @@ public class GameModelImplTest {
         GameModelImpl game = new GameModelImpl();
         game.setBoard(new Board(4, 4, GameDifficulty.PEACE));
         game.openCell(0, 0);
-        CellRO cell = game.getCell(0, 0);
+        CellReadOnly cell = game.getCell(0, 0);
         Assert.assertTrue(cell.isOpened());
     }
 
@@ -112,7 +112,7 @@ public class GameModelImplTest {
         GameModelImpl game = new GameModelImpl();
         game.setBoard(new Board(5, 5, GameDifficulty.EASY));
 
-        CellRO cell = game.getCell(0,0);
+        CellReadOnly cell = game.getCell(0,0);
         Assert.assertFalse(cell.isMarkedAsMineByUser());
         game.changeMarkedAsBomb(0,0);
         Assert.assertTrue(cell.isMarkedAsMineByUser());
@@ -163,7 +163,7 @@ public class GameModelImplTest {
 
         GameModelImpl game = new GameModelImpl();
         game.debug(fields, 1);
-        CellRO cell = game.getCell(0, 0);
+        CellReadOnly cell = game.getCell(0, 0);
 
         Assert.assertTrue(game.getState() instanceof GameStateReady);
         Assert.assertTrue(cell.isMineInside());

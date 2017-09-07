@@ -1,4 +1,4 @@
-# Minesweeper4java
+# Minesweeper
 A simple test driven minesweeper clone for java
 
 ## Build
@@ -20,7 +20,7 @@ A simple test driven minesweeper clone for java
 ## How to play (console view)
 
 ```sh
-java -jar minesweeper4java-0.1.jar
+java -jar minesweeper-0.1.jar
 
 Enter count of rows (>3): <countOfRows>
 Enter count of columns (>3): <countOfColumns>
@@ -88,4 +88,4 @@ Command: mark 1 6
 ```
 Enjoy!
 
-**Feedback and pull requests appreciated**
+**Feedback and pull requests appreciated.**

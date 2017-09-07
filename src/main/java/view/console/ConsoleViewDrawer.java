@@ -1,7 +1,8 @@
 package view.console;
 
-import minesweeper4java.GameModel;
-import model.cell.CellRO;
+import minesweeper.GameInfoProvider;
+import minesweeper.GameModel;
+import model.cell.CellReadOnly;
 
 /**
  * Created by olivergerhardt on 31.08.17.
@@ -13,20 +14,22 @@ public final class ConsoleViewDrawer {
     private static final String ICON_IS_BOMB = " X ";
 
     private final GameModel gameModel;
+    private final GameInfoProvider gameInfoProvider;
 
 
     public ConsoleViewDrawer(final GameModel gameModel) {
         this.gameModel = gameModel;
+        this.gameInfoProvider = gameModel.getGameInfoProvider();
     }
 
 
     public void draw() {
         printHeader();
 
-        for (int row = 0; row < gameModel.getRowCount(); row++) {
+        for (int row = 0; row < gameInfoProvider.getRowCount(); row++) {
             String index = String.format("%1$2s", row);
             System.out.print(index + " |");
-            for (int col = 0; col < gameModel.getColCount(); col++) {
+            for (int col = 0; col < gameInfoProvider.getColCount(); col++) {
                 System.out.print(getIcon(row, col));
             }
             System.out.println();
@@ -35,7 +38,7 @@ public final class ConsoleViewDrawer {
     }
 
     private String getIcon(final int row, final int col) {
-        CellRO cell = gameModel.getCell(row, col);
+        CellReadOnly cell = gameModel.getCell(row, col);
         if (cell.isMarkedAsMineByUser()) {
             return ICON_IS_MARKED_AS_BOMB;
         }
@@ -56,7 +59,7 @@ public final class ConsoleViewDrawer {
     private void printHeader() {
         String headerCols = "   |";
         String headerLine = "---|";
-        for (int i = 0; i < gameModel.getColCount(); i++) {
+        for (int i = 0; i < gameInfoProvider.getColCount(); i++) {
             String index = String.format("%1$2s", i);
             headerCols = headerCols.concat(index + " ");
             headerLine = headerLine.concat("---");

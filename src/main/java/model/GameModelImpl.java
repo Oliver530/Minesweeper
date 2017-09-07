@@ -1,6 +1,7 @@
 package model;
 
-import minesweeper4java.GameModel;
+import minesweeper.GameInfoProvider;
+import minesweeper.GameModel;
 import model.cell.Cell;
 import model.state.GameModelState;
 import model.state.GameStateLost;
@@ -10,7 +11,7 @@ import model.state.GameStateWon;
 /**
  * Created by olivergerhardt on 28.08.17.
  */
-public final class GameModelImpl implements GameModel {
+public final class GameModelImpl implements GameModel, GameInfoProvider {
 
     private Board board;            // Board contains cell objects (abstraction of two dimensional array)
     private GameModelState state;   // State of game (state pattern)
@@ -45,6 +46,11 @@ public final class GameModelImpl implements GameModel {
     }
 
     @Override
+    public int getNeighbourMines(int row, int col) {
+        return board.getNeighbourMineCount(row, col);
+    }
+
+    @Override
     public Cell getCell(final int row, final int col) {
         return board.getCell(row, col);
     }
@@ -75,8 +81,8 @@ public final class GameModelImpl implements GameModel {
     }
 
     @Override
-    public int getNeighbourMines(int row, int col) {
-        return board.getNeighbourMineCount(row, col);
+    public GameInfoProvider getGameInfoProvider() {
+        return this;
     }
 
     public GameModelState getState() {

@@ -1,4 +1,4 @@
-package minesweeper4java;
+package minesweeper;
 
 /**
  * Created by olivergerhardt on 31.08.17.

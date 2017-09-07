@@ -3,7 +3,7 @@ package model.cell;
 /**
  * Created by olivergerhardt on 27.08.17.
  */
-public class Cell implements CellRO {
+public class Cell implements CellReadOnly {
 
     private boolean isOpened;
     private boolean isMineInside;

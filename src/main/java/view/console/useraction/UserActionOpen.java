@@ -1,6 +1,6 @@
 package view.console.useraction;
 
-import minesweeper4java.GameModel;
+import minesweeper.GameModel;
 import view.console.ConsoleViewDrawer;
 
 /**
@@ -22,7 +22,7 @@ public final class UserActionOpen extends UserAction {
     public void perform(final GameModel gameModel, final ConsoleViewDrawer drawer) {
         gameModel.openCell(row, col);
 
-        if (!gameModel.gameLost() && !gameModel.gameWon()) {
+        if (!gameModel.getGameInfoProvider().gameLost() && !gameModel.getGameInfoProvider().gameWon()) {
             System.out.println();
             drawer.draw();
         }
