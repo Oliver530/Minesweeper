@@ -10,7 +10,7 @@ apply plugin: 'java'
 
 jar {
     manifest {
-        attributes 'Main-Class': 'minesweeper.Minesweeper4Java'
+        attributes 'Main-Class': 'minesweeper.Minesweeper'
     }
 }
 
