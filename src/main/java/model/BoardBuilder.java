@@ -8,7 +8,7 @@ import java.util.Random;
  */
 public final class BoardBuilder {
 
-    private static Random random = new Random();
+    private final static Random random = new Random();
 
     public static Cell[][] buildBoard(final int rows, final int columns, int mines) {
         mines = Math.max(0, Math.min(mines, rows * columns));

@@ -89,14 +89,14 @@ public final class ConsoleView implements View {
             try {
                 value = Integer.parseInt(input);
             } catch (NumberFormatException e) {
-                continue;
+                // try again
             }
         }
         return value;
     }
 
     private String getStringFromUser(final String prompt, final String[] validInputs) {
-        String input = "";
+        String input;
         while (true) {
             System.out.print(prompt);
             input = keyboard.nextLine();
@@ -116,10 +116,7 @@ public final class ConsoleView implements View {
 
     private boolean playAgain() {
         String playAgain = getStringFromUser("Play again (y/n)? ", new String[]{"y", "n"});
-        if ("y".equals(playAgain)) {
-            return true;
-        }
-        return false;
+        return "y".equals(playAgain);
     }
 
 }

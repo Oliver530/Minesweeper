@@ -5,8 +5,6 @@ import org.junit.Assert;
 import org.junit.Test;
 import util.GameDifficulty;
 
-import static org.junit.Assert.assertTrue;
-
 /**
  * Created by olivergerhardt on 27.08.17.
  */

@@ -12,11 +12,11 @@ public final class Board {
     public static final int ROWS_MINIMUM = 4;
     public static final int COLUMNS_MINIMUM = 4;
 
-    private Cell[][] cells;
+    private final Cell[][] cells;
     private int mines = 0;
 
-    private HashMap<Cell,Integer> cacheRow = new HashMap<Cell,Integer>();
-    private HashMap<Cell,Integer> cacheColumn = new HashMap<Cell,Integer>();
+    private final HashMap<Cell,Integer> cacheRow = new HashMap<>();
+    private final HashMap<Cell,Integer> cacheColumn = new HashMap<>();
 
 
     public Board() {
